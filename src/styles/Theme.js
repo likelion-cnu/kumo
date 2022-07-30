@@ -17,4 +17,6 @@ export default {
 
   borderGray: '1px solid #F5F5F5',
   borderPurple: '2px solid #512DA8',
+
+  grayBarBorder: '1px solid #D9D9D9',
 };
