@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'import', 'react'],
   extends: ['eslint:recommended', 'airbnb', 'plugin:prettier/recommended'],
   rules: {
     quotes: [1, 'single'],
