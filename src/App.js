@@ -7,6 +7,7 @@ import reset from 'styled-reset';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeCustomer from './pages/HomeCustomer';
 import styledTheme from './styles/Theme';
+import MyStamp from './pages/MyStamp';
 
 function CustomerRoutes() {
   return (
@@ -15,7 +16,7 @@ function CustomerRoutes() {
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search/:keyword" element={<HomeCustomer />} />
         <Route path="/profile/:id" element={<HomeCustomer />} />
-        <Route path="/mystamp/:id" element={<HomeCustomer />} />
+        <Route path="/my-stamp/:id" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<HomeCustomer />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<HomeCustomer />} />
