@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShopStamp from '../comonents/MyStamp/ShopStamp';
+import ShopStamp from '../components/MyStamp/ShopStamp';
 
 function MyStamp() {
   const myStamp = [
