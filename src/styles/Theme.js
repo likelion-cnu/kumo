@@ -1,5 +1,6 @@
 export default {
   mainPurple: '#512DA8',
+  bgColor: '#FDFCFF',
 
   fontBlack: '#191A22',
   fontGray: '#4B4B4B',

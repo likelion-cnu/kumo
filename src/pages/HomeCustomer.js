@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import MyQrCode from '../comonents/Homecustomer/MyQrCode';
+import PageButton from '../comonents/Homecustomer/PageButton';
 
 function HomeCustomer() {
   return (
     <Body>
       <MyQrCode />
+      <PageButton />
     </Body>
   );
 }
@@ -17,6 +19,8 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  background-color: ${props => props.theme.bgColor};
 `;
 
 export default HomeCustomer;
