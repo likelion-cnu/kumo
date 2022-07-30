@@ -8,13 +8,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomeCustomer from './pages/HomeCustomer';
 import styledTheme from './styles/Theme';
 import MyStamp from './pages/MyStamp';
+import Search from './pages/Search';
 
 function CustomerRoutes() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
-        <Route path="/search/:keyword" element={<HomeCustomer />} />
+        <Route path="/search/:keyword" element={<Search />} />
         <Route path="/profile/:id" element={<HomeCustomer />} />
         <Route path="/my-stamp/:id" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<HomeCustomer />} />

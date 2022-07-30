@@ -1,15 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import ListBox from './ListBox';
+import ShopListImg from './ShopListImg';
+import ShopListTitle from './ShopListTitle';
 
-function ShopStamp({ title, field, src, coupon, stamp }) {
+function ShopStamp({ id, title, field, src, coupon, stamp }) {
+  const navigate = useNavigate();
+
+  const toShopPage = () => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
-    <Box>
-      <TitleBox>
-        <Title>{title}</Title>
-        <Field>{field}</Field>
-      </TitleBox>
+    <ListBox onClick={toShopPage}>
+      <ShopListTitle title={title} field={field} />
       <ImgCouponBox>
-        <Img src={src} />
+        <ShopListImg src={src} />
         <CouponBox>
           <Coupon>☕️ · {coupon}</Coupon>
           <Stamp>
@@ -21,49 +28,9 @@ function ShopStamp({ title, field, src, coupon, stamp }) {
           </Stamp>
         </CouponBox>
       </ImgCouponBox>
-    </Box>
+    </ListBox>
   );
 }
-
-const Box = styled.div`
-  width: 80%;
-  height: 175px;
-
-  padding: 0 5%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  border-bottom: ${props => props.theme.borderGray};
-`;
-
-const TitleBox = styled.div`
-  width: 100%;
-  height: 10%;
-
-  display: flex;
-  align-items: center;
-
-  /* margin-bottom: 1vh; */
-`;
-
-const Title = styled.div`
-  color: ${props => props.theme.fontBlack};
-
-  font-size: ${props => props.theme.fontMedium};
-  font-weight: ${props => props.theme.fontBold};
-
-  margin-right: 2.5%;
-`;
-
-const Field = styled.div`
-  color: ${props => props.theme.fontGray};
-
-  font-size: ${props => props.theme.fontSmall};
-  font-weight: ${props => props.theme.fontLight};
-`;
 
 const ImgCouponBox = styled.div`
   width: 100%;
@@ -72,20 +39,6 @@ const ImgCouponBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const Img = styled.img`
-  width: 25vw;
-  height: 25vw;
-
-  max-width: 125px;
-  max-height: 125px;
-
-  padding: 2%;
-
-  object-fit: cover;
-
-  border-radius: 20px;
 `;
 
 const CouponBox = styled.div`
