@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function HomeCustomer() {
-  return <Body> </Body>;
+  return <Body>ㅇㅇㅇ</Body>;
 }
 
 const Body = styled.div``;
