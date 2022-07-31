@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import ListBox from './ListBox';
-import ShopListImg from './ShopListImg';
-import ShopListTitle from './ShopListTitle';
+import { BsDot } from 'react-icons/bs';
+import ShopListBox from '../ShopList/ShopListBox';
+import ShopListImg from '../ShopList/ShopListImg';
+import ShopListTitle from '../ShopList/ShopListTitle';
+import ShopListInfo from '../ShopList/ShopListInfo';
 
 function ShopStamp({ id, title, field, src, coupon, stamp }) {
   const navigate = useNavigate();
@@ -13,35 +15,31 @@ function ShopStamp({ id, title, field, src, coupon, stamp }) {
   };
 
   return (
-    <ListBox onClick={toShopPage}>
+    <ShopListBox onClick={toShopPage}>
       <ShopListTitle title={title} field={field} />
-      <ImgCouponBox>
+      <ShopListInfo>
         <ShopListImg src={src} />
-        <CouponBox>
-          <Coupon>☕️ · {coupon}</Coupon>
+        <StampCouponBox>
+          <Coupon>
+            <Title>☕️</Title>
+            <BsDot />
+            <Text>{coupon}</Text>
+          </Coupon>
           <Stamp>
-            <StampTitle>스탬프 ·</StampTitle>
+            <Title>스탬프</Title>
+            <BsDot />
             <StampBarBox>
               <StampBar style={{ width: stamp }} />
               <StampText>{stamp}</StampText>
             </StampBarBox>
           </Stamp>
-        </CouponBox>
-      </ImgCouponBox>
-    </ListBox>
+        </StampCouponBox>
+      </ShopListInfo>
+    </ShopListBox>
   );
 }
 
-const ImgCouponBox = styled.div`
-  width: 100%;
-  height: 75%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const CouponBox = styled.div`
+const StampCouponBox = styled.div`
   width: 55%;
   height: 50%;
 
@@ -53,6 +51,9 @@ const CouponBox = styled.div`
 
 const Coupon = styled.div`
   width: 100%;
+
+  display: flex;
+  align-items: center;
 `;
 
 const Stamp = styled.div`
@@ -63,13 +64,15 @@ const Stamp = styled.div`
   align-items: center;
 `;
 
-const StampTitle = styled.div`
-  width: 40%;
+const Title = styled.div`
+  text-align: left;
 `;
 
+const Text = styled.div``;
+
 const StampBarBox = styled.div`
-  width: 60%;
-  height: 100%;
+  width: 65%;
+  height: 90%;
 
   border: ${props => props.theme.grayBarBorder};
   border-radius: 10px;
@@ -93,7 +96,7 @@ const StampText = styled.div`
   font-size: 10px;
 
   position: absolute;
-  top: 9%;
+  top: 0%;
 `;
 
 export default ShopStamp;

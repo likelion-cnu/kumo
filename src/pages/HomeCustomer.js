@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyQrCode from '../comonents/Homecustomer/MyQrCode';
-import PageButton from '../comonents/Homecustomer/PageButton';
+import MyQrCode from '../components/Homecustomer/MyQrCode';
+import PageButton from '../components/Homecustomer/PageButton';
 
 function HomeCustomer() {
   return (

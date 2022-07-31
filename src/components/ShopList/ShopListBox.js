@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ListBox = styled.button`
+const ShopListBox = styled.button`
   width: 80%;
   height: 175px;
 
@@ -19,4 +19,4 @@ const ListBox = styled.button`
   border-bottom: ${props => props.theme.borderGray};
 `;
 
-export default ListBox;
+export default ShopListBox;
