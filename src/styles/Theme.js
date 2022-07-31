@@ -10,8 +10,8 @@ export default {
   fontBold: '600',
 
   fontXSmall: '12px',
-  fontSmall: '16px',
-  fontMedium: '20px',
+  fontSmall: '14px',
+  fontMedium: '18px',
   fontLarge: '24px',
   fontXLarge: '26px',
 
