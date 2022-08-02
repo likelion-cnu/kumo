@@ -1,8 +1,5 @@
 // .eslintrc.js
 module.exports = {
-  "parser": "@babel/eslint-parser",
-  "parserOptions": { "requireConfigFile" : "false" },
-  "babelOptions": { "configFile": "./.babelrc", },
   env: {
     browser: true,
     es6: true,
