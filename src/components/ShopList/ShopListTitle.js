@@ -16,6 +16,8 @@ const TitleBox = styled.div`
 
   display: flex;
   align-items: center;
+
+  margin-bottom: 2.5px;
 `;
 
 const Title = styled.div`

@@ -96,7 +96,7 @@ const StampText = styled.div`
   font-size: 10px;
 
   position: absolute;
-  top: 9%;
+  top: 0%;
 `;
 
 export default ShopStamp;

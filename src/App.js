@@ -9,6 +9,7 @@ import HomeCustomer from './pages/HomeCustomer';
 import styledTheme from './styles/Theme';
 import MyStamp from './pages/MyStamp';
 import Search from './pages/Search';
+import Profile from './pages/Profile';
 
 function CustomerRoutes() {
   return (
@@ -16,8 +17,8 @@ function CustomerRoutes() {
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search/:keyword" element={<Search />} />
-        <Route path="/profile/:id" element={<HomeCustomer />} />
-        <Route path="/my-stamp/:id" element={<MyStamp />} />
+        <Route path="/profile/:userId" element={<Profile />} />
+        <Route path="/my-stamp/:userId" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<HomeCustomer />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<HomeCustomer />} />
@@ -46,6 +47,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  * {
     font-family: 'Noto Sans KR', sans-serif;
   }
 `;
