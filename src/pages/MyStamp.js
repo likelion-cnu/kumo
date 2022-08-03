@@ -32,17 +32,19 @@ function MyStamp() {
 
   return (
     <Body>
-      {myStamp.map(item => (
-        <ShopStamp
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          field={item.field}
-          src={item.src}
-          coupon={item.coupon}
-          stamp={`${item.stamp * 10}%`}
-        />
-      ))}
+      <MyStampBox>
+        {myStamp.map(item => (
+          <ShopStamp
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            field={item.field}
+            src={item.src}
+            coupon={item.coupon}
+            stamp={`${item.stamp * 10}%`}
+          />
+        ))}
+      </MyStampBox>
     </Body>
   );
 }
@@ -55,6 +57,21 @@ const Body = styled.div`
   align-items: center;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const MyStampBox = styled.div`
+  width: 90%;
+
+  margin: 20px;
+  padding: 5px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: ${props => props.theme.borderPurple};
+  border-radius: 20px;
 `;
 
 export default MyStamp;

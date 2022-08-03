@@ -6,6 +6,7 @@ import ShopListBox from '../ShopList/ShopListBox';
 import ShopListImg from '../ShopList/ShopListImg';
 import ShopListTitle from '../ShopList/ShopListTitle';
 import ShopListInfo from '../ShopList/ShopListInfo';
+import StampImg from '../../images/StampImg.png';
 
 function ShopStamp({ id, title, field, src, coupon, stamp }) {
   const navigate = useNavigate();
@@ -21,13 +22,11 @@ function ShopStamp({ id, title, field, src, coupon, stamp }) {
         <ShopListImg src={src} />
         <StampCouponBox>
           <Coupon>
-            <Title>☕️</Title>
-            <BsDot />
-            <Text>{coupon}</Text>
+            <Title>🎟</Title>
+            <Text>{coupon} 장</Text>
           </Coupon>
           <Stamp>
-            <Title>스탬프</Title>
-            <BsDot />
+            <StampIcon src={StampImg} />
             <StampBarBox>
               <StampBar style={{ width: stamp }} />
               <StampText>{stamp}</StampText>
@@ -40,12 +39,12 @@ function ShopStamp({ id, title, field, src, coupon, stamp }) {
 }
 
 const StampCouponBox = styled.div`
-  width: 55%;
+  width: 60%;
   height: 50%;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -65,14 +64,27 @@ const Stamp = styled.div`
 `;
 
 const Title = styled.div`
+  font-size: 30px;
+
   text-align: left;
 `;
 
-const Text = styled.div``;
+const Text = styled.div`
+  width: 100%;
+
+  font-size: ${props => props.theme.fontSmall};
+  font-weight: ${props => props.theme.fontRegular};
+  color: ${props => props.theme.fontGray};
+  text-align: center;
+`;
+
+const StampIcon = styled.img`
+  width: 30px;
+`;
 
 const StampBarBox = styled.div`
-  width: 65%;
-  height: 90%;
+  width: 75%;
+  height: 20px;
 
   border: ${props => props.theme.grayBarBorder};
   border-radius: 10px;

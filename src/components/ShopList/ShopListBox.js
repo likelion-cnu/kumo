@@ -4,8 +4,6 @@ const ShopListBox = styled.button`
   width: 100%;
   height: 175px;
 
-  padding: 5% 5%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
