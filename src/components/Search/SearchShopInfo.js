@@ -21,12 +21,12 @@ function SearchShopInfo({
 }) {
   const navigate = useNavigate();
 
-  const toShopPage = () => {
+  const onClick = () => {
     navigate(`/detail/${id}`);
   };
 
   return (
-    <ShopListBox onClick={toShopPage}>
+    <ShopListBox onClick={onClick}>
       <ShopListTitle title={title} field={field} />
       <ShopListInfo>
         <ShopListImg src={src} />

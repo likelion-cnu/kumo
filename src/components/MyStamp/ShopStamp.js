@@ -10,12 +10,12 @@ import ShopListInfo from '../ShopList/ShopListInfo';
 function ShopStamp({ id, title, field, src, coupon, stamp }) {
   const navigate = useNavigate();
 
-  const toShopPage = () => {
+  const onClick = () => {
     navigate(`/detail/${id}`);
   };
 
   return (
-    <ShopListBox onClick={toShopPage}>
+    <ShopListBox onClick={onClick}>
       <ShopListTitle title={title} field={field} />
       <ShopListInfo>
         <ShopListImg src={src} />
