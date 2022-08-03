@@ -20,6 +20,7 @@ function SearchBar() {
           variant="outlined"
           fullWidth
           label="가게이름검색"
+          size="small"
           // multiline
           // InputProps={{ style: { color: '#191A22' } }}
           // color="secondary"
@@ -33,18 +34,17 @@ function SearchBar() {
 
 const Main = styled.div`
   display: flex;
-  height: 150px;
+  height: 120px;
   width: 100%;
   align-items: center;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 1px;
   font-size: 20px;
 `;
 
 const Search = styled.div`
-  width: 60%;
+  width: 70%;
   height: 50%;
-  color: 'white';
 `;
 
 export default SearchBar;
