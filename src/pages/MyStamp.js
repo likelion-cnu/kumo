@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ShopStamp from '../components/MyStamp/ShopStamp';
+import Header from '../components/Header/Header';
 
 function MyStamp() {
   const myStamp = [
@@ -32,6 +33,7 @@ function MyStamp() {
 
   return (
     <Body>
+      <Header />
       {myStamp.map(item => (
         <ShopStamp
           key={item.id}
