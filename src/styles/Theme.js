@@ -1,3 +1,7 @@
+const size = {
+  mobile: '767px',
+};
+
 export default {
   mainPurple: '#512DA8',
   bgColor: '#FDFCFF',
@@ -20,4 +24,5 @@ export default {
   borderPurple: '2px solid #512DA8',
 
   grayBarBorder: '1px solid #D9D9D9',
+  mobile: `(max-width: ${size.mobile})`,
 };
