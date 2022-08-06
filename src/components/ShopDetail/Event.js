@@ -23,8 +23,8 @@ const Box = styled.div`
   border: ${props => props.theme.borderPurple};
   border-radius: ${props => props.theme.borderRadius};
   margin: auto;
-  width: 60%;
-  height: 60px;
+  width: 73%;
+  height: 50px;
   positon: relative;
   top: 300px;
   tes-align: center;
