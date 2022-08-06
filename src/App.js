@@ -10,6 +10,7 @@ import styledTheme from './styles/Theme';
 import MyStamp from './pages/MyStamp';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
+import ShopDetail from './pages/ShopDetail';
 
 function CustomerRoutes() {
   return (
@@ -19,7 +20,7 @@ function CustomerRoutes() {
         <Route path="/search/:keyword" element={<Search />} />
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/my-stamp/:userId" element={<MyStamp />} />
-        <Route path="/detail/:shopId" element={<HomeCustomer />} />
+        <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<HomeCustomer />} />
       </Routes>
