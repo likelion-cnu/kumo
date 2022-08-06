@@ -41,7 +41,7 @@ const PageButtonBodyBox = styled.div`
 
 const Button = styled.button`
   width: 75vw;
-  height: 10vh;
+  height: 75px;
 
   display: flex;
   justify-content: center;

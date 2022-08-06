@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from '../components/Header/Header';
 import UsedCoupon from '../components/Profile/UsedCoupon';
 import UserInfoButton from '../components/Profile/UserInfoButton';
 
@@ -20,6 +21,7 @@ function Profile() {
 
   return (
     <Body>
+      <Header />
       <UserInfoButton level={user.level} nickname={user.nickname} />
       <UsedCouponsBox>
         {usedCoupons.map(item => (

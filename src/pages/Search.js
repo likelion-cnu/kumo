@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from '../components/Header/Header';
 import SearchShopInfo from '../components/Search/SearchShopInfo';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 function Search() {
   const shopInfo = [
@@ -38,19 +40,23 @@ function Search() {
 
   return (
     <Body>
-      {shopInfo.map(item => (
-        <SearchShopInfo
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          field={item.field}
-          src={item.src}
-          number={item.number}
-          isOpen={item.isOpen}
-          distance={item.distance}
-          address={item.address}
-        />
-      ))}
+      <Header />
+      <SearchBar />
+      <SearchResultBox>
+        {shopInfo.map(item => (
+          <SearchShopInfo
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            field={item.field}
+            src={item.src}
+            number={item.number}
+            isOpen={item.isOpen}
+            distance={item.distance}
+            address={item.address}
+          />
+        ))}
+      </SearchResultBox>
     </Body>
   );
 }
@@ -63,6 +69,21 @@ const Body = styled.div`
   align-items: center;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const SearchResultBox = styled.div`
+  width: 90%;
+
+  margin: 20px;
+  padding: 5px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: ${props => props.theme.borderPurple};
+  border-radius: 20px;
 `;
 
 export default Search;
