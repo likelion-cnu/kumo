@@ -1,50 +1,60 @@
 import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import List from '../List/List';
 
 function SearchBar() {
   const [inputText, setInputText] = useState('');
-  const inputHandler = e => {
-    // convert input text to lower case
+  const navigate = useNavigate();
+
+  const onChange = e => {
     const lowerCase = e.target.value.toLowerCase();
     setInputText(lowerCase);
   };
 
+  const onEnterPress = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const keyword = inputText.replace(/(\s*)/g, '');
+      navigate({
+        pathname: 'search',
+        search: `?keyword=${keyword}`,
+      });
+    }
+  };
+
   return (
-    <Main>
-      <Search>
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="가게이름검색"
-          size="small"
-          // multiline
-          // InputProps={{ style: { color: '#191A22' } }}
-          // color="secondary"
-          // focused
-        />
-      </Search>
-      <List input={inputText} />
-    </Main>
+    <SearchBarBox onKeyPress={onEnterPress}>
+      <SearchInput type="text" value={inputText} onChange={onChange} />
+    </SearchBarBox>
   );
 }
 
-const Main = styled.div`
-  display: flex;
-  height: 120px;
+const SearchBarBox = styled.form`
   width: 100%;
+  height: 50px;
+
+  margin: 15px 0;
+
+  display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  row-gap: 1px;
-  font-size: 20px;
 `;
 
-const Search = styled.div`
-  width: 70%;
-  height: 50%;
+const SearchInput = styled.input`
+  width: 80%;
+  height: 100%;
+
+  padding: 0 10px;
+
+  border-radius: 20px;
+  border: ${props => props.theme.borderPurple};
+
+  font-size: ${props => props.theme.fontMedium};
+  color: ${props => props.theme.fontBlack};
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default SearchBar;
