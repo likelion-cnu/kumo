@@ -17,46 +17,55 @@ function PageButton() {
           <Text>주변 가게</Text>
         </Button>
       </Link>
+      <Link to="/my-stamp">
+        <Button>
+          <Icon>🎟</Icon>
+          <Text>내 스탬프</Text>
+        </Button>
+      </Link>
     </PageButtonBodyBox>
   );
 }
 
 const PageButtonBodyBox = styled.div`
-  width: 100%;
-
-  padding: 0 15%;
+  width: 100vw;
 
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  position: fixed;
+  bottom: 30px;
 `;
 
 const Button = styled.button`
-  width: 30vw;
-  height: 30vw;
+  width: 75vw;
+  height: 75px;
 
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  background-color: ${props => props.theme.bgColor};
+  margin: 10px 0;
+
+  /* background-color: ${props => props.theme.mainPurple}; */
+  background: radial-gradient(#7f2b8c 0%, #512da8 125%);
 
   border: ${props => props.theme.borderPurple};
   border-radius: 20px;
 `;
 
 const Icon = styled.div`
-  font-size: 35px;
+  font-size: 26px;
 `;
 
 const Text = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  margin-left: 10px;
 
-  margin: 5% 8%;
+  color: ${props => props.theme.bgColor};
 
-  color: ${props => props.theme.fontBlack};
-
-  font-size: ${props => props.theme.fontSmall};
+  font-size: ${props => props.theme.fontLarge};
   font-weight: ${props => props.theme.fontRegular};
 
   text-align: center;
