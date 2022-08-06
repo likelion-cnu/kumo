@@ -5,11 +5,11 @@ import {
 } from 'styled-components';
 import reset from 'styled-reset';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomeCustomer from './pages/HomeCustomer';
+import HomeCustomer from './pages/customer/HomeCustomer';
 import styledTheme from './styles/Theme';
-import MyStamp from './pages/MyStamp';
-import Search from './pages/Search';
-import Profile from './pages/Profile';
+import MyStamp from './pages/customer/MyStamp';
+import Search from './pages/customer/Search';
+import Profile from './pages/customer/Profile';
 
 function CustomerRoutes() {
   return (

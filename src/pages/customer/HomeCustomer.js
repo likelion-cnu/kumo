@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyQrCode from '../components/Homecustomer/MyQrCode';
-import PageButton from '../components/Homecustomer/PageButton';
-import Header from '../components/Header/Header';
-import SearchBar from '../components/SearchBar/SearchBar';
+import MyQrCode from '../../components/customer/Homecustomer/MyQrCode';
+import PageButton from '../../components/customer/Homecustomer/PageButton';
+import Header from '../../components/customer/Header/Header';
+import SearchBar from '../../components/customer/SearchBar/SearchBar';
 
 function HomeCustomer() {
   return (

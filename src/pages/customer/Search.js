@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header/Header';
-import SearchShopInfo from '../components/Search/SearchShopInfo';
-import SearchBar from '../components/SearchBar/SearchBar';
+import Header from '../../components/customer/Header/Header';
+import SearchShopInfo from '../../components/customer/Search/SearchShopInfo';
+import SearchBar from '../../components/customer/SearchBar/SearchBar';
 
 function Search() {
   const shopInfo = [
