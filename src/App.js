@@ -17,7 +17,7 @@ function CustomerRoutes() {
     <Router>
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
-        <Route path="/search/:keyword" element={<Search />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/my-stamp/:userId" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
