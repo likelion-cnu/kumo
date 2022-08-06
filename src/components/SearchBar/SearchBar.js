@@ -16,7 +16,7 @@ function SearchBar() {
       e.preventDefault();
       const keyword = inputText.replace(/(\s*)/g, '');
       navigate({
-        pathname: 'search',
+        pathname: '/search',
         search: `?keyword=${keyword}`,
       });
     }

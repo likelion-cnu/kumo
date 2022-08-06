@@ -16,7 +16,7 @@ export default {
   fontXSmall: '12px',
   fontSmall: '14px',
   fontMedium: '18px',
-  fontLarge: '24px',
+  fontLarge: '22px',
   fontXLarge: '26px',
   fontLogo: '25px',
 

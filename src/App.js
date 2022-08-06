@@ -18,8 +18,8 @@ function CustomerRoutes() {
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/profile/:userId" element={<Profile />} />
-        <Route path="/my-stamp/:userId" element={<MyStamp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<HomeCustomer />} />
