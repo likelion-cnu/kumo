@@ -7,12 +7,12 @@ import ShopListImg from '../ShopList/ShopListImg';
 function UsedCoupons({ id, src, title, date }) {
   const navigate = useNavigate();
 
-  const toShopPage = () => {
+  const onClick = () => {
     navigate(`/detail/${id}`);
   };
 
   return (
-    <UsedCouponBox onClick={toShopPage}>
+    <UsedCouponBox onClick={onClick}>
       <ShopListImg src={src} />
       <TextBox>
         <TitleBox>
