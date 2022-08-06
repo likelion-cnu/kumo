@@ -14,10 +14,10 @@ function Header() {
       </NavbarLogo>
       <NavbarMenu menu={menu}>
         <NavbarMenuLi>
-          <a href="/">마이 프로필</a>
+          <a href="/profile">마이 프로필</a>
         </NavbarMenuLi>
         <NavbarMenuLi>
-          <a href="/">내 스탬프</a>
+          <a href="/my-stamp">내 스탬프</a>
         </NavbarMenuLi>
       </NavbarMenu>
       <NavbarToogleBtn
