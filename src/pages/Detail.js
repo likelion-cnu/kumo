@@ -47,8 +47,8 @@ function Search() {
             event={item.event}
           />
         ))}
+        <Event />
       </SearchResultBox>
-      <Event />
     </Body>
   );
 }

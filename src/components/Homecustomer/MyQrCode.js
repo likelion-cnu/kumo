@@ -15,6 +15,7 @@ function MyQrCode() {
 
 const MyQrCodeBox = styled.div`
   width: 70%;
+  max-width: 300px;
 
   display: flex;
   flex-direction: column;
@@ -29,8 +30,6 @@ const Text = styled.div`
 
   font-size: ${props => props.theme.fontLarge};
   font-weight: ${props => props.theme.fontBold};
-
-  /* margin-left: 5%; */
 
   color: ${props => props.theme.fontBlack};
 `;

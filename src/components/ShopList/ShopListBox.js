@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 const ShopListBox = styled.button`
-  width: 80%;
+  width: 100%;
   height: 175px;
-
-  padding: 0 5%;
 
   display: flex;
   flex-direction: column;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ShopStamp from '../components/MyStamp/ShopStamp';
 import Header from '../components/Header/Header';
+import SearchBar from '../components/SearchBar/SearchBar';
 
 function MyStamp() {
   const myStamp = [
@@ -34,17 +35,20 @@ function MyStamp() {
   return (
     <Body>
       <Header />
-      {myStamp.map(item => (
-        <ShopStamp
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          field={item.field}
-          src={item.src}
-          coupon={item.coupon}
-          stamp={`${item.stamp * 10}%`}
-        />
-      ))}
+      <SearchBar />
+      <MyStampBox>
+        {myStamp.map(item => (
+          <ShopStamp
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            field={item.field}
+            src={item.src}
+            coupon={item.coupon}
+            stamp={`${item.stamp * 10}%`}
+          />
+        ))}
+      </MyStampBox>
     </Body>
   );
 }
@@ -57,6 +61,21 @@ const Body = styled.div`
   align-items: center;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const MyStampBox = styled.div`
+  width: 90%;
+
+  margin: 20px;
+  padding: 5px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: ${props => props.theme.borderPurple};
+  border-radius: 20px;
 `;
 
 export default MyStamp;
