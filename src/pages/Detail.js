@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header/Header';
 import DetailInfo from '../components/ShopDetail/DetailInfo';
-import Event from '../components/ShopDetail/Event';
+import EventInfo from '../components/ShopDetail/EventInfo';
 
 function Search() {
   const shopInfo = [
@@ -17,20 +17,19 @@ function Search() {
       address: '광주광역시 어쩌구저쩌구',
       coupon: '0',
       stamp: 7,
-      event: '스탬프 10번 적립 시 쿠폰 1장',
+      // event: '스탬프 10번 적립 시 쿠폰 1장',
     },
   ];
-  // const myStamp = [
+  // const shopDetail = [
   //   {
-  //     coupon: '0',
-  //     stamp: 7,
+  //     event: '스탬프 10번 적립 시 쿠폰 1장',
   //   },
   // ];
 
   return (
     <Body>
       <Header />
-      <SearchResultBox>
+      <ShopDetailBox>
         {shopInfo.map(item => (
           <DetailInfo
             key={item.id}
@@ -44,11 +43,16 @@ function Search() {
             address={item.address}
             coupon={item.coupon}
             stamp={`${item.stamp * 10}%`}
-            event={item.event}
+            // event={item.event}
           />
         ))}
-        <Event />
-      </SearchResultBox>
+      </ShopDetailBox>
+      {/* <EventBox>
+        {shopDetail.map(item => (
+          <ShopEvent event={item.event} />
+        ))}
+      </EventBox> */}
+      <EventInfo />
     </Body>
   );
 }
@@ -63,7 +67,7 @@ const Body = styled.div`
   background-color: ${props => props.theme.bgColor};
 `;
 
-const SearchResultBox = styled.div`
+const ShopDetailBox = styled.div`
   width: 90%;
 
   margin: 20px;
