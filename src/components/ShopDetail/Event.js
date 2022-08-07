@@ -13,7 +13,6 @@ function Event() {
 
 const EventBox = styled.div`
   width: 100%;
-  padding: 2% 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,8 +22,9 @@ const Box = styled.div`
   border: ${props => props.theme.borderPurple};
   border-radius: ${props => props.theme.borderRadius};
   margin: auto;
-  width: 73%;
-  height: 50px;
+  margin-top: 10%;
+  width: 90%;
+  height: 80px;
   positon: relative;
   top: 300px;
   tes-align: center;
