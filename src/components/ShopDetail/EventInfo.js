@@ -1,40 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShopEvent from '../ShopList/ShopEvent';
 
-function Event() {
-  const shopDetail = [
-    {
-      event: '스탬프 10번 적립 시 쿠폰 1장',
-    },
-  ];
+function Event({ event }) {
   return (
-    <EventBox>
-      <Box>
-        {shopDetail.map(item => (
-          <ShopEvent event={item.event} />
-        ))}
-      </Box>
-    </EventBox>
+    <TitleBox>
+      <Title>{event}</Title>
+    </TitleBox>
   );
 }
 
-const EventBox = styled.div`
-  width: 90%;
+const TitleBox = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin-left: 12%;
 `;
 
-const Box = styled.div`
-  border: ${props => props.theme.borderPurple};
-  border-radius: ${props => props.theme.borderRadius};
-  margin: auto;
-  width: 90%;
-  height: 80px;
-  positon: relative;
-  top: 300px;
-  tes-align: center;
+const Title = styled.div`
+  color: ${props => props.theme.fontBlack};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontBold};
+  text-align: center;
 `;
 
 export default Event;
