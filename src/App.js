@@ -5,11 +5,15 @@ import {
 } from 'styled-components';
 import reset from 'styled-reset';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import HomeCustomer from './pages/customer/HomeCustomer';
 import styledTheme from './styles/Theme';
 import MyStamp from './pages/customer/MyStamp';
 import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
+
+import HomeShop from './pages/shop/HomeShop';
+import QrScan from './pages/shop/QrScan';
 
 function CustomerRoutes() {
   return (
@@ -27,8 +31,19 @@ function CustomerRoutes() {
   );
 }
 
+function ShopRoutes() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeShop />} />
+        <Route path="/qrscan" element={<QrScan />} />
+      </Routes>
+    </Router>
+  );
+}
+
 function AppRouter() {
-  return <CustomerRoutes />;
+  return <ShopRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
