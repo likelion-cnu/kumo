@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import MapHeader from '../components/Map/MapHeader';
-// import KakaoMap from '../components/Map/KakaoMap';
-import TestMap from '../components/Map/TestMap';
+import KakaoMap from '../components/Map/KakaoMap';
 
 function Map() {
   // const shopPositions = [
@@ -27,12 +26,10 @@ function Map() {
   return (
     <Body>
       <MapHeader />
-      {/* <KakaoMap /> */}
-      <TestMap />
-      {/* {shopPositions.map(item => (
+      <KakaoMap />
+      {/* /* {shopPositions.map(item => (
           <ShopPositon key={item.title} latlng={item.latlng} />
-        ))}
-      </TestMap> */}
+        ))} */}
     </Body>
   );
 }
