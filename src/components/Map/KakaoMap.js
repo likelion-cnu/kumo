@@ -20,6 +20,20 @@ function KakaoMap() {
       };
 
       const map = new kakao.maps.Map(mapContainer, mapOption);
+
+      // 마커가 표시 될 위치
+      const markerPosition = new kakao.maps.LatLng(
+        myMap.latitude,
+        myMap.longitude,
+      );
+
+      // 마커를 생성
+      const marker = new kakao.maps.Marker({
+        position: markerPosition,
+      });
+
+      // 마커를 지도 위에 표시
+      marker.setMap(map);
     });
   }, []);
 
