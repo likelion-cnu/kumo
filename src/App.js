@@ -12,6 +12,7 @@ import Search from './pages/Search';
 import Profile from './pages/Profile';
 import Detail from './pages/Detail';
 import Map from './pages/Map';
+import ShopProfile from './pages/ShopProfile';
 
 function CustomerRoutes() {
   return (
@@ -24,6 +25,7 @@ function CustomerRoutes() {
         <Route path="/detail/:shopId" element={<Detail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/shopprofile" element={<ShopProfile />} />
       </Routes>
     </Router>
   );
