@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { BsDot } from 'react-icons/bs';
 import ShopListBox from '../ShopList/ShopListBox';
 import ShopListImg from '../ShopList/ShopListImg';
 import ShopListTitle from '../ShopList/ShopListTitle';

@@ -11,6 +11,7 @@ import MyStamp from './pages/MyStamp';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
 import Detail from './pages/Detail';
+import Map from './pages/Map';
 
 function CustomerRoutes() {
   return (
@@ -22,7 +23,7 @@ function CustomerRoutes() {
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<Detail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
-        <Route path="/map" element={<HomeCustomer />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </Router>
   );
