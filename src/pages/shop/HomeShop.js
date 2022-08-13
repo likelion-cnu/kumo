@@ -20,6 +20,8 @@ const Body = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-color: ${props => props.theme.bgColor};
 `;
 
 export default HomeShop;
