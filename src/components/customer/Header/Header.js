@@ -36,10 +36,11 @@ function Header() {
 }
 
 const Navbar = styled.div`
-  width: 90%;
+  width: 100%;
   height: 70px;
 
   margin-top: 10px;
+  padding: 5%;
 
   display: flex;
   justify-content: space-between;

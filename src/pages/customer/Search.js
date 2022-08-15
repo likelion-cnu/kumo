@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../../components/customer/Header/Header';
 import SearchShopInfo from '../../components/customer/Search/SearchShopInfo';
-import SearchBar from '../../components/customer/SearchBar/SearchBar';
+import SearchBar from '../../components/customer/Homecustomer/SearchBar';
 
 function Search() {
   const shopInfo = [
@@ -74,16 +74,13 @@ const Body = styled.div`
 const SearchResultBox = styled.div`
   width: 90%;
 
-  margin: 20px;
+  margin: 0 20px;
   padding: 5px 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border: ${props => props.theme.borderPurple};
-  border-radius: 20px;
 `;
 
 export default Search;

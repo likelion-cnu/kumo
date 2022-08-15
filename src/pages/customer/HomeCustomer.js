@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyQrCode from '../../components/customer/Homecustomer/MyQrCode';
 import PageButton from '../../components/customer/Homecustomer/PageButton';
 import Header from '../../components/customer/Header/Header';
-import SearchBar from '../../components/customer/SearchBar/SearchBar';
+import SearchBar from '../../components/customer/Homecustomer/SearchBar';
 
 function HomeCustomer() {
   return (

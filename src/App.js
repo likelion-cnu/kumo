@@ -5,12 +5,14 @@ import {
 } from 'styled-components';
 import reset from 'styled-reset';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styledTheme from './styles/Theme';
 
 import HomeCustomer from './pages/customer/HomeCustomer';
-import styledTheme from './styles/Theme';
 import MyStamp from './pages/customer/MyStamp';
 import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
+import ShopDetail from './pages/customer/ShopDetail';
+import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
@@ -23,9 +25,9 @@ function CustomerRoutes() {
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/my-stamp" element={<MyStamp />} />
-        <Route path="/detail/:shopId" element={<HomeCustomer />} />
+        <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
-        <Route path="/map" element={<HomeCustomer />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </Router>
   );
@@ -43,7 +45,7 @@ function ShopRoutes() {
 }
 
 function AppRouter() {
-  return <ShopRoutes />;
+  return <CustomerRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
