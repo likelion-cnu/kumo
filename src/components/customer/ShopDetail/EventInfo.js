@@ -2,25 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Event({ event }) {
-  return (
-    <TitleBox>
-      <Title>{event}</Title>
-    </TitleBox>
-  );
+  return <EventBox>{event}</EventBox>;
 }
 
-const TitleBox = styled.div`
+const EventBox = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  margin-left: 12%;
-`;
 
-const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   color: ${props => props.theme.fontBlack};
   font-size: ${props => props.theme.fontMedium};
-  font-weight: ${props => props.theme.fontBold};
+  font-weight: ${props => props.theme.fontRegular};
+
   text-align: center;
 `;
 

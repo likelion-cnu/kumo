@@ -34,9 +34,6 @@ const PageButtonBodyBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  position: fixed;
-  bottom: 30px;
 `;
 
 const Button = styled.button`

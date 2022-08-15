@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import DetailInfo from '../components/ShopDetail/DetailInfo';
-import EventInfo from '../components/ShopDetail/EventInfo';
-import ReviewInfo from '../components/ShopDetail/ReviewInfo';
+import Header from '../../components/customer/Header/Header';
+import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
+import EventInfo from '../../components/customer/ShopDetail/EventInfo';
+import ReviewInfo from '../../components/customer/ShopDetail/ReviewInfo';
 
-function Search() {
+function ShopDetail() {
   const shopInfo = [
     {
       id: 'gomada',
@@ -21,7 +21,7 @@ function Search() {
       stamp: 7,
     },
   ];
-  const shopDetail = [
+  const shopDetailInfo = [
     {
       event: '스탬프 10번 적립 시 쿠폰 1장',
     },
@@ -35,7 +35,7 @@ function Search() {
     },
     {
       id: '승건',
-      star: '4.5',
+      star: '3.0',
       time: '1일 전',
       comment: 'fwfeffefeefeefefeeef',
     },
@@ -67,14 +67,12 @@ function Search() {
         ))}
       </ShopDetailBox>
       <EventBox>
-        <Box>
-          {shopDetail.map(item => (
-            <EventInfo event={item.event} />
-          ))}
-        </Box>
+        {shopDetailInfo.map(item => (
+          <EventInfo event={item.event} />
+        ))}
       </EventBox>
       <ReviewTop>
-        <ReviewName>리뷰</ReviewName>
+        <ReviewTitle>Review</ReviewTitle>
         <ReviewButton onClick={onClick}>등록하기</ReviewButton>
       </ReviewTop>
       <ReviewBox>
@@ -116,64 +114,62 @@ const ShopDetailBox = styled.div`
 `;
 
 const EventBox = styled.div`
-  width: 90%;
+  width: 80%;
+  padding: 25px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
 
-const Box = styled.div`
   border: ${props => props.theme.borderPurple};
   border-radius: ${props => props.theme.borderRadius};
-  margin: auto;
-  width: 90%;
-  height: 80px;
-  positon: relative;
-  top: 300px;
-  tes-align: center;
 `;
 
 const ReviewTop = styled.div`
   width: 80%;
 
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
-const ReviewName = styled.div`
-  width: 100%;
-
+const ReviewTitle = styled.div`
   display: flex;
   align-items: center;
 
   color: ${props => props.theme.fontBlack};
 
-  font-size: ${props => props.theme.fontSmall};
-  font-weight: ${props => props.theme.fontBold};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
 `;
 
 const ReviewButton = styled.div`
-  width: 25%;
-  height: 20px;
+  height: 30px;
+  width: 75px;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 
-  border-radius: 20px;
+  border-radius: 10px;
   border: ${props => props.theme.borderPurple};
 
-  color: ${props => props.theme.mainPurple};
+  background-color: ${props => props.theme.mainPurple};
+  color: ${props => props.theme.bgColor};
 
   font-size: ${props => props.theme.fontSmall};
-  font-weight: ${props => props.theme.fontBold};
+  font-weight: ${props => props.theme.fontMedium};
+  text-align: center;
 `;
 
 const ReviewBox = styled.div`
-  width: 81%;
+  width: 80%;
 
   margin: 10px;
-  padding: 5px 10px;
+  padding: 10px 5px;
 
   display: flex;
   flex-direction: column;
@@ -184,4 +180,4 @@ const ReviewBox = styled.div`
   border: ${props => props.theme.borderPurple};
 `;
 
-export default Search;
+export default ShopDetail;

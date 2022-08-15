@@ -14,7 +14,7 @@ function MyQrCode() {
 }
 
 const MyQrCodeBox = styled.div`
-  width: 70%;
+  width: 80%;
   max-width: 300px;
 
   display: flex;

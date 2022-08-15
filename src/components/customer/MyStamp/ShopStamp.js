@@ -5,7 +5,7 @@ import ShopListBox from '../ShopList/ShopListBox';
 import ShopListImg from '../ShopList/ShopListImg';
 import ShopListTitle from '../ShopList/ShopListTitle';
 import ShopListInfo from '../ShopList/ShopListInfo';
-import StampImg from '../../images/StampImg.png';
+import StampImg from '../../../images/StampImg.png';
 
 function ShopStamp({ id, title, field, src, coupon, stamp }) {
   const navigate = useNavigate();

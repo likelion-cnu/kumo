@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsTelephone } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { FiMapPin } from 'react-icons/fi';
-import { FaRegStar } from 'react-icons/fa';
-import ShopListImg from '../ShopList/ShopListImg';
-import ShopListBox from '../ShopList/ShopListBox';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+
 import ShopListTitle from '../ShopList/ShopListTitle';
-import ShopListInfo from '../ShopList/ShopListInfo';
-import StampImg from '../../images/StampImg.png';
+
+import StampImg from '../../../images/StampImg.png';
 
 function DetailInfo({
   title,
@@ -21,15 +20,25 @@ function DetailInfo({
   coupon,
   stamp,
 }) {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const onStarClick = () => {
+    setIsLiked(!isLiked);
+  };
+
   return (
     <ShopListBox>
-      <ShopListInfo>
-        <ShopListImg src={src} />
+      <InfoBox>
+        <ShopDetailImg src={src} />
         <InfoTextBox>
           <InfoTitle>
             <ShopListTitle title={title} field={field} />
-            <Star>
-              <FaRegStar size={20} />
+            <Star onClick={onStarClick} isLiked={isLiked}>
+              {isLiked ? (
+                <AiFillHeart size={20} />
+              ) : (
+                <AiOutlineHeart size={20} />
+              )}
             </Star>
           </InfoTitle>
           <Info>
@@ -54,7 +63,7 @@ function DetailInfo({
             </AddressTextBox>
           </Info>
         </InfoTextBox>
-      </ShopListInfo>
+      </InfoBox>
       <StampCouponBox>
         <Coupon>
           <Title>🎟</Title>
@@ -72,6 +81,44 @@ function DetailInfo({
   );
 }
 
+const ShopListBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: ${props => props.theme.bgColor};
+
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: ${props => props.theme.borderGray};
+`;
+
+const InfoBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ShopDetailImg = styled.img`
+  width: 35vw;
+  height: 35vw;
+
+  max-width: 150px;
+  max-height: 150px;
+
+  padding: 2%;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+`;
+
 const InfoTitle = styled.div`
   width: 100%;
   height: 30%;
@@ -83,9 +130,15 @@ const InfoTitle = styled.div`
   margin-bottom: 2.5px;
 `;
 
-const Star = styled.div`
+const Star = styled.button`
   margin-bottom: 8px;
   margin-right: 62px;
+
+  border: none;
+
+  background-color: ${props => props.theme.bgColor};
+  color: ${props =>
+    props.isLiked ? props.theme.heartRed : props.theme.fontGray};
 `;
 
 const InfoTextBox = styled.div`
@@ -146,6 +199,9 @@ const StampCouponBox = styled.div`
   width: 100%;
   height: 30%;
 
+  margin: 10px 0;
+  padding: 0 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -163,10 +219,10 @@ const Stamp = styled.div`
   width: 100%;
   flex: 1;
   box-sizing: border-box;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 10%;
 `;
 
 const Title = styled.div`
@@ -183,12 +239,14 @@ const Text = styled.div`
 `;
 
 const StampIcon = styled.img`
-  width: 30px;
+  width: 40px;
+  padding-right: 10px;
 `;
 
 const StampBarBox = styled.div`
   width: 75%;
   height: 20px;
+
   border: ${props => props.theme.grayBarBorder};
   border-radius: 10px;
 
@@ -208,8 +266,9 @@ const StampText = styled.div`
 
   text-align: center;
   font-size: 10px;
+
   position: absolute;
-  top: 0%;
+  top: 20%;
 `;
 
 export default DetailInfo;

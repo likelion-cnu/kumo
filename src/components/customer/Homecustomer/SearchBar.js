@@ -41,7 +41,7 @@ const SearchBarBox = styled.form`
 `;
 
 const SearchInput = styled.input`
-  width: 74%;
+  width: 80%;
   height: 100%;
 
   padding: 0 10px;

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShopStamp from '../components/MyStamp/ShopStamp';
-import Header from '../components/Header/Header';
-import SearchBar from '../components/SearchBar/SearchBar';
+import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
+import Header from '../../components/customer/Header/Header';
 
 function MyStamp() {
   const myStamp = [
@@ -35,7 +34,6 @@ function MyStamp() {
   return (
     <Body>
       <Header />
-      <SearchBar />
       <MyStampBox>
         {myStamp.map(item => (
           <ShopStamp

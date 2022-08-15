@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import MapHeader from '../components/Map/MapHeader';
-import KakaoMap from '../components/Map/KakaoMap';
+import MapHeader from '../../components/customer/Map/MapHeader';
+import KakaoMap from '../../components/customer/Map/KakaoMap';
 
 function Map() {
   // const shopPositions = [

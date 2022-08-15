@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header/Header';
-import UsedCoupon from '../components/Profile/UsedCoupon';
-import UserInfoButton from '../components/Profile/UserInfoButton';
+import Header from '../../components/customer/Header/Header';
+import UsedCoupon from '../../components/customer/Profile/UsedCoupon';
+import UserInfoButton from '../../components/customer/Profile/UserInfoButton';
 
 function Profile() {
   const user = {

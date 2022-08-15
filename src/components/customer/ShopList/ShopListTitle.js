@@ -26,7 +26,7 @@ const Title = styled.div`
   font-size: ${props => props.theme.fontMedium};
   font-weight: ${props => props.theme.fontBold};
 
-  margin-right: 2.5%;
+  margin-right: 5px;
 `;
 
 const Field = styled.div`
