@@ -16,7 +16,9 @@ import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
+
 import HomeAuth from './pages/auth/HomeAuth';
+import Login from './pages/auth/Login';
 
 function CustomerRoutes() {
   return (
@@ -50,7 +52,7 @@ function AuthRoutes() {
     <Router>
       <Routes>
         <Route path="/" element={<HomeAuth />} />
-        <Route path="login" element={<HomeAuth />} />
+        <Route path="login" element={<Login />} />
         <Route path="/join" element={<HomeAuth />} />
         <Route path="/find" element={<HomeAuth />} />
       </Routes>
