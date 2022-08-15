@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BsTelephone } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { FiMapPin } from 'react-icons/fi';
-import { FaRegStar, FaStar } from 'react-icons/fa';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 import ShopListTitle from '../ShopList/ShopListTitle';
 
@@ -20,10 +20,10 @@ function DetailInfo({
   coupon,
   stamp,
 }) {
-  const [isStar, setIsStar] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   const onStarClick = () => {
-    setIsStar(!isStar);
+    setIsLiked(!isLiked);
   };
 
   return (
@@ -33,8 +33,12 @@ function DetailInfo({
         <InfoTextBox>
           <InfoTitle>
             <ShopListTitle title={title} field={field} />
-            <Star onClick={onStarClick} isStar={isStar}>
-              {isStar ? <FaStar size={20} /> : <FaRegStar size={20} />}
+            <Star onClick={onStarClick} isLiked={isLiked}>
+              {isLiked ? (
+                <AiFillHeart size={20} />
+              ) : (
+                <AiOutlineHeart size={20} />
+              )}
             </Star>
           </InfoTitle>
           <Info>
@@ -134,7 +138,7 @@ const Star = styled.button`
 
   background-color: ${props => props.theme.bgColor};
   color: ${props =>
-    props.isStar ? props.theme.starYellow : props.theme.fontGray};
+    props.isLiked ? props.theme.heartRed : props.theme.fontGray};
 `;
 
 const InfoTextBox = styled.div`

@@ -28,4 +28,5 @@ export default {
   mobile: `(max-width: ${size.mobile})`,
 
   starYellow: '#FAAF00',
+  heartRed: '#F04350',
 };

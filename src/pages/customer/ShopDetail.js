@@ -35,7 +35,7 @@ function ShopDetail() {
     },
     {
       id: '승건',
-      star: '4.5',
+      star: '3.0',
       time: '1일 전',
       comment: 'fwfeffefeefeefefeeef',
     },
@@ -72,7 +72,7 @@ function ShopDetail() {
         ))}
       </EventBox>
       <ReviewTop>
-        <ReviewName>리뷰</ReviewName>
+        <ReviewTitle>Review</ReviewTitle>
         <ReviewButton onClick={onClick}>등록하기</ReviewButton>
       </ReviewTop>
       <ReviewBox>
@@ -128,44 +128,48 @@ const EventBox = styled.div`
 const ReviewTop = styled.div`
   width: 80%;
 
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
-const ReviewName = styled.div`
-  width: 100%;
-
+const ReviewTitle = styled.div`
   display: flex;
   align-items: center;
 
   color: ${props => props.theme.fontBlack};
 
-  font-size: ${props => props.theme.fontSmall};
-  font-weight: ${props => props.theme.fontBold};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
 `;
 
 const ReviewButton = styled.div`
-  width: 25%;
-  height: 20px;
+  height: 30px;
+  width: 75px;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 
-  border-radius: 20px;
+  border-radius: 10px;
   border: ${props => props.theme.borderPurple};
 
-  color: ${props => props.theme.mainPurple};
+  background-color: ${props => props.theme.mainPurple};
+  color: ${props => props.theme.bgColor};
 
   font-size: ${props => props.theme.fontSmall};
-  font-weight: ${props => props.theme.fontBold};
+  font-weight: ${props => props.theme.fontMedium};
+  text-align: center;
 `;
 
 const ReviewBox = styled.div`
-  width: 81%;
+  width: 80%;
 
   margin: 10px;
-  padding: 5px 10px;
+  padding: 10px 5px;
 
   display: flex;
   flex-direction: column;
