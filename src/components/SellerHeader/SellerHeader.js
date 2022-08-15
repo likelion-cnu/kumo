@@ -9,12 +9,12 @@ function Header() {
     <Navbar>
       <NavbarLogo>
         <Fonts>
-          <a href="/">KUMO</a>
+          <a href="/seller">KUMO</a>
         </Fonts>
       </NavbarLogo>
       <NavbarMenu menu={menu}>
         <NavbarMenuLi>
-          <a href="/profile">마이 프로필</a>
+          <a href="/sellerprofile">마이 프로필</a>
         </NavbarMenuLi>
       </NavbarMenu>
       <NavbarToogleBtn

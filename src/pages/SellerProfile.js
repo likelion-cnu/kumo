@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ShopHeader from '../components/ShopHeader/ShopHeader';
-import IssuedCoupon from '../components/ShopProfile/IssuedCoupon';
-import ShopInfoButton from '../components/ShopProfile/ShopInfoButton';
+import ShopHeader from '../components/SellerHeader/SellerHeader';
+import IssuedCoupon from '../components/SellerProfile/IssuedCoupon';
+import ShopInfoButton from '../components/SellerProfile/SellerInfoButton';
 
 function ShopProfile() {
   const user = {
