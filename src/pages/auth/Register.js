@@ -12,11 +12,11 @@ import TitleBox from '../../components/auth/Form/TitleBox';
 import Header from '../../components/auth/Header/Header';
 
 function Register() {
-  const [id, setId] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [reEnter, setReEnter] = useState(null);
-  const [nickname, setNickname] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [reEnter, setReEnter] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [isShop, setIsShop] = useState(null);
 
   const onIdChange = event => {
@@ -52,8 +52,19 @@ function Register() {
   };
 
   const onButtonClick = () => {
+    if (
+      id === '' &&
+      password === '' &&
+      reEnter === false &&
+      nickname === '' &&
+      phoneNumber === '' &&
+      isShop === null
+    ) {
+      console.log('error');
+    } else {
+      console.log('post', id, password, nickname, phoneNumber, isShop);
+    }
     // post 보내기
-    console.log('post', id, password, nickname, phoneNumber, isShop);
   };
 
   return (
@@ -62,15 +73,17 @@ function Register() {
       <Box>
         <TitleBox title="회원가입" text="지금 당장 쿠모와 함께하세요!" />
         <Form>
-          <Input type="text" placeholder="ID" onChange={onIdChange} />
+          <Input type="text" placeholder="ID" required onChange={onIdChange} />
           <Input
             type="password"
             placeholder="PASSWORD"
+            required
             onChange={onPasswordChange}
           />
           <Input
             type="password"
             placeholder="PASSWORD 확인"
+            required
             onChange={onReEnterChange}
           />
           <PasswordAlert reEnter={reEnter}>
@@ -81,6 +94,7 @@ function Register() {
           <Input
             type="text"
             placeholder="NICKNAME"
+            required
             onChange={onNicknameChange}
           />
           <Input
@@ -97,6 +111,7 @@ function Register() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                required
                 onChange={onIsShopChange}
               >
                 <FormControlLabel
@@ -151,7 +166,7 @@ const PasswordAlert = styled.div`
     props.reEnter ? props.theme.fontGray : props.theme.heartRed};
 `;
 
-const IsShop = styled.form`
+const IsShop = styled.div`
   width: 100%;
   margin-bottom: 25px;
   padding-left: 10px;
