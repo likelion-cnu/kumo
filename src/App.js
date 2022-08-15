@@ -19,6 +19,7 @@ import QrScan from './pages/shop/QrScan';
 
 import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
 function CustomerRoutes() {
   return (
@@ -53,7 +54,7 @@ function AuthRoutes() {
       <Routes>
         <Route path="/" element={<HomeAuth />} />
         <Route path="login" element={<Login />} />
-        <Route path="/join" element={<HomeAuth />} />
+        <Route path="/join" element={<Register />} />
         <Route path="/find" element={<HomeAuth />} />
       </Routes>
     </Router>

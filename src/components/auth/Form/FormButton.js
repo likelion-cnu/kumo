@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const FormButton = styled.button`
-  width: 90px;
+  width: 100px;
   height: 40px;
   margin-top: 15px;
 
