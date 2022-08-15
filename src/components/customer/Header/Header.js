@@ -8,9 +8,7 @@ function Header() {
   return (
     <Navbar>
       <NavbarLogo>
-        <Fonts>
-          <a href="/">KUMO</a>
-        </Fonts>
+        <a href="/">KUMO</a>
       </NavbarLogo>
       <NavbarMenu menu={menu}>
         <NavbarMenuLi>
@@ -50,16 +48,6 @@ const Navbar = styled.div`
 
   @media ${props => props.theme.mobile} {
     position: relative;
-  }
-`;
-
-const Fonts = styled.div`
-  @font-face {
-    font-family: 'PyeongChangPeace-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2')
-      format('woff2');
-    font-weight: 700;
-    font-style: normal;
   }
 `;
 
