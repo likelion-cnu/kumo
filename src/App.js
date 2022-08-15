@@ -16,6 +16,7 @@ import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
+import HomeAuth from './pages/auth/HomeAuth';
 
 function CustomerRoutes() {
   return (
@@ -44,8 +45,21 @@ function ShopRoutes() {
   );
 }
 
+function AuthRoutes() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeAuth />} />
+        <Route path="login" element={<HomeAuth />} />
+        <Route path="/join" element={<HomeAuth />} />
+        <Route path="/find" element={<HomeAuth />} />
+      </Routes>
+    </Router>
+  );
+}
+
 function AppRouter() {
-  return <CustomerRoutes />;
+  return <AuthRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
