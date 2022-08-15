@@ -26,4 +26,6 @@ export default {
 
   grayBarBorder: '1px solid #D9D9D9',
   mobile: `(max-width: ${size.mobile})`,
+
+  starYellow: '#FAAF00',
 };

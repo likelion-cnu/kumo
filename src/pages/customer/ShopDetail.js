@@ -67,11 +67,9 @@ function ShopDetail() {
         ))}
       </ShopDetailBox>
       <EventBox>
-        <Box>
-          {shopDetailInfo.map(item => (
-            <EventInfo event={item.event} />
-          ))}
-        </Box>
+        {shopDetailInfo.map(item => (
+          <EventInfo event={item.event} />
+        ))}
       </EventBox>
       <ReviewTop>
         <ReviewName>리뷰</ReviewName>
@@ -116,21 +114,15 @@ const ShopDetailBox = styled.div`
 `;
 
 const EventBox = styled.div`
-  width: 90%;
+  width: 80%;
+  padding: 25px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
 
-const Box = styled.div`
   border: ${props => props.theme.borderPurple};
   border-radius: ${props => props.theme.borderRadius};
-  margin: auto;
-  width: 90%;
-  height: 80px;
-  positon: relative;
-  top: 300px;
-  tes-align: center;
 `;
 
 const ReviewTop = styled.div`
