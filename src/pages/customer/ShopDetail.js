@@ -109,8 +109,6 @@ const ShopDetailBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border-radius: 20px;
 `;
 
 const EventBox = styled.div`
@@ -122,7 +120,7 @@ const EventBox = styled.div`
   align-items: center;
 
   border: ${props => props.theme.borderPurple};
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: 10px;
 `;
 
 const ReviewTop = styled.div`
@@ -168,7 +166,7 @@ const ReviewButton = styled.div`
 const ReviewBox = styled.div`
   width: 80%;
 
-  margin: 10px;
+  margin: 5px 10px;
   padding: 10px 5px;
 
   display: flex;
@@ -176,7 +174,7 @@ const ReviewBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  border-radius: 20px;
+  border-radius: 10px;
   border: ${props => props.theme.borderPurple};
 `;
 
