@@ -42,11 +42,11 @@ const SearchBarBox = styled.form`
 
 const SearchInput = styled.input`
   width: 80%;
-  height: 100%;
+  height: 50px;
 
-  padding: 0 10px;
+  padding: 0 20px;
 
-  border-radius: 20px;
+  border-radius: 10px;
   border: ${props => props.theme.borderPurple};
 
   font-size: ${props => props.theme.fontMedium};
