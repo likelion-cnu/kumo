@@ -30,7 +30,7 @@ function UsedCoupons({ id, src, title, date }) {
 const UsedCouponBox = styled.button`
   width: 90%;
 
-  padding: 10px 0;
+  padding: 15px 0;
 
   display: flex;
   align-items: center;

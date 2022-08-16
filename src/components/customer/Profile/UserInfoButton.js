@@ -28,7 +28,7 @@ const UserInfoBox = styled.button`
   width: 90%;
 
   margin: 20px;
-  padding: 20px;
+  padding: 10px;
 
   border: ${props => props.theme.borderPurple};
   border-radius: 20px;
