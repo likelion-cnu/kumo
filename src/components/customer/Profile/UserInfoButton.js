@@ -49,7 +49,7 @@ const UserImg = styled.img`
 
   border-radius: 50%;
 
-  object-fit: contain;
+  object-fit: cover;
 
   padding: 2%;
 `;
