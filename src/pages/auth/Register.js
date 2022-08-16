@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,39 +22,26 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isShop, setIsShop] = useState(null);
 
-  const onIdChange = event => {
-    setId(event.target.value);
-  };
-
-  const onPasswordChange = event => {
-    setPassword(event.target.value);
-  };
-
-  const onReEnterChange = event => {
-    if (password === event.target.value) {
-      setReEnter(true);
-    } else {
-      setReEnter(false);
+  const CreateAccount = async () => {
+    try {
+      const response = await axios.post(
+        process.env.REACT_APP_KUMO_API + '/accounts/signup/',
+        {
+          username: id,
+          password: password,
+          nickname: nickname,
+          phone_num: phoneNumber,
+          profile_img: null,
+          is_shop: isShop,
+        },
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const onNicknameChange = event => {
-    setNickname(event.target.value);
-  };
-
-  const onPhoneNumberChange = event => {
-    setPhoneNumber(event.target.value);
-  };
-
-  const onIsShopChange = event => {
-    if (event.target.value === 'customer') {
-      setIsShop(false);
-    } else if (event.target.value === 'shop') {
-      setIsShop(true);
-    }
-  };
-
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     if (
       id === '' &&
       password === '' &&
@@ -63,8 +53,8 @@ function Register() {
       console.log('error');
     } else {
       console.log('post', id, password, nickname, phoneNumber, isShop);
+      CreateAccount();
     }
-    // post 보내기
   };
 
   return (
@@ -73,18 +63,33 @@ function Register() {
       <Box>
         <TitleBox title="회원가입" text="지금 당장 쿠모와 함께하세요!" />
         <Form>
-          <Input type="text" placeholder="ID" required onChange={onIdChange} />
+          <Input
+            type="text"
+            placeholder="ID"
+            required
+            onChange={e => {
+              setId(e.target.value);
+            }}
+          />
           <Input
             type="password"
             placeholder="PASSWORD"
             required
-            onChange={onPasswordChange}
+            onChange={e => {
+              setPassword(e.target.value);
+            }}
           />
           <Input
             type="password"
             placeholder="PASSWORD 확인"
             required
-            onChange={onReEnterChange}
+            onChange={e => {
+              if (password === e.target.value) {
+                setReEnter(true);
+              } else {
+                setReEnter(false);
+              }
+            }}
           />
           <PasswordAlert reEnter={reEnter}>
             {reEnter === true
@@ -95,14 +100,18 @@ function Register() {
             type="text"
             placeholder="NICKNAME"
             required
-            onChange={onNicknameChange}
+            onChange={e => {
+              setNickname(e.target.value);
+            }}
           />
           <Input
             type="tel"
             placeholder="PHONE: 000-0000-0000"
             pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
             required
-            onChange={onPhoneNumberChange}
+            onChange={e => {
+              setPhoneNumber(e.target.value);
+            }}
           />
           <IsShop>
             <IsShopTitle>USER TYPE</IsShopTitle>
@@ -112,7 +121,13 @@ function Register() {
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
                 required
-                onChange={onIsShopChange}
+                onChange={e => {
+                  if (e.target.value === 'customer') {
+                    setIsShop(false);
+                  } else if (e.target.value === 'shop') {
+                    setIsShop(true);
+                  }
+                }}
               >
                 <FormControlLabel
                   value="shop"
