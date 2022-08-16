@@ -45,6 +45,10 @@ function ShopRoutes() {
       <Routes>
         <Route path="/" element={<HomeShop />} />
         <Route path="/qrscan" element={<QrScan />} />
+        <Route path="/my-store" element={<HomeShop />} />
+        <Route path="/review" element={<HomeShop />} />
+        <Route path="/profile" element={<HomeShop />} />
+        <Route path="/user-info" element={<HomeShop />} />
       </Routes>
     </Router>
   );
@@ -64,7 +68,7 @@ function AuthRoutes() {
 }
 
 function AppRouter() {
-  return <CustomerRoutes />;
+  return <ShopRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
