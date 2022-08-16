@@ -39,6 +39,10 @@ function DetailInfo() {
     open({ onComplete: handleComplete });
   };
 
+  const onSaveClick = () => {
+    console.log('save');
+  };
+
   useEffect(() => {
     setImg('https://i.ytimg.com/vi/PBCL7e02PZQ/maxresdefault.jpg');
     setShopName('푸들');
@@ -116,7 +120,7 @@ function DetailInfo() {
           setEvent(e.target.value);
         }}
       />
-      <SaveButton>저장</SaveButton>
+      <SaveButton onClick={onSaveClick}>저장</SaveButton>
     </DetailBox>
   );
 }

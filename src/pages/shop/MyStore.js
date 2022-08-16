@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../../components/shop/Header/Header';
 import DetailInfo from '../../components/shop/MyStore/DetailInfo';
+import ImageInfo from '../../components/shop/MyStore/ImageInfo';
 
 function MyStore() {
   return (
     <Body>
       <Header />
-      <ShopDetailBox>
+      <Box>
         <DetailInfo />
-      </ShopDetailBox>
+        <ImageInfo />
+      </Box>
     </Body>
   );
 }
@@ -25,7 +27,7 @@ const Body = styled.div`
   background-color: ${props => props.theme.bgColor};
 `;
 
-const ShopDetailBox = styled.div`
+const Box = styled.div`
   width: 90%;
 
   margin: 20px;
