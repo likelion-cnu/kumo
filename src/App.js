@@ -45,6 +45,7 @@ function ShopRoutes() {
       <Routes>
         <Route path="/" element={<HomeShop />} />
         <Route path="/qrscan" element={<QrScan />} />
+        <Route path="/qrscan" element={<QrScan />} />
       </Routes>
     </Router>
   );
