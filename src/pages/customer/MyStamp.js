@@ -34,6 +34,7 @@ function MyStamp() {
   return (
     <Body>
       <Header />
+      <Text>My Stamp</Text>
       <MyStampBox>
         {myStamp.map(item => (
           <ShopStamp
@@ -61,19 +62,31 @@ const Body = styled.div`
   background-color: ${props => props.theme.bgColor};
 `;
 
+const Text = styled.div`
+  width: 130px;
+  margin-top: 20px;
+  padding-bottom: 12.5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: ${props => props.theme.fontBlack};
+  font-size: ${props => props.theme.fontLarge};
+  font-weight: ${props => props.theme.fontRegular};
+
+  border-bottom: ${props => props.theme.grayBarBorder};
+`;
+
 const MyStampBox = styled.div`
   width: 90%;
 
   margin: 20px;
-  padding: 5px 10px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border: ${props => props.theme.borderPurple};
-  border-radius: 20px;
 `;
 
 export default MyStamp;
