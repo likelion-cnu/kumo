@@ -29,7 +29,7 @@ function TestMap({ lat, lng }) {
         },
         {
           title: '생태연못',
-          latlng: new kakao.maps.LatLng(33.450936, 126.569477), // 제주도 주소임
+          latlng: new kakao.maps.LatLng(35.1265999, 126.8789277), // 제주도 주소임
         },
         {
           title: '텃밭',
