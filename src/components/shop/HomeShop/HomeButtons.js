@@ -24,7 +24,7 @@ const ButtonBox = styled.button`
   margin: 10% 0;
 
   border: ${props => props.theme.borderPurple};
-  border-radius: 20px;
+  border-radius: 10px;
 
   background-color: ${props => props.theme.bgColor};
 `;

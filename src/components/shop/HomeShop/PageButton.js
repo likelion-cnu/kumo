@@ -6,7 +6,7 @@ import { FiChevronRight } from 'react-icons/fi';
 function PageButton() {
   return (
     <PageButtonBodyBox>
-      <Link to="/favorite">
+      <Link to="/premium">
         <Button>
           <Icon>📊</Icon>
           <Icon>
