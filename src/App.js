@@ -16,6 +16,7 @@ import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
+import MyStore from './pages/shop/MyStore';
 
 import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
@@ -45,7 +46,7 @@ function ShopRoutes() {
       <Routes>
         <Route path="/" element={<HomeShop />} />
         <Route path="/qrscan" element={<QrScan />} />
-        <Route path="/my-store" element={<HomeShop />} />
+        <Route path="/my-store" element={<MyStore />} />
         <Route path="/review" element={<HomeShop />} />
         <Route path="/profile" element={<HomeShop />} />
         <Route path="/user-info" element={<HomeShop />} />
