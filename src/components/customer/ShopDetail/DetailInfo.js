@@ -106,8 +106,8 @@ const InfoBox = styled.div`
 `;
 
 const ShopDetailImg = styled.img`
-  width: 35vw;
-  height: 35vw;
+  width: 33vw;
+  height: 33vw;
 
   max-width: 150px;
   max-height: 150px;
@@ -132,7 +132,7 @@ const InfoTitle = styled.div`
 
 const Star = styled.button`
   margin-bottom: 8px;
-  margin-right: 62px;
+  margin-right: 10px;
 
   border: none;
 
