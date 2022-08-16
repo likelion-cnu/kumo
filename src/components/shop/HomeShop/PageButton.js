@@ -15,7 +15,7 @@ function PageButton() {
           <Text>가게 데이터</Text>
         </Button>
       </Link>
-      <Link to="/sellerDetail">
+      <Link to="/my-store">
         <Button>
           <Icon>🏠</Icon>
           <Icon>
@@ -24,7 +24,7 @@ function PageButton() {
           <Text>내 가게</Text>
         </Button>
       </Link>
-      <Link to="/my-stamp">
+      <Link to="/review">
         <Button style={{ border: 'none' }}>
           <Icon>📄</Icon>
           <Icon>
