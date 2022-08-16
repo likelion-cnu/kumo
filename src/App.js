@@ -16,6 +16,8 @@ import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
+import Preminum from './pages/shop/Premium';
+import MyPreminum from './pages/shop/MyPremium';
 
 import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
@@ -45,6 +47,8 @@ function ShopRoutes() {
       <Routes>
         <Route path="/" element={<HomeShop />} />
         <Route path="/qrscan" element={<QrScan />} />
+        <Route path="/premium" element={<Preminum />} />
+        <Route path="/mypremium" element={<MyPreminum />} />
       </Routes>
     </Router>
   );
@@ -64,7 +68,7 @@ function AuthRoutes() {
 }
 
 function AppRouter() {
-  return <CustomerRoutes />;
+  return <ShopRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
