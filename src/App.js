@@ -20,6 +20,7 @@ import QrScan from './pages/shop/QrScan';
 import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import UserInfo from './pages/customer/UserInfo';
 
 function CustomerRoutes() {
   return (
@@ -28,6 +29,7 @@ function CustomerRoutes() {
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/user-info" element={<UserInfo />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
@@ -62,7 +64,7 @@ function AuthRoutes() {
 }
 
 function AppRouter() {
-  return <AuthRoutes />;
+  return <CustomerRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
