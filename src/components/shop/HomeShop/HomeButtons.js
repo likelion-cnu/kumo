@@ -9,7 +9,12 @@ function HomeButtons() {
     navigate('/qrscan');
   };
 
-  return <ButtonBox onClick={onClick}>QR 촬영하기</ButtonBox>;
+  return (
+    <ButtonBox onClick={onClick}>
+      <Icon>📷</Icon>
+      QR 촬영하기
+    </ButtonBox>
+  );
 }
 
 const ButtonBox = styled.button`
@@ -22,6 +27,10 @@ const ButtonBox = styled.button`
   border-radius: 20px;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const Icon = styled.div`
+  font-size: 50px;
 `;
 
 export default HomeButtons;

@@ -64,7 +64,7 @@ function AuthRoutes() {
 }
 
 function AppRouter() {
-  return <CustomerRoutes />;
+  return <ShopRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`
