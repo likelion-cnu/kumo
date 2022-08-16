@@ -15,7 +15,7 @@ function MapHeader() {
       <BackButton onClick={onClick}>
         <IoIosArrowBack size={20} />
       </BackButton>
-      <NavbarName>내주변가게</NavbarName>
+      <NavbarName>주변 가게</NavbarName>
     </MapNavbar>
   );
 }
