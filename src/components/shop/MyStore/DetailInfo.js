@@ -83,6 +83,7 @@ function DetailInfo() {
             <BsTelephone />
           </Icon>
           <Number
+            pattern="010-[0-9]{4}-[0-9]{4}"
             value={phoneNumber}
             onChange={e => {
               setPhoneNumber(e.target.value);
