@@ -12,6 +12,7 @@ function DetailInfo() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isOpen, setIsOpen] = useState('');
   const [address, setAddress] = useState('');
+  const [event, setEvent] = useState('');
 
   const open = useDaumPostcodePopup(
     '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
@@ -45,6 +46,7 @@ function DetailInfo() {
     setPhoneNumber('010-2342-0333');
     setIsOpen('영업 중');
     setAddress('광주');
+    setEvent('쿠폰 한 장에 아메리카노 한 잔');
   }, []);
 
   return (
@@ -108,6 +110,13 @@ function DetailInfo() {
           <Address type="button" value={address} onClick={handleClick} />
         </Info>
       </BottomBox>
+      <EventBox
+        value={event}
+        onChange={e => {
+          setEvent(e.target.value);
+        }}
+      />
+      <SaveButton>저장</SaveButton>
     </DetailBox>
   );
 }
@@ -232,7 +241,7 @@ const Icon = styled.div`
 const Number = styled.input`
   width: 100%;
   text-align: center;
-  padding: 0;
+  padding: 2.5px;
 
   border: none;
   border-bottom: ${props => props.theme.grayBarBorder};
@@ -247,6 +256,41 @@ const IsOpen = styled(Number)`
 const Address = styled(Number)`
   padding: 0;
   background-color: ${props => props.theme.bgColor};
+`;
+
+const EventBox = styled.input`
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: ${props => props.theme.fontBlack};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
+  text-align: center;
+
+  border-radius: 10px;
+  border: ${props => props.theme.borderPurple};
+`;
+
+const SaveButton = styled.button`
+  width: 100px;
+  height: 40px;
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 10px;
+
+  background-color: ${props => props.theme.mainPurple};
+  color: ${props => props.theme.bgColor};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
 `;
 
 export default DetailInfo;

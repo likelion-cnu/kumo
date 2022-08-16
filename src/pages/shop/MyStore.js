@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Header from '../../components/shop/Header/Header';
 import DetailInfo from '../../components/shop/MyStore/DetailInfo';
