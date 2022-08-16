@@ -11,6 +11,7 @@ function HomeCustomer() {
       <Header />
       <SearchBar />
       <MyQrCode />
+      <Text>둘러보기</Text>
       <PageButton />
     </Body>
   );
@@ -25,6 +26,14 @@ const Body = styled.div`
   align-items: center;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const Text = styled.div`
+  width: 70%;
+
+  color: ${props => props.theme.fontBlack};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
 `;
 
 export default HomeCustomer;
