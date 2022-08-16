@@ -40,7 +40,7 @@ const QrImg = styled.img`
   object-fit: contain;
 
   border: ${props => props.theme.borderPurple};
-  border-radius: 20px;
+  border-radius: 10px;
 
   margin: 5%;
 `;

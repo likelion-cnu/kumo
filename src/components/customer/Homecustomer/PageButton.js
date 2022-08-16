@@ -18,7 +18,7 @@ function PageButton() {
         </Button>
       </Link>
       <Link to="/my-stamp">
-        <Button>
+        <Button style={{ border: 'none' }}>
           <Icon>🎟</Icon>
           <Text>내 스탬프</Text>
         </Button>
@@ -28,7 +28,7 @@ function PageButton() {
 }
 
 const PageButtonBodyBox = styled.div`
-  width: 100vw;
+  width: 80%;
 
   display: flex;
   flex-direction: column;
@@ -37,20 +37,17 @@ const PageButtonBodyBox = styled.div`
 `;
 
 const Button = styled.button`
-  width: 75vw;
-  height: 75px;
+  width: 70vw;
+  height: 80px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  margin: 10px 0;
+  background-color: ${props => props.theme.bgColor};
 
-  /* background-color: ${props => props.theme.mainPurple}; */
-  background: radial-gradient(#7f2b8c 0%, #512da8 125%);
-
-  border: ${props => props.theme.borderPurple};
-  border-radius: 20px;
+  border: none;
+  border-bottom: ${props => props.theme.grayBarBorder};
 `;
 
 const Icon = styled.div`
@@ -60,9 +57,9 @@ const Icon = styled.div`
 const Text = styled.div`
   margin-left: 10px;
 
-  color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.fontGray};
 
-  font-size: ${props => props.theme.fontLarge};
+  font-size: ${props => props.theme.fontMedium};
   font-weight: ${props => props.theme.fontRegular};
 
   text-align: center;
