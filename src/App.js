@@ -13,8 +13,9 @@ import Profile from './pages/Profile';
 import Detail from './pages/Detail';
 import Map from './pages/Map';
 
-import HomeSeller from './pages/HomeSeller';
+import SellerHome from './pages/SellerHome';
 import SellerProfile from './pages/SellerProfile';
+import SellerDetail from './pages/SellerDetail';
 
 function CustomerRoutes() {
   return (
@@ -27,8 +28,9 @@ function CustomerRoutes() {
         <Route path="/detail/:shopId" element={<Detail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/seller" element={<HomeSeller />} />
+        <Route path="/seller" element={<SellerHome />} />
         <Route path="/sellerprofile" element={<SellerProfile />} />
+        <Route path="/sellerDetail" element={<SellerDetail />} />
       </Routes>
     </Router>
   );

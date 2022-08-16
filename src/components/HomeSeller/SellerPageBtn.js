@@ -15,7 +15,7 @@ function PageButton() {
           <Text>가게 데이터</Text>
         </Button>
       </Link>
-      <Link to="/map">
+      <Link to="/sellerDetail">
         <Button>
           <Icon>🏠</Icon>
           <Icon>
@@ -42,7 +42,7 @@ const PageButtonBodyBox = styled.div`
 
 const Button = styled.button`
   width: 75vw;
-  height: 100px;
+  height: 110px;
 
   display: flex;
   justify-content: center;

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import DetailInfo from '../components/Detail/DetailInfo';
-import EventInfo from '../components/Detail/EventInfo';
-import ReviewInfo from '../components/Detail/ReviewInfo';
+import SellerHeader from '../components/SellerHeader/SellerHeader';
+import SellerDetailInfo from '../components/SellerDetail/SellerDetailInfo';
+import SellerEventInfo from '../components/SellerDetail/SellerEventInfo';
+import SellerReviewInfo from '../components/SellerDetail/SellerReviewInfo';
 
 function Search() {
   const shopInfo = [
@@ -48,10 +48,10 @@ function Search() {
 
   return (
     <Body>
-      <Header />
+      <SellerHeader />
       <ShopDetailBox>
         {shopInfo.map(item => (
-          <DetailInfo
+          <SellerDetailInfo
             key={item.id}
             id={item.id}
             title={item.title}
@@ -69,7 +69,7 @@ function Search() {
       <EventBox>
         <Box>
           {shopDetail.map(item => (
-            <EventInfo event={item.event} />
+            <SellerEventInfo event={item.event} />
           ))}
         </Box>
       </EventBox>
@@ -79,7 +79,7 @@ function Search() {
       </ReviewTop>
       <ReviewBox>
         {shopReview.map(item => (
-          <ReviewInfo
+          <SellerReviewInfo
             id={item.id}
             star={item.star}
             time={item.time}
