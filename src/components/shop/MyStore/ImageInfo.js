@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { BsPlusLg } from 'react-icons/bs';
 
 function ImageInfo() {
   const [img1, setImg1] = useState('');
@@ -24,7 +25,13 @@ function ImageInfo() {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img1} />
+          {img1 === '' ? (
+            <EmptyImg>
+              <BsPlusLg />
+            </EmptyImg>
+          ) : (
+            <ProfileImg src={img1} />
+          )}
         </ChangeImgBox>
         <ChangeImgBox for="input-file">
           <input
@@ -36,7 +43,13 @@ function ImageInfo() {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img2} />
+          {img2 === '' ? (
+            <EmptyImg>
+              <BsPlusLg />
+            </EmptyImg>
+          ) : (
+            <ProfileImg src={img2} />
+          )}
         </ChangeImgBox>
       </Box>
       <Box>
@@ -50,7 +63,13 @@ function ImageInfo() {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img3} />
+          {img3 === '' ? (
+            <EmptyImg>
+              <BsPlusLg />
+            </EmptyImg>
+          ) : (
+            <ProfileImg src={img3} />
+          )}
         </ChangeImgBox>
         <ChangeImgBox for="input-file">
           <input
@@ -62,7 +81,13 @@ function ImageInfo() {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img4} />
+          {img4 === '' ? (
+            <EmptyImg>
+              <BsPlusLg />
+            </EmptyImg>
+          ) : (
+            <ProfileImg src={img4} />
+          )}
         </ChangeImgBox>
       </Box>
       <UploadButton onClick={onUploadClick}>업로드</UploadButton>
@@ -105,7 +130,21 @@ const ProfileImg = styled.img`
   max-height: 200px;
 
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 10px;
+`;
+
+const EmptyImg = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #d9d9d9;
+  border-radius: 10px;
+
+  font-size: ${props => props.theme.fontLarge};
 `;
 
 const UploadButton = styled.button`
