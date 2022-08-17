@@ -31,14 +31,14 @@ import UserInfo from './pages/customer/UserInfo';
 
 import LOCAL_KEY from './CONSTANT/LOCAL';
 
-function CustomerRoutes() {
+function CustomerRoutes({ logOut }) {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/user-info" element={<UserInfo />} />
+        <Route path="/user-info" element={<UserInfo logOut={logOut} />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
@@ -98,7 +98,7 @@ function AppRouter() {
 
   if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
     if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
-      return <CustomerRoutes />;
+      return <CustomerRoutes logOut={logOut} />;
     }
 
     if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
