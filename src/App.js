@@ -81,32 +81,32 @@ function AuthRoutes({ logIn }) {
 let localStorage = window.localStorage;
 
 function AppRouter() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(
-  //   localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
-  // );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
+  );
 
-  // const logIn = () => setIsLoggedIn(true);
-  // const logOut = () => setIsLoggedIn(false);
+  const logIn = () => setIsLoggedIn(true);
+  const logOut = () => setIsLoggedIn(false);
 
-  // useEffect(() => {
-  //   console.log(isLoggedIn);
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
-  //   return <AuthRoutes logIn={logIn} />;
-  // }
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
+    return <AuthRoutes logIn={logIn} />;
+  }
 
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
-  //     return <CustomerRoutes logOut={logOut} />;
-  //   }
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
+      return <CustomerRoutes logOut={logOut} />;
+    }
 
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
-  //     return <ShopRoutes logOut={logOut} />;
-  //   }
-  // }
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
+      return <ShopRoutes logOut={logOut} />;
+    }
+  }
 
-  return <CustomerRoutes />;
+  // return <CustomerRoutes />;
   // 로그인 없이 작업하려면 AppRouter() 코드 주석 처리한 후 기존처럼 상단의 코드 사용하면 됩니다!
 }
 
