@@ -48,7 +48,7 @@ function CustomerRoutes({ logOut }) {
   );
 }
 
-function ShopRoutes() {
+function ShopRoutes({ logOut }) {
   return (
     <Router>
       <Routes>
@@ -59,7 +59,7 @@ function ShopRoutes() {
         <Route path="/premium" element={<Preminum />} />
         <Route path="/mypremium" element={<MyPreminum />} />
         <Route path="/profile" element={<ShopProfile />} />
-        <Route path="/user-info" element={<ShopUserInfo />} />
+        <Route path="/user-info" element={<ShopUserInfo logOut={logOut} />} />
       </Routes>
     </Router>
   );
@@ -102,7 +102,7 @@ function AppRouter() {
     }
 
     if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
-      return <ShopRoutes />;
+      return <ShopRoutes logOut={logOut} />;
     }
   }
 }
