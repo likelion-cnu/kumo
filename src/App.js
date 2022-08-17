@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
@@ -65,12 +65,12 @@ function ShopRoutes() {
   );
 }
 
-function AuthRoutes() {
+function AuthRoutes({ logIn }) {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeAuth />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login logIn={logIn} />} />
         <Route path="/join" element={<Register />} />
         <Route path="/find" element={<HomeAuth />} />
       </Routes>
@@ -78,24 +78,33 @@ function AuthRoutes() {
   );
 }
 
-const localStorage = window.localStorage;
+let localStorage = window.localStorage;
 
 function AppRouter() {
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
-  //   return <AuthRoutes />;
-  // }
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
+  );
 
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
-  //     return <CustomerRoutes />;
-  //   }
+  const logIn = () => setIsLoggedIn(true);
+  const logOut = () => setIsLoggedIn(false);
 
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
-  //     return <ShopRoutes />;
-  //   }
-  // }
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
-  return <AuthRoutes />;
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
+    return <AuthRoutes logIn={logIn} />;
+  }
+
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
+      return <CustomerRoutes />;
+    }
+
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
+      return <ShopRoutes />;
+    }
+  }
 }
 
 const GlobalStyle = createGlobalStyle`

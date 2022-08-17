@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Header from '../../components/auth/Header/Header';
@@ -10,36 +10,50 @@ import Input from '../../components/auth/Form/Input';
 import FormButton from '../../components/auth/Form/FormButton';
 import axios from 'axios';
 
-function Login() {
+import LOCAL from '../../CONSTANT/LOCAL';
+import { useNavigate } from 'react-router-dom';
+
+function Login({ logIn }) {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+
+  let localStorage = window.localStorage;
+  const navigate = useNavigate();
 
   const onLoginClick = async () => {
     if (id === '' || password === '') {
       alert('다시 입력하세요');
     } else {
-      // post 보내기
-      console.log('post', id, password);
-
-      // const loginForm = new FormData();
-
-      // loginForm.append('username', id);
-      // loginForm.append('password', password);
-
       try {
         const response = await axios.post(
           process.env.REACT_APP_KUMO_API + '/accounts/login/',
           {
-            username: id,
-            password: password,
+            username: id.toString(),
+            password: password.toString(),
           },
         );
-        console.log(response);
+
+        localStorage.setItem(LOCAL.IS_LOGGED_IN, 'true');
+        localStorage.setItem(LOCAL.USER_NAME, response.data.serial_bo.username);
+        localStorage.setItem(
+          LOCAL.IS_SHOP,
+          response.data.serial_bo.is_shop.toString(),
+        );
+
+        logIn();
+        navigate('/');
       } catch (err) {
-        console.log(err);
+        const message = err.response.data.error;
+        alert(message);
       }
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem(LOCAL.IS_LOGGED_IN) === 'true') {
+      navigate('/');
+    }
+  }, [localStorage.getItem(LOCAL.IS_LOGGED_IN)]);
 
   return (
     <Body>
