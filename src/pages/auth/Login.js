@@ -11,12 +11,12 @@ import FormButton from '../../components/auth/Form/FormButton';
 import axios from 'axios';
 
 function Login() {
-  const [id, setId] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
 
   const onLoginClick = async () => {
-    if ((id === '', password === '')) {
-      return;
+    if (id === '' || password === '') {
+      alert('다시 입력하세요');
     } else {
       // post 보내기
       console.log('post', id, password);

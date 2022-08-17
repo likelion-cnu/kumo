@@ -17,28 +17,46 @@ import Header from '../../components/auth/Header/Header';
 function Register() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [reEnter, setReEnter] = useState('');
+  const [reEnter, setReEnter] = useState(false);
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isShop, setIsShop] = useState(null);
 
   const CreateAccount = async () => {
-    try {
-      const response = await axios.post(
-        process.env.REACT_APP_KUMO_API + '/accounts/signup/',
-        {
-          username: id,
-          password: password,
-          nickname: nickname,
-          phone_num: phoneNumber,
-          profile_img: null,
-          is_shop: isShop,
-        },
-      );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+    if (
+      id === '' ||
+      password === '' ||
+      reEnter === false ||
+      nickname === '' ||
+      phoneNumber === '' ||
+      isShop === null
+    ) {
+      alert('다시 입력하세요');
+    } else {
+      try {
+        const response = await axios.post(
+          process.env.REACT_APP_KUMO_API + '/accounts/signup/',
+          {
+            username: id,
+            password: password,
+            nickname: nickname,
+            profile_img: null,
+            phone_num: phoneNumber,
+            is_shop: isShop,
+          },
+        );
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
     }
+
+    setId('');
+    setPassword('');
+    setReEnter(false);
+    setNickname('');
+    setPhoneNumber('');
+    setIsShop(null);
   };
 
   const onButtonClick = async () => {
