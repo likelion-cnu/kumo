@@ -1,8 +1,5 @@
-/*eslint-disable*/
-
 import React from 'react';
 import styled from 'styled-components';
-import Slider from 'react-slick';
 
 function ImageInfo({ img1, img2, img3, img4 }) {
   return (
