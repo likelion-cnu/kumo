@@ -61,10 +61,18 @@ function ShopDetail() {
     console.log(response.data);
   };
 
+  const loadShopReview = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/review_list/' + shopId + '/',
+    );
+    console.log(response.data);
+  };
+
   useEffect(() => {
     console.log(shopId);
     loadShopDetail();
-  }, []);
+    loadShopReview();
+  }, [shopId]);
 
   return (
     <Body>
