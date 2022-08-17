@@ -5,27 +5,30 @@ import Header from '../../components/customer/Header/Header';
 import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
 import EventInfo from '../../components/customer/ShopDetail/EventInfo';
 import ReviewInfo from '../../components/customer/ShopDetail/ReviewInfo';
+import ImageInfo from '../../components/customer/ShopDetail/ImageInfo';
 
 function ShopDetail() {
-  const shopInfo = [
-    {
-      id: 'gomada',
-      title: '고마다',
-      field: '카페',
-      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5432',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
-      coupon: '0',
-      stamp: 7,
-    },
-  ];
-  const shopDetailInfo = [
-    {
-      event: '스탬프 10번 적립 시 쿠폰 1장',
-    },
-  ];
+  const shopInfo = {
+    id: 'gomada',
+    title: '고마다',
+    field: '카페',
+    src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+    number: '010-9876-5432',
+    isOpen: '영업 중',
+    distance: '200m',
+    address: '광주광역시 어쩌구저쩌구',
+    coupon: '0',
+    stamp: 7,
+    img1: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+    img2: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+    img3: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+    img4: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+  };
+
+  const shopDetailInfo = {
+    event: '스탬프 10번 적립 시 쿠폰 1장',
+  };
+
   const shopReview = [
     {
       id: '준수',
@@ -50,27 +53,29 @@ function ShopDetail() {
     <Body>
       <Header />
       <ShopDetailBox>
-        {shopInfo.map(item => (
-          <DetailInfo
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            field={item.field}
-            src={item.src}
-            number={item.number}
-            isOpen={item.isOpen}
-            distance={item.distance}
-            address={item.address}
-            coupon={item.coupon}
-            stamp={`${item.stamp * 10}%`}
-          />
-        ))}
+        <DetailInfo
+          key={shopInfo.id}
+          id={shopInfo.id}
+          title={shopInfo.title}
+          field={shopInfo.field}
+          src={shopInfo.src}
+          number={shopInfo.number}
+          isOpen={shopInfo.isOpen}
+          distance={shopInfo.distance}
+          address={shopInfo.address}
+          coupon={shopInfo.coupon}
+          stamp={`${shopInfo.stamp * 10}%`}
+        />
       </ShopDetailBox>
       <EventBox>
-        {shopDetailInfo.map(item => (
-          <EventInfo event={item.event} />
-        ))}
+        <EventInfo event={shopDetailInfo.event} />
       </EventBox>
+      <ImageInfo
+        img1={shopInfo.img1}
+        img2={shopInfo.img2}
+        img3={shopInfo.img3}
+        img4={shopInfo.img4}
+      />
       <ReviewTop>
         <ReviewTitle>Review</ReviewTitle>
         <ReviewButton onClick={onClick}>등록하기</ReviewButton>
@@ -82,6 +87,7 @@ function ShopDetail() {
             star={item.star}
             time={item.time}
             comment={item.comment}
+            key={item.id}
           />
         ))}
       </ReviewBox>
@@ -164,18 +170,13 @@ const ReviewButton = styled.div`
 `;
 
 const ReviewBox = styled.div`
-  width: 80%;
-
-  margin: 5px 10px;
-  padding: 10px 5px;
+  width: 85%;
+  margin: 15px 0;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border-radius: 10px;
-  border: ${props => props.theme.borderPurple};
 `;
 
 export default ShopDetail;

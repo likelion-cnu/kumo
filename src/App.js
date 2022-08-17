@@ -18,6 +18,11 @@ import Map from './pages/customer/Map';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
+import MyStore from './pages/shop/MyStore';
+import Preminum from './pages/shop/Premium';
+import MyPreminum from './pages/shop/MyPremium';
+import ShopProfile from './pages/shop/Profile';
+import ShopUserInfo from './pages/shop/UserInfo';
 
 import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
@@ -49,6 +54,12 @@ function ShopRoutes() {
       <Routes>
         <Route path="/" element={<HomeShop />} />
         <Route path="/qrscan" element={<QrScan />} />
+        <Route path="/my-store" element={<MyStore />} />
+        <Route path="/review" element={<HomeShop />} />
+        <Route path="/premium" element={<Preminum />} />
+        <Route path="/mypremium" element={<MyPreminum />} />
+        <Route path="/profile" element={<ShopProfile />} />
+        <Route path="/user-info" element={<ShopUserInfo />} />
       </Routes>
     </Router>
   );

@@ -128,7 +128,7 @@ function Register() {
           <Input
             type="tel"
             placeholder="PHONE: 000-0000-0000"
-            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+            pattern="010-[0-9]{4}-[0-9]{4}"
             required
             onChange={e => {
               setPhoneNumber(e.target.value);

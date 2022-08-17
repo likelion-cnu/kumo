@@ -5,9 +5,11 @@ const size = {
 export default {
   mainPurple: '#512DA8',
   bgColor: '#FDFCFF',
+  bgDColor: '#4B4B4B',
 
   fontBlack: '#191A22',
   fontGray: '#4B4B4B',
+  fontWhite: '#FFFFFF',
 
   fontLight: '400',
   fontRegular: '500',
@@ -21,6 +23,7 @@ export default {
   fontLogo: '25px',
 
   borderGray: '1px solid #F5F5F5',
+  borderBlack: '1px solid #191A22',
   borderPurple: '2px solid #512DA8',
   borderRadius: '10px',
 

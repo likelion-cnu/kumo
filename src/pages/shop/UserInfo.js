@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from '../../components/customer/Header/Header';
+import Header from '../../components/shop/Header/Header';
 
 function UserInfo() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function UserInfo() {
   useEffect(() => {
     // axios 가져오기
     setImg('https://i.ytimg.com/vi/PBCL7e02PZQ/maxresdefault.jpg');
-    setNickname('짱구');
+    setNickname('풀덤');
     setPhoneNumber('010-2343-9078');
   }, []);
 
@@ -46,7 +46,7 @@ function UserInfo() {
           />
           <ProfileImg src={img} />
         </ChangeImgBox>
-        <Level>Lv. 1 쿠린이</Level>
+        <Level>프리미엄 멤버쉽</Level>
         <Nickname
           type="text"
           placeholder="NICKNAME"
