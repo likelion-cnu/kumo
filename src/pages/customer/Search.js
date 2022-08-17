@@ -1,4 +1,7 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import Header from '../../components/customer/Header/Header';
 import SearchShopInfo from '../../components/customer/Search/SearchShopInfo';
@@ -37,6 +40,26 @@ function Search() {
       address: '광주광역시 어쩌구저쩌구',
     },
   ];
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const loadSearchDate = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/search/',
+      {
+        params: {
+          search: searchParams.get('keyword'),
+        },
+      },
+    );
+
+    console.log(response);
+  };
+
+  useEffect(() => {
+    console.log(searchParams.get('keyword'));
+    loadSearchDate();
+  }, [searchParams.get('keyword')]);
 
   return (
     <Body>

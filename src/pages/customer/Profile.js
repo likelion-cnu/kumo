@@ -1,5 +1,8 @@
-import React from 'react';
+/*eslint-disable */
+
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import UsedCoupon from '../../components/customer/Profile/UsedCoupon';
 import UserInfoButton from '../../components/customer/Profile/UserInfoButton';
@@ -42,6 +45,18 @@ function Profile() {
       date: '2021.08.14 09:45',
     },
   ];
+
+  const loadProfile = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/profile/',
+    );
+
+    console.log(response);
+  };
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
 
   return (
     <Body>

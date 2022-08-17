@@ -1,5 +1,7 @@
-import React from 'react';
+/*eslint-disable*/
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
 import Header from '../../components/customer/Header/Header';
 
@@ -30,6 +32,18 @@ function MyStamp() {
       stamp: '6',
     },
   ];
+
+  const loadMyStamp = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/stamp/',
+    );
+
+    console.log(response);
+  };
+
+  useEffect(() => {
+    loadMyStamp();
+  }, []);
 
   return (
     <Body>
