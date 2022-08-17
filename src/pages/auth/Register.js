@@ -68,7 +68,7 @@ function Register() {
             placeholder="ID"
             required
             onChange={e => {
-              e.target.value = e.target.value.replace(/[^A-Za-z]/gi, '');
+              e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, '');
               setId(e.target.value);
             }}
           />
@@ -77,7 +77,7 @@ function Register() {
             placeholder="PASSWORD"
             required
             onChange={e => {
-              e.target.value = e.target.value.replace(/[^A-Za-z]/gi, '');
+              e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, '');
               setPassword(e.target.value);
             }}
           />
@@ -86,7 +86,7 @@ function Register() {
             placeholder="PASSWORD 확인"
             required
             onChange={e => {
-              e.target.value = e.target.value.replace(/[^A-Za-z]/gi, '');
+              e.target.value = e.target.value.replace(/[^A-Za-z0-9]/gi, '');
               if (password === e.target.value) {
                 setReEnter(true);
               } else {
