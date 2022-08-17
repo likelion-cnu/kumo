@@ -1,3 +1,5 @@
+/* eslint-disable */
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -24,7 +26,16 @@ function UserInfo({ logOut }) {
     navigate('/');
   };
 
+  const loadUserInfo = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/profile',
+    );
+
+    console.log(response);
+  };
+
   useEffect(() => {
+    loadUserInfo();
     // axios 가져오기
     setImg('https://i.ytimg.com/vi/PBCL7e02PZQ/maxresdefault.jpg');
     setNickname('짱구');
