@@ -13,6 +13,7 @@ import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
 import ShopDetail from './pages/customer/ShopDetail';
 import Map from './pages/customer/Map';
+import Favorite from './pages/customer/Favorite';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
@@ -37,7 +38,7 @@ function CustomerRoutes() {
         <Route path="/user-info" element={<UserInfo />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
-        <Route path="/favorite" element={<HomeCustomer />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/map" element={<Map />} />
       </Routes>
     </Router>
