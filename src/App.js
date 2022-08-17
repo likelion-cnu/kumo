@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React from 'react';
 import {
   ThemeProvider as StyledThemeProvider,
@@ -21,6 +23,8 @@ import HomeAuth from './pages/auth/HomeAuth';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import UserInfo from './pages/customer/UserInfo';
+
+import LOCAL_KEY from './CONSTANT/LOCAL';
 
 function CustomerRoutes() {
   return (
@@ -63,7 +67,23 @@ function AuthRoutes() {
   );
 }
 
+const localStorage = window.localStorage;
+
 function AppRouter() {
+  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
+  //   return <AuthRoutes />;
+  // }
+
+  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
+  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
+  //     return <CustomerRoutes />;
+  //   }
+
+  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
+  //     return <ShopRoutes />;
+  //   }
+  // }
+
   return <AuthRoutes />;
 }
 

@@ -20,6 +20,12 @@ function Login() {
     } else {
       // post 보내기
       console.log('post', id, password);
+
+      // const loginForm = new FormData();
+
+      // loginForm.append('username', id);
+      // loginForm.append('password', password);
+
       try {
         const response = await axios.post(
           process.env.REACT_APP_KUMO_API + '/accounts/login/',
