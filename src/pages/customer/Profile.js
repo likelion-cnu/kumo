@@ -54,8 +54,17 @@ function Profile() {
     console.log(response);
   };
 
+  const loadCouponHistory = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/couponhistory/',
+    );
+
+    console.log(response);
+  };
+
   useEffect(() => {
     loadProfile();
+    loadCouponHistory();
   }, []);
 
   return (
