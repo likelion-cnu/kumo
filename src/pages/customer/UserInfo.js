@@ -27,6 +27,7 @@ function UserInfo({ logOut }) {
   };
 
   const loadUserInfo = async () => {
+    // api 수정 후 다시 수정할 것
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile',
     );
