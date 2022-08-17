@@ -15,19 +15,23 @@ function Login() {
   const [password, setPassword] = useState(null);
 
   const onLoginClick = async () => {
-    // post 보내기
-    console.log('post', id, password);
-    try {
-      const response = await axios.post(
-        process.env.REACT_APP_KUMO_API + '/accounts/login/',
-        {
-          username: id,
-          password: password,
-        },
-      );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+    if ((id === '', password === '')) {
+      return;
+    } else {
+      // post 보내기
+      console.log('post', id, password);
+      try {
+        const response = await axios.post(
+          process.env.REACT_APP_KUMO_API + '/accounts/login/',
+          {
+            username: id,
+            password: password,
+          },
+        );
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -44,6 +48,7 @@ function Login() {
             type="text"
             placeholder="ID"
             onChange={e => {
+              e.target.value = e.target.value.replace(/[^A-Za-z]/gi, '');
               setId(e.target.value);
             }}
           />
@@ -51,6 +56,7 @@ function Login() {
             type="password"
             placeholder="PASSWORD"
             onChange={e => {
+              e.target.value = e.target.value.replace(/[^A-Za-z]/gi, '');
               setPassword(e.target.value);
             }}
           />
