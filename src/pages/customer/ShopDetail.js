@@ -164,18 +164,13 @@ const ReviewButton = styled.div`
 `;
 
 const ReviewBox = styled.div`
-  width: 80%;
-
-  margin: 5px 10px;
-  padding: 10px 5px;
+  width: 85%;
+  margin: 15px 0;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  border-radius: 10px;
-  border: ${props => props.theme.borderPurple};
 `;
 
 export default ShopDetail;
