@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BsPlusLg } from 'react-icons/bs';
 
 function ImageInfo() {
-  const [img1, setImg1] = useState('');
-  const [img2, setImg2] = useState('');
-  const [img3, setImg3] = useState('');
-  const [img4, setImg4] = useState('');
+  const [id, setId] = useState(null);
+  const [img1, setImg1] = useState(null);
+  const [img2, setImg2] = useState(null);
+  const [img3, setImg3] = useState(null);
+  const [img4, setImg4] = useState(null);
 
-  const onUploadClick = () => {
-    console.log(img1);
+  const ImgUpload = async () => {
+    const newForm = new FormData();
+
+    newForm.append('user', id);
+    newForm.append('shop_image1', img1);
+    newForm.append('shop_image2', img2);
+    newForm.append('shop_image3', img3);
+    newForm.append('shop_image4', img4);
+
+    // axios put
   };
+
+  useEffect(() => {
+    async function loadImgData() {
+      setId(localStorage.getItem('username'));
+
+      // id axios get
+    }
+
+    loadImgData();
+  }, []);
 
   return (
     <>
@@ -20,17 +39,17 @@ function ImageInfo() {
             type="file"
             id="input-file"
             onChange={e => {
-              console.log(e.target.files);
               setImg1(e.target.files[0]);
+              ImgUpload();
             }}
             style={{ display: 'none' }}
           />
-          {img1 === '' ? (
+          {img1 === null ? (
             <EmptyImg>
               <BsPlusLg />
             </EmptyImg>
           ) : (
-            <ProfileImg src={img1} />
+            <DetailImg src={img1} />
           )}
         </ChangeImgBox>
         <ChangeImgBox for="input-file">
@@ -38,17 +57,17 @@ function ImageInfo() {
             type="file"
             id="input-file"
             onChange={e => {
-              console.log(e.target.files);
               setImg2(e.target.files[0]);
+              ImgUpload();
             }}
             style={{ display: 'none' }}
           />
-          {img2 === '' ? (
+          {img2 === null ? (
             <EmptyImg>
               <BsPlusLg />
             </EmptyImg>
           ) : (
-            <ProfileImg src={img2} />
+            <DetailImg src={img2} />
           )}
         </ChangeImgBox>
       </Box>
@@ -58,17 +77,17 @@ function ImageInfo() {
             type="file"
             id="input-file"
             onChange={e => {
-              console.log(e.target.files);
               setImg3(e.target.files[0]);
+              ImgUpload();
             }}
             style={{ display: 'none' }}
           />
-          {img3 === '' ? (
+          {img3 === null ? (
             <EmptyImg>
               <BsPlusLg />
             </EmptyImg>
           ) : (
-            <ProfileImg src={img3} />
+            <DetailImg src={img3} />
           )}
         </ChangeImgBox>
         <ChangeImgBox for="input-file">
@@ -76,21 +95,20 @@ function ImageInfo() {
             type="file"
             id="input-file"
             onChange={e => {
-              console.log(e.target.files);
               setImg4(e.target.files[0]);
+              ImgUpload();
             }}
             style={{ display: 'none' }}
           />
-          {img4 === '' ? (
+          {img4 === null ? (
             <EmptyImg>
               <BsPlusLg />
             </EmptyImg>
           ) : (
-            <ProfileImg src={img4} />
+            <DetailImg src={img4} />
           )}
         </ChangeImgBox>
       </Box>
-      <UploadButton onClick={onUploadClick}>업로드</UploadButton>
     </>
   );
 }
@@ -123,7 +141,7 @@ const ChangeImgBox = styled.label`
   background-color: ${props => props.theme.bgColor};
 `;
 
-const ProfileImg = styled.img`
+const DetailImg = styled.img`
   width: 40vw;
   height: 40vw;
   max-width: 200px;

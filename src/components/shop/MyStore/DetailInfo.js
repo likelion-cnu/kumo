@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { BsTelephone } from 'react-icons/bs';
+import { BsTelephone, BsPlusLg } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { FiMapPin } from 'react-icons/fi';
 
@@ -66,7 +66,13 @@ function DetailInfo() {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img} />
+          {img === null ? (
+            <EmptyImg>
+              <BsPlusLg />
+            </EmptyImg>
+          ) : (
+            <ProfileImg src={img} />
+          )}
         </ChangeImgBox>
         <TitleBox>
           <Title
@@ -165,6 +171,20 @@ const ChangeImgBox = styled.label`
   border-radius: 20px;
 
   background-color: ${props => props.theme.bgColor};
+`;
+
+const EmptyImg = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #d9d9d9;
+  border-radius: 10px;
+
+  font-size: ${props => props.theme.fontLarge};
 `;
 
 const ProfileImg = styled.img`
