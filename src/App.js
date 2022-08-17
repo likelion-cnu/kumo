@@ -1,4 +1,6 @@
-import React from 'react';
+/*eslint-disable*/
+
+import React, { useState, useEffect } from 'react';
 import {
   ThemeProvider as StyledThemeProvider,
   createGlobalStyle,
@@ -27,14 +29,16 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import UserInfo from './pages/customer/UserInfo';
 
-function CustomerRoutes() {
+import LOCAL_KEY from './CONSTANT/LOCAL';
+
+function CustomerRoutes({ logOut }) {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeCustomer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/user-info" element={<UserInfo />} />
+        <Route path="/user-info" element={<UserInfo logOut={logOut} />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
@@ -44,7 +48,7 @@ function CustomerRoutes() {
   );
 }
 
-function ShopRoutes() {
+function ShopRoutes({ logOut }) {
   return (
     <Router>
       <Routes>
@@ -55,18 +59,18 @@ function ShopRoutes() {
         <Route path="/premium" element={<Preminum />} />
         <Route path="/mypremium" element={<MyPreminum />} />
         <Route path="/profile" element={<ShopProfile />} />
-        <Route path="/user-info" element={<ShopUserInfo />} />
+        <Route path="/user-info" element={<ShopUserInfo logOut={logOut} />} />
       </Routes>
     </Router>
   );
 }
 
-function AuthRoutes() {
+function AuthRoutes({ logIn }) {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomeAuth />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login logIn={logIn} />} />
         <Route path="/join" element={<Register />} />
         <Route path="/find" element={<HomeAuth />} />
       </Routes>
@@ -74,8 +78,36 @@ function AuthRoutes() {
   );
 }
 
+let localStorage = window.localStorage;
+
 function AppRouter() {
-  return <CustomerRoutes />;
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
+  );
+
+  const logIn = () => setIsLoggedIn(true);
+  const logOut = () => setIsLoggedIn(false);
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
+    return <AuthRoutes logIn={logIn} />;
+  }
+
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
+      return <CustomerRoutes logOut={logOut} />;
+    }
+
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
+      return <ShopRoutes logOut={logOut} />;
+    }
+  }
+
+  // return <CustomerRoutes />
+  // 로그인 없이 작업하려면 AppRouter() 코드 주석 처리한 후 기존처럼 상단의 코드 사용하면 됩니다!
 }
 
 const GlobalStyle = createGlobalStyle`
