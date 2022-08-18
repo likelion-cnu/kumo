@@ -74,6 +74,7 @@ const NavbarMenu = styled.div`
 
     position: absolute;
     top: 100%;
+    left: 0;
 
     background-color: ${props => props.theme.bgColor};
     border-top: ${props => props.theme.borderGray};
