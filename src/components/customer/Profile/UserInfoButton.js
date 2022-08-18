@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiChevronRight } from 'react-icons/fi';
 
-function UserInfoButton({ level, nickname }) {
+function UserInfoButton({ img, level, nickname }) {
   const navigate = useNavigate();
 
   const onClick = () => {
@@ -12,7 +12,7 @@ function UserInfoButton({ level, nickname }) {
 
   return (
     <UserInfoBox onClick={onClick}>
-      <UserImg src="https://s3.ap-northeast-2.amazonaws.com/elasticbeanstalk-ap-northeast-2-176213403491/media/magazine_img/magazine_311/3-2-%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg" />
+      <UserImg src={img} />
       <UserInfoTextBox>
         <LevelText>Lv. {level} 쿠린이</LevelText>
         <WelcomeText>안녕하세요 {nickname}님</WelcomeText>

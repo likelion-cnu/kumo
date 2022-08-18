@@ -1,6 +1,6 @@
 /*eslint-disable */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
@@ -8,10 +8,12 @@ import UsedCoupon from '../../components/customer/Profile/UsedCoupon';
 import UserInfoButton from '../../components/customer/Profile/UserInfoButton';
 
 function Profile() {
+  /*
   const user = {
     level: 1,
     nickname: '짱구',
   };
+  */
 
   const usedCoupons = [
     {
@@ -46,12 +48,15 @@ function Profile() {
     },
   ];
 
+  const [user, setUser] = useState([]);
+
   const loadProfile = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile/',
     );
 
-    console.log(response);
+    console.log(response.data);
+    setUser(response.data);
   };
 
   const loadCouponHistory = async () => {
@@ -70,7 +75,11 @@ function Profile() {
   return (
     <Body>
       <Header />
-      <UserInfoButton level={user.level} nickname={user.nickname} />
+      <UserInfoButton
+        img={user.profile_img}
+        level={user.level}
+        nickname={user.nickname}
+      />
       <UsedCouponsBox>
         <Text>쿠폰 사용 기록</Text>
         {usedCoupons.map(item => (
