@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import SearchShopInfo from '../../components/customer/Search/SearchShopInfo';
 import SearchBar from '../../components/customer/Homecustomer/SearchBar';
 
 function Search() {
+  /*
   const shopInfo = [
     {
       id: 'gomada',
@@ -40,8 +41,10 @@ function Search() {
       address: '광주광역시 어쩌구저쩌구',
     },
   ];
+  */
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const [shopInfo, setShopInfo] = useState([]);
 
   const loadSearchDate = async () => {
     const response = await axios.get(
@@ -53,6 +56,7 @@ function Search() {
       },
     );
 
+    setShopInfo(response.data);
     console.log(response);
   };
 
@@ -68,15 +72,15 @@ function Search() {
       <SearchResultBox>
         {shopInfo.map(item => (
           <SearchShopInfo
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            field={item.field}
-            src={item.src}
-            number={item.number}
-            isOpen={item.isOpen}
-            distance={item.distance}
-            address={item.address}
+            key={item.user}
+            id={item.user}
+            title={item.shop_name}
+            field={item.shop_sector}
+            src={item.shop_logo}
+            number={item.shop_phome_num}
+            isOpen={item.isOpen} //필요
+            distance={item.distance} //필요
+            address={item.shop_location}
           />
         ))}
       </SearchResultBox>
