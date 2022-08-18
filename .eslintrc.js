@@ -19,5 +19,6 @@ module.exports = {
     'no-console': 0,
     'no-unused-vars': 'warn',
     'react/prop-types': 0,
+    'object-shorthand': ['error', 'always', { avoidQuotes: true }],
   },
 };

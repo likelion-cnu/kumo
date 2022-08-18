@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Header from '../../components/shop/Header/Header';
 
-function UserInfo() {
+function UserInfo({ logOut }) {
+  const navigate = useNavigate();
+
   const [img, setImg] = useState(null);
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const onSaveClick = () => {
-    console.log(img, nickname, phoneNumber); // axios 보내기
+    console.log(img, nickname, phoneNumber);
+    // axios 보내기
+
+    navigate(-1);
+  };
+
+  const onLogoutClick = () => {
+    localStorage.clear();
+    logOut();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -56,6 +68,7 @@ function UserInfo() {
           required
         />
         <SaveButton onClick={onSaveClick}>저장</SaveButton>
+        <LogoutButton onClick={onLogoutClick}>로그아웃</LogoutButton>
       </ChangeProfilePage>
     </Body>
   );
@@ -151,7 +164,7 @@ const SaveButton = styled.div`
   width: 100px;
   height: 40px;
 
-  margin: 30px 0;
+  margin-top: 30px;
 
   display: flex;
   justify-content: center;
@@ -165,6 +178,12 @@ const SaveButton = styled.div`
   font-size: ${props => props.theme.fontMedium};
   font-weight: ${props => props.theme.fontRegular};
   text-align: center;
+`;
+
+const LogoutButton = styled(SaveButton)`
+  background-color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.heartRed};
+  border: 2px solid ${props => props.theme.heartRed};
 `;
 
 export default UserInfo;

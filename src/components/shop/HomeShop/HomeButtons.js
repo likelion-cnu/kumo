@@ -27,6 +27,7 @@ const ButtonBox = styled.button`
   border-radius: 10px;
 
   background-color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.fontBlack};
 `;
 
 const Icon = styled.div`

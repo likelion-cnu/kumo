@@ -38,9 +38,9 @@ function HomeAuth() {
 
 const Body = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 105vh;
 
-  position: fixed;
+  /* position: fixed; */
 
   display: flex;
   flex-direction: column;
