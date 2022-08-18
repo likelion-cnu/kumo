@@ -56,6 +56,7 @@ const Button = styled.button`
 
   margin: 5% 0;
   background-color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.fontGray};
 
   border: none;
   border-bottom: ${props => props.theme.grayBarBorder};
