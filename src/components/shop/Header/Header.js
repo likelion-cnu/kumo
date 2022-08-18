@@ -67,10 +67,11 @@ const NavbarMenu = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 100%;
+    width: 100vw;
 
     position: absolute;
     top: 100%;
+    left: 0;
 
     background-color: ${props => props.theme.bgColor};
     border-top: ${props => props.theme.borderGray};
@@ -87,7 +88,7 @@ const NavbarMenuLi = styled.div`
   padding: 10px;
 
   @media ${props => props.theme.mobile} {
-    width: 100vw;
+    width: 100%;
     height: 70px;
 
     display: flex;
