@@ -96,7 +96,7 @@ const DetailBox = styled.div`
 
 const Text = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: 10px;
 
   display: flex;
   justify-content: center;
@@ -152,7 +152,7 @@ const ProfileImg = styled.img`
 
 const EventBox = styled.input`
   width: 100%;
-  height: 150px;
+  height: 180px;
   margin-top: 20px;
 
   display: flex;
