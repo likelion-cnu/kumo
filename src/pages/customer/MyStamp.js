@@ -57,8 +57,8 @@ function MyStamp() {
           <ShopStamp
             key={item.shopname}
             id={item.shopname}
-            title={item.title} //필요
-            field={item.field} //필요
+            title={item.title} //가게 이름 필요
+            field={item.field} //가게 sector 필요
             src={item.src}
             coupon={item.coupon_num}
             stamp={`${item.stamp_num * 10}%`}
