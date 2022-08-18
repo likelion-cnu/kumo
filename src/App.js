@@ -13,6 +13,7 @@ import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
 import ShopDetail from './pages/customer/ShopDetail';
 import Map from './pages/customer/Map';
+import TestMap from './pages/customer/TestMap';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
@@ -39,6 +40,7 @@ function CustomerRoutes() {
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/testmap" element={<TestMap />} />
       </Routes>
     </Router>
   );
@@ -75,7 +77,7 @@ function AuthRoutes() {
 }
 
 function AppRouter() {
-  return <ShopRoutes />;
+  return <CustomerRoutes />;
 }
 
 const GlobalStyle = createGlobalStyle`

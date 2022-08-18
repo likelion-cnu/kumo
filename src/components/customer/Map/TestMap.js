@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const { kakao } = window;
 
-function TestMap({ lat, lng }) {
+function TestMap({ id }) {
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate(`/detail/${id}`);
+  };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
       const myMap = {
@@ -24,53 +32,115 @@ function TestMap({ lat, lng }) {
       // 마커를 표시할 위치와 title 객체 배열입니다
       const positions = [
         {
-          title: '카카오',
+          id: 'gomada',
+          title: '고마다',
+          field: '카페',
+          src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+          number: '010-9876-5432',
+          isOpen: '영업 중',
+          distance: '200m',
+          address: '광주광역시 어쩌구저쩌구',
           latlng: new kakao.maps.LatLng(35.1264101, 126.8788377),
         },
         {
-          title: '생태연못',
-          latlng: new kakao.maps.LatLng(33.450936, 126.569477), // 제주도 주소임
+          id: 'gomada',
+          title: '고마다',
+          field: '카페',
+          src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+          number: '010-9876-5444',
+          isOpen: '영업 중',
+          distance: '200m',
+          address: '광주광역시 어쩌구저쩌구',
+          latlng: new kakao.maps.LatLng(35.1265999, 126.8789277), // 제주도 주소임
         },
         {
-          title: '텃밭',
-          latlng: new kakao.maps.LatLng(33.450879, 126.56994),
+          id: 'gomada',
+          title: '고마다',
+          field: '카페',
+          src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+          number: '010-9876-5432',
+          isOpen: '영업 중',
+          distance: '200m',
+          address: '광주광역시 어쩌구저쩌구',
+          latlng: new kakao.maps.LatLng(35.123014, 126.8828595),
         },
         {
-          title: '근린공원',
-          latlng: new kakao.maps.LatLng(33.451393, 126.570738),
+          id: 'gomada',
+          title: '고마다',
+          field: '카페',
+          src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+          number: '010-9876-5444',
+          isOpen: '영업 중',
+          distance: '200m',
+          address: '광주광역시 어쩌구저쩌구',
+          latlng: new kakao.maps.LatLng(35.123014, 126.8829595),
         },
       ];
 
-      // 마커 이미지의 이미지 주소입니다
-      const imageSrc =
-        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
-      for (let i = 0; i < positions.length; i += 1) {
-        // 마커 이미지의 이미지 크기 입니다
-        const imageSize = new kakao.maps.Size(24, 35);
-        // 마커 이미지를 생성합니다
-        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-        // 마커를 생성합니다
+      // 지도에 마커를 표시하는 함수입니다
+      function displayMarker(data) {
         const marker = new kakao.maps.Marker({
-          map, // 마커를 표시할 지도
-          position: positions[i].latlng, // 마커를 표시할 위치
-          title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: markerImage, // 마커 이미지
+          map,
+          position: data.latlng,
         });
+        // 마커 위에 커스텀오버레이를 표시합니다
+        // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+        const overlay = new kakao.maps.CustomOverlay({
+          xAnchor: 0.5,
+          yAnchor: 2,
+          position: marker.getPosition(),
+        });
+
+        const content = document.createElement('div');
+        content.innerHTML = data.title;
+        content.style.cssText =
+          'background: #FDFCFF; border: 1px solid #F5F5F5; border-Radius: 10px; color: #191A22';
+
+        const field = document.createElement('div');
+        field.innerHTML = data.field;
+
+        const num = document.createElement('div');
+        num.innerHTML = data.number;
+
+        // const num = document.createElement('div');
+        // num.innerHTML = data.number;
+
+        const pic = document.createElement('img');
+        pic.innerHTML = data.src;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '닫기';
+        closeBtn.style.cssText = 'align-items: right';
+        closeBtn.onclick = function () {
+          overlay.setMap(null);
+        };
+
+        content.appendChild(field);
+        content.appendChild(num);
+        content.appendChild(closeBtn);
+        content.appendChild(pic);
+        overlay.setContent(content);
+
+        kakao.maps.event.addListener(marker, 'click', () => {
+          overlay.setMap(map);
+        });
+        kakao.maps.event.addListener(map, 'click', function () {
+          overlay.setMap(null);
+        });
+      }
+      for (let i = 0; i < positions.length; i += 1) {
+        const data = positions[i];
+        displayMarker(data);
       }
     });
   }, []);
 
-  return (
-    <div
-      id="map"
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-    />
-  );
+  return <Map id="map" />;
 }
+
+const Map = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 export default TestMap;
