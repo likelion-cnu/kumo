@@ -55,13 +55,10 @@ function Search() {
         },
       },
     );
-
     setShopInfo(response.data);
-    console.log(response);
   };
 
   useEffect(() => {
-    console.log(searchParams.get('keyword'));
     loadSearchDate();
   }, [searchParams.get('keyword')]);
 

@@ -1,11 +1,12 @@
 /*eslint-disable*/
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
 import Header from '../../components/customer/Header/Header';
 
 function MyStamp() {
+  /*
   const myStamp = [
     {
       id: 'gomada',
@@ -32,13 +33,15 @@ function MyStamp() {
       stamp: '6',
     },
   ];
+  */
+
+  const [myStamp, setMyStamp] = useState([]);
 
   const loadMyStamp = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/stamp/',
     );
-
-    console.log(response);
+    setMyStamp(response.data);
   };
 
   useEffect(() => {
@@ -52,13 +55,13 @@ function MyStamp() {
       <MyStampBox>
         {myStamp.map(item => (
           <ShopStamp
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            field={item.field}
+            key={item.shopname}
+            id={item.shopname}
+            title={item.title} //필요
+            field={item.field} //필요
             src={item.src}
-            coupon={item.coupon}
-            stamp={`${item.stamp * 10}%`}
+            coupon={item.coupon_num}
+            stamp={`${item.stamp_num * 10}%`}
           />
         ))}
       </MyStampBox>
