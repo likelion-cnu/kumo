@@ -13,7 +13,7 @@ function Profile() {
     level: 1,
     nickname: '짱구',
   };
-  */
+  
 
   const usedCoupons = [
     {
@@ -47,15 +47,16 @@ function Profile() {
       date: '2021.08.14 09:45',
     },
   ];
+  */
 
   const [user, setUser] = useState([]);
+  const [usedCoupons, setUsedCoupons] = useState([]);
 
   const loadProfile = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile/',
     );
 
-    console.log(response.data);
     setUser(response.data);
   };
 
@@ -64,7 +65,7 @@ function Profile() {
       process.env.REACT_APP_KUMO_API + '/customer/couponhistory/',
     );
 
-    console.log(response);
+    setUsedCoupons(response.data);
   };
 
   useEffect(() => {
@@ -84,11 +85,11 @@ function Profile() {
         <Text>쿠폰 사용 기록</Text>
         {usedCoupons.map(item => (
           <UsedCoupon
-            key={item.id}
+            key={item.id} //업주의 id 필요
             id={item.id}
-            src={item.src}
-            title={item.title}
-            date={item.date}
+            src={item.src} //shop_logo 필요
+            title={item.shopname}
+            date={item.created_at}
           />
         ))}
       </UsedCouponsBox>
