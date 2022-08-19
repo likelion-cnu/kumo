@@ -1,62 +1,53 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../../components/customer/Header/Header';
-import SearchShopInfo from '../../components/customer/Search/SearchShopInfo';
-import SearchBar from '../../components/customer/Homecustomer/SearchBar';
+import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
 
-function Search() {
-  const shopInfo = [
+function Favorite() {
+  const myStamp = [
     {
       id: 'gomada',
       title: '고마다',
       field: '카페',
       src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5432',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
+      coupon: '0',
+      stamp: 7,
     },
     {
       id: 'gomada',
       title: '고마다',
       field: '카페',
       src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5432',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
+      coupon: '0',
+      stamp: '6',
     },
     {
       id: 'gomada',
       title: '고마다',
       field: '카페',
       src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5432',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
+      coupon: '0',
+      stamp: '6',
     },
   ];
 
   return (
     <Body>
       <Header />
-      <SearchBar />
-      <SearchResultBox>
-        {shopInfo.map(item => (
-          <SearchShopInfo
+      <Text>즐겨찾기</Text>
+      <MyStampBox>
+        {myStamp.map(item => (
+          <ShopStamp
             key={item.id}
             id={item.id}
             title={item.title}
             field={item.field}
             src={item.src}
-            number={item.number}
-            isOpen={item.isOpen}
-            distance={item.distance}
-            address={item.address}
+            coupon={item.coupon}
+            stamp={`${item.stamp * 10}%`}
           />
         ))}
-      </SearchResultBox>
+      </MyStampBox>
     </Body>
   );
 }
@@ -72,11 +63,26 @@ const Body = styled.div`
   background-color: ${props => props.theme.bgColor};
 `;
 
-const SearchResultBox = styled.div`
+const Text = styled.div`
+  width: 130px;
+  margin-top: 20px;
+  padding-bottom: 12.5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: ${props => props.theme.fontBlack};
+  font-size: ${props => props.theme.fontLarge};
+  font-weight: ${props => props.theme.fontRegular};
+
+  border-bottom: ${props => props.theme.grayBarBorder};
+`;
+
+const MyStampBox = styled.div`
   width: 90%;
 
-  margin: 0 20px;
-  padding: 5px 10px;
+  margin: 20px;
 
   display: flex;
   flex-direction: column;
@@ -84,4 +90,4 @@ const SearchResultBox = styled.div`
   align-items: center;
 `;
 
-export default Search;
+export default Favorite;
