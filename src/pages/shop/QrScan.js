@@ -8,6 +8,8 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import Header from '../../components/shop/Header/Header';
 import axios from 'axios';
+import LOCAL from '../../CONSTANT/LOCAL';
+import StampImg from '../../images/StampImg.png';
 
 function QrScan() {
   const [userId, setUserId] = useState('No result');
@@ -15,6 +17,8 @@ function QrScan() {
   const [isStamp, setIsStamp] = useState(true);
   const [stampCount, setStampCount] = useState(1);
   const [couponCount, setCouponCount] = useState(1);
+
+  const [customerInfo, setCustomerInfo] = useState([]);
 
   const QrStyle = {
     height: '100%',
@@ -24,9 +28,16 @@ function QrScan() {
   const loadCustomer = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/shop/qrcheck/' + 'customer' + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
 
-    console.log(response);
+    console.log(response.data);
+    setCustomerInfo(response.data);
   };
 
   const onScan = data => {
@@ -118,8 +129,25 @@ function QrScan() {
             <AiOutlineCloseCircle />
           </CloseIcon>
           <QrResultBox>
-            <ProfileImg src="" />
-            <QrResultId>{userId}</QrResultId>
+            <ProfileImg src={customerInfo.cu_profile_img} />
+            <CustomerInfo>
+              <CustomerStampCoupon>
+                <Coupon>
+                  <Text>{customerInfo.cu_nickname}</Text>
+                </Coupon>
+                <Coupon>
+                  <Title>🎟</Title>
+                  <Text>{customerInfo.coupon_num} 장</Text>
+                </Coupon>
+                <Stamp>
+                  <StampIcon src={StampImg} />
+                  <StampBarBox>
+                    <StampBar style={{ width: customerInfo.stamp_num }} />
+                    <StampText>{customerInfo.stamp_num}</StampText>
+                  </StampBarBox>
+                </Stamp>
+              </CustomerStampCoupon>
+            </CustomerInfo>
           </QrResultBox>
           <StampCouponBox>
             <SelectButtonBox>
@@ -216,7 +244,7 @@ const QrResultBox = styled.div`
   margin: 10px 0;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -234,10 +262,83 @@ const ProfileImg = styled.img`
   padding: 2%;
 `;
 
-const QrResultId = styled.div`
-  font-size: ${props => props.theme.fontLarge};
+const CustomerInfo = styled.div`
+  font-size: ${props => props.theme.fontMedium};
 
   color: ${props => props.theme.fontBlack};
+`;
+
+const CustomerStampCoupon = styled.div`
+  width: 60%;
+  height: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Coupon = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+`;
+
+const Stamp = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Title = styled.div`
+  font-size: 30px;
+
+  text-align: left;
+`;
+
+const Text = styled.div`
+  width: 100%;
+
+  font-size: ${props => props.theme.fontSmall};
+  font-weight: ${props => props.theme.fontRegular};
+  color: ${props => props.theme.fontGray};
+  text-align: center;
+`;
+
+const StampIcon = styled.img`
+  width: 30px;
+`;
+
+const StampBarBox = styled.div`
+  width: 75%;
+  height: 20px;
+
+  border: ${props => props.theme.grayBarBorder};
+  border-radius: 10px;
+
+  position: relative;
+`;
+
+const StampBar = styled.div`
+  height: 100%;
+
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  background-color: #d6c5ff;
+`;
+
+const StampText = styled.div`
+  width: 100%;
+
+  text-align: center;
+  font-size: 10px;
+
+  position: absolute;
+  top: 0%;
 `;
 
 const StampCouponBox = styled.div`
