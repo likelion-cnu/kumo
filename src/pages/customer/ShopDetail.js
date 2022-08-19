@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -9,8 +9,10 @@ import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
 import EventInfo from '../../components/customer/ShopDetail/EventInfo';
 import ReviewInfo from '../../components/customer/ShopDetail/ReviewInfo';
 import ImageInfo from '../../components/customer/ShopDetail/ImageInfo';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function ShopDetail() {
+  /*
   const shopInfo = {
     id: 'gomada',
     title: '고마다',
@@ -27,11 +29,13 @@ function ShopDetail() {
     img3: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
     img4: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
   };
-
+  */
+  /*
   const shopDetailInfo = {
     event: '스탬프 10번 적립 시 쿠폰 1장',
   };
-
+  */
+  /*
   const shopReview = [
     {
       id: '준수',
@@ -46,13 +50,19 @@ function ShopDetail() {
       comment: '너무 맛있어요~',
     },
   ];
+  */
   const navigate = useNavigate();
 
   const { shopId } = useParams();
 
+  const [shopInfo, setShopInfo] = useState([]);
+  const [shopReview, setShopReview] = useState([]);
+
   const onClick = () => {
     navigate('/review');
   };
+
+  let localStorage = window.localStorage;
 
   const loadShopDetail = async () => {
     const response = await axios.get(
@@ -64,7 +74,9 @@ function ShopDetail() {
         },
       },
     );
-    console.log(response.data);
+    console.log(response);
+
+    setShopInfo(response.data);
   };
 
   const loadShopReview = async () => {
@@ -78,12 +90,15 @@ function ShopDetail() {
       },
     );
     console.log(response.data);
+
+    setShopReview(response.data);
   };
 
   useEffect(() => {
-    console.log(shopId);
+    // console.log(shopId);
     loadShopDetail();
-    loadShopReview();
+    // console.log(shopInfo);
+    // loadShopReview();
   }, [shopId]);
 
   return (
@@ -91,21 +106,21 @@ function ShopDetail() {
       <Header />
       <ShopDetailBox>
         <DetailInfo
-          key={shopInfo.id}
-          id={shopInfo.id}
-          title={shopInfo.title}
-          field={shopInfo.field}
-          src={shopInfo.src}
-          number={shopInfo.number}
-          isOpen={shopInfo.isOpen}
-          distance={shopInfo.distance}
-          address={shopInfo.address}
-          coupon={shopInfo.coupon}
-          stamp={`${shopInfo.stamp * 10}%`}
+          key={shopId}
+          id={shopId}
+          title={shopInfo.shop_name}
+          field={shopInfo.shop_sector}
+          src={shopInfo.src} // logo
+          number={shopInfo.shop_phone_num}
+          isOpen={shopInfo.isOpen} // 프론트에서 처리하기
+          distance={shopInfo.distance} //몰라!
+          address={shopInfo.address} //없음 아직
+          coupon={shopInfo.coupon} //없음
+          stamp={`${shopInfo.stamp * 10}%`} //없음
         />
       </ShopDetailBox>
       <EventBox>
-        <EventInfo event={shopDetailInfo.event} />
+        <EventInfo event={shopInfo.shop_introduction} />
       </EventBox>
       <ImageInfo
         img1={shopInfo.img1}
@@ -121,9 +136,9 @@ function ShopDetail() {
         {shopReview.map(item => (
           <ReviewInfo
             id={item.id}
-            star={item.star}
+            star={item.review_star}
             time={item.time}
-            comment={item.comment}
+            comment={item.review_caption}
             key={item.id}
           />
         ))}

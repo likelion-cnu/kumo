@@ -10,7 +10,8 @@ import LOCAL from '../../CONSTANT/LOCAL';
 function UserInfo({ logOut }) {
   const navigate = useNavigate();
 
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState('');
+  const [imgPreview, setImgPreview] = useState('');
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -20,18 +21,21 @@ function UserInfo({ logOut }) {
     console.log(img, nickname, phoneNumber);
     // axios 보내기
 
+    const newUserInfo = new FormData();
+
+    newUserInfo.append('nickname', nickname);
+    newUserInfo.append('phone_num', phoneNumber);
+    newUserInfo.append('profile_img', img);
+
     const response = await axios.put(
       process.env.REACT_APP_KUMO_API +
         '/customer/change_profile/' +
         localStorage.getItem(LOCAL.USER_NAME) +
         '/',
+      newUserInfo,
       {
-        params: {
-          nickname: nickname,
-          phone_num: phoneNumber,
-        },
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
           Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
         },
       },
@@ -60,18 +64,37 @@ function UserInfo({ logOut }) {
 
     console.log(response);
 
-    setImg(response.data[0].profile_img);
+    const imgUrl =
+      process.env.REACT_APP_KUMO_API + response.data[0].profile_img;
+    const imgResponse = await fetch(imgUrl);
+    console.log(imgResponse);
+    const blob = imgResponse.blob();
+    setImg(new File([blob], 'image.jpg', { type: blob.type }));
+
+    // setImg(process.env.REACT_APP_KUMO_API + response.data[0].profile_img);
     setNickname(response.data[0].nickname);
     // setPhoneNumber(response.data[0].)
   };
 
   useEffect(() => {
-    loadUserInfo();
     // axios 가져오기
-    setImg('https://i.ytimg.com/vi/PBCL7e02PZQ/maxresdefault.jpg');
-    setNickname('짱구');
     setPhoneNumber('010-2343-9078');
+    loadUserInfo();
+    // orange();
   }, []);
+
+  useEffect(() => {
+    if (!img || img === '') {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      setImgPreview(e.target.result);
+      console.log(imgPreview);
+    };
+    reader.readAsDataURL(img);
+  }, [img]);
 
   return (
     <Body>
@@ -87,7 +110,7 @@ function UserInfo({ logOut }) {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={img} />
+          <ProfileImg src={imgPreview} />
         </ChangeImgBox>
         <Level>Lv. 1 쿠린이</Level>
         <Nickname

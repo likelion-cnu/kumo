@@ -102,8 +102,8 @@ function Profile() {
         <Text>쿠폰 사용 기록</Text>
         {usedCoupons.map(item => (
           <UsedCoupon
-            key={item.id} //업주의 id 필요
-            id={item.id}
+            key={item.shopname} //업주의 id 필요
+            id={item.shopname}
             src={item.src} //shop_logo 필요
             title={item.shopname}
             date={item.created_at}
