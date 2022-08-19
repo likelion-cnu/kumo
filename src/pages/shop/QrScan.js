@@ -25,9 +25,11 @@ function QrScan() {
     margin: '0',
   };
 
+  let localStorage = window.localStorage;
+
   const loadCustomer = async () => {
     const response = await axios.get(
-      process.env.REACT_APP_KUMO_API + '/shop/qrcheck/' + 'customer' + '/',
+      process.env.REACT_APP_KUMO_API + '/shop/qrcheck/' + userId + '/',
       {
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +45,6 @@ function QrScan() {
   const onScan = data => {
     if (data) {
       setUserId(data.text);
-      loadCustomer();
     }
   };
 
@@ -103,6 +104,7 @@ function QrScan() {
   };
 
   useEffect(() => {
+    loadCustomer();
     setStampCount(1);
     setCouponCount(1);
     setIsStamp(true);
