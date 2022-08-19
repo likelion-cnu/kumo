@@ -30,6 +30,12 @@ function UserInfo({ logOut }) {
     // api 수정 후 다시 수정할 것
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
 
     console.log(response);

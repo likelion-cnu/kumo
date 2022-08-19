@@ -55,6 +55,12 @@ function Profile() {
   const loadProfile = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
 
     setUser(response.data);
@@ -63,6 +69,12 @@ function Profile() {
   const loadCouponHistory = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/couponhistory/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
 
     setUsedCoupons(response.data);

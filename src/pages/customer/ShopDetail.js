@@ -57,6 +57,12 @@ function ShopDetail() {
   const loadShopDetail = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/shop_detail/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
     console.log(response.data);
   };
@@ -64,6 +70,12 @@ function ShopDetail() {
   const loadShopReview = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/review_list/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
     console.log(response.data);
   };

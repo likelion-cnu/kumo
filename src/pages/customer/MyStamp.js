@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
 import Header from '../../components/customer/Header/Header';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function MyStamp() {
   /*
@@ -38,8 +39,17 @@ function MyStamp() {
   const [myStamp, setMyStamp] = useState([]);
 
   const loadMyStamp = async () => {
+    let localStorage = window.localStorage;
+    console.log(localStorage.getItem(LOCAL.TOKEN));
+
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/stamp/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
     );
     setMyStamp(response.data);
   };
