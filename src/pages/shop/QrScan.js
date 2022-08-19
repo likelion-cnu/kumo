@@ -343,7 +343,7 @@ const StampText = styled.div`
   font-size: 10px;
 
   position: absolute;
-  top: 0%;
+  top: 25%;
 `;
 
 const StampCouponBox = styled.div`

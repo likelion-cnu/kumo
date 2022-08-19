@@ -50,6 +50,10 @@ function Profile() {
   ];
   */
 
+  const fakeUser = {
+    nickname: '호랑이',
+  };
+
   const [user, setUser] = useState([]);
   const [usedCoupons, setUsedCoupons] = useState([]);
 

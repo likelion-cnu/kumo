@@ -36,6 +36,16 @@ function MyStamp() {
   ];
   */
 
+  const fakeData = {
+    shopname: 'tiger',
+    shop_name: '호랑이 카페',
+    shop_sector: '카페',
+    shop_logo:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbILM_K0wODBZns2vgWXBUh7uA52j2awllkQ&usqp=CAU',
+    coupon_num: '1',
+    stamp_num: '2',
+  };
+
   const [myStamp, setMyStamp] = useState([]);
 
   const loadMyStamp = async () => {

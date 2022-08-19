@@ -51,6 +51,19 @@ function ShopDetail() {
     },
   ];
   */
+
+  const fakeData = {
+    shopname: 'tiger',
+    shop_name: '호랑이 카페',
+    shop_sector: '카페',
+    shop_logo:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbILM_K0wODBZns2vgWXBUh7uA52j2awllkQ&usqp=CAU',
+    coupon_num: '1',
+    stamp_num: '2',
+    shop_phone_num: '010-1111-1111',
+    address: '서울특별시 서대문구 가좌로 134',
+  };
+
   const navigate = useNavigate();
 
   const { shopId } = useParams();
@@ -112,11 +125,11 @@ function ShopDetail() {
           field={shopInfo.shop_sector}
           src={process.env.REACT_APP_KUMO_API + shopInfo.src} // logo
           number={shopInfo.shop_phone_num}
-          isOpen={shopInfo.isOpen} // 프론트에서 처리하기
-          distance={shopInfo.distance} //몰라!
+          // isOpen={shopInfo.isOpen} // 프론트에서 처리하기
+          // distance={shopInfo.distance} //몰라!
           address={shopInfo.address} //없음 아직
-          coupon={shopInfo.coupon} //없음
-          stamp={`${shopInfo.stamp * 10}%`} //없음
+          coupon={shopInfo.coupon_num} //없음
+          stamp={`${shopInfo.stamp_num * 10}%`} //없음
         />
       </ShopDetailBox>
       <EventBox>

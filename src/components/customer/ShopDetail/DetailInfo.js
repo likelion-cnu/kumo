@@ -51,14 +51,14 @@ function DetailInfo({
             <Icon>
               <BiTime />
             </Icon>
-            <IsOpen>{isOpen}</IsOpen>
+            <IsOpen>영업 중</IsOpen>
           </Info>
           <Info>
             <Icon>
               <FiMapPin />
             </Icon>
             <AddressTextBox>
-              <Distance>{distance}</Distance>
+              <Distance>200m</Distance>
               <Address>{address}</Address>
             </AddressTextBox>
           </Info>
