@@ -2,24 +2,24 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function HomeButtons() {
+function HomeAD() {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate('/qrscan');
+    navigate('/premium');
   };
 
   return (
-    <MyQrCodeBox>
-      <Text>QR 촬영하기</Text>
+    <Box>
       <ButtonBox onClick={onClick}>
-        <Icon>📷</Icon>
+        <Text>지금 프리미엄 서비스에 가입하고</Text>
+        <Text>다양한 혜택을 누려보세요.</Text>
       </ButtonBox>
-    </MyQrCodeBox>
+    </Box>
   );
 }
 
-const MyQrCodeBox = styled.div`
+const Box = styled.div`
   width: 80%;
   max-width: 300px;
 
@@ -27,37 +27,39 @@ const MyQrCodeBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin: 5% 0;
 `;
 
 const ButtonBox = styled.button`
   width: 100%;
-  // max-width: 300px;
-  height: 30vh;
+  height: 10vh;
 
   object-fit: contain;
 
   margin: 5%;
 
-  border: ${props => props.theme.borderPurple};
+  border: ${props => props.theme.bgColor};
   border-radius: 10px;
 
-  background-color: ${props => props.theme.bgColor};
+  // background-color: ${props => props.theme.mainPurple};
+  background: radial-gradient(
+    101.92% 71.09% at 50.03% 57.76%,
+    #512da8 0%,
+    #7f2b8c 100%
+  );
   color: ${props => props.theme.fontBlack};
 `;
 
 const Text = styled.div`
   width: 100%;
 
-  font-size: ${props => props.theme.fontLarge};
-  font-weight: ${props => props.theme.fontBold};
+  font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
 
-  color: ${props => props.theme.fontBlack};
+  color: ${props => props.theme.bgColor};
 `;
 
 const Icon = styled.div`
   font-size: 50px;
 `;
 
-export default HomeButtons;
+export default HomeAD;
