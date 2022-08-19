@@ -86,7 +86,7 @@ function Profile() {
     );
 
     setUsedCoupons(response.data);
-    console.log(response.data);
+    console.log(response);
   };
 
   useEffect(() => {

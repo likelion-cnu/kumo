@@ -54,10 +54,10 @@ function ShopDetail() {
 
   const fakeData = {
     shopname: 'tiger',
-    shop_name: '호랑이 카페',
-    shop_sector: '카페',
+    shop_name: '호랑이기운국밥',
+    shop_sector: '식당',
     shop_logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbILM_K0wODBZns2vgWXBUh7uA52j2awllkQ&usqp=CAU',
+      'https://image.dongascience.com/Photo/2022/01/2b57a6d81138d6d0bc94792a842e54c2.jpg',
     coupon_num: '1',
     stamp_num: '2',
     shop_phone_num: '010-1111-1111',
@@ -102,7 +102,7 @@ function ShopDetail() {
         },
       },
     );
-    console.log(response.data);
+    console.log(response);
 
     setShopReview(response.data);
   };
@@ -111,7 +111,7 @@ function ShopDetail() {
     // console.log(shopId);
     loadShopDetail();
     // console.log(shopInfo);
-    // loadShopReview();
+    loadShopReview();
   }, [shopId]);
 
   return (
@@ -123,7 +123,9 @@ function ShopDetail() {
           id={shopId}
           title={shopInfo.shop_name}
           field={shopInfo.shop_sector}
-          src={process.env.REACT_APP_KUMO_API + shopInfo.src} // logo
+          src={
+            'https://image.dongascience.com/Photo/2022/01/2b57a6d81138d6d0bc94792a842e54c2.jpg'
+          } // logo
           number={shopInfo.shop_phone_num}
           // isOpen={shopInfo.isOpen} // 프론트에서 처리하기
           // distance={shopInfo.distance} //몰라!
@@ -136,10 +138,16 @@ function ShopDetail() {
         <EventInfo event={shopInfo.shop_introduction} />
       </EventBox>
       <ImageInfo
-        img1={process.env.REACT_APP_KUMO_API + shopInfo.img1}
-        img2={process.env.REACT_APP_KUMO_API + shopInfo.img2}
-        img3={process.env.REACT_APP_KUMO_API + shopInfo.img3}
-        img4={process.env.REACT_APP_KUMO_API + shopInfo.img4}
+        img1={
+          'https://pds.joongang.co.kr/news/FbMetaImage/202202/5d7ea4ce-45f7-4826-b3e0-4f5eab3f4ddb.png'
+        }
+        img2={
+          'https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202112/20211227054431183687488.jpg'
+        }
+        img3={'https://img.hankyung.com/photo/202201/ZA.28541021.1-1200x.jpg'}
+        img4={
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsKySwN4R7HGAWoXsmR0taO2Lqoiw4Jr6CCA&usqp=CAU'
+        }
       />
       <ReviewTop>
         <ReviewTitle>Review</ReviewTitle>

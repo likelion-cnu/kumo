@@ -75,10 +75,10 @@ function Search() {
             title={item.shop_name}
             field={item.shop_sector}
             src={item.shop_logo}
-            number={item.shop_phome_num}
-            isOpen={item.isOpen} //필요
-            distance={item.distance} //필요
-            address={item.shop_location}
+            number={item.shop_phone_num}
+            isOpen="영업 중" //필요
+            distance={'200m'} //필요
+            address={'서울특별시 서대문구 가좌로 134'}
           />
         ))}
       </SearchResultBox>
