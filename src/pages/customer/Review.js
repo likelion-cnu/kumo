@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReviewHeader from '../../components/customer/Review/ReviewHeader';
-// import ReviewStar from '../../components/customer/Review/ReviewStar';
+import ReviewStar from '../../components/customer/Review/ReviewStar';
 import ReviewCmt from '../../components/customer/Review/ReviewCmt';
 import ReviewImg from '../../components/customer/Review/ReviewImg';
 
@@ -10,7 +10,7 @@ function Review() {
     <Body>
       <ReviewHeader />
       <Box>
-        {/* <ReviewStar /> */}
+        <ReviewStar />
         <ReviewImg />
         <ReviewCmt />
       </Box>

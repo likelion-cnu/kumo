@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { BsPlusLg } from 'react-icons/bs';
 
-import { Rating } from '@mui/material';
+// import { Rating } from '@mui/material';
 
 function ReviewImage() {
   const [id, setId] = useState(null);
@@ -27,8 +27,8 @@ function ReviewImage() {
 
   return (
     <>
-      <Text>별점을 남겨주세요.</Text>
-      <Rating Controlled size="large" />
+      {/* <Text>별점을 남겨주세요.</Text>
+      <Rating Controlled size="large" /> */}
       <ImgText>사진 첨부하기</ImgText>
       <Box>
         <ChangeImgBox for="input-file">
@@ -54,23 +54,23 @@ function ReviewImage() {
   );
 }
 
-const Text = styled.div`
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+// const Text = styled.div`
+//   width: 100%;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-  font-size: ${props => props.theme.fontMedium};
-  color: ${props => props.theme.fontBlack};
-  font-weight: ${props => props.theme.fontRegular};
-`;
+//   font-size: ${props => props.theme.fontMedium};
+//   color: ${props => props.theme.fontBlack};
+//   font-weight: ${props => props.theme.fontRegular};
+// `;
 
 const ImgText = styled.div`
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
 
   display: flex;
   justify-content: center;
@@ -133,22 +133,22 @@ const EmptyImg = styled.div`
   font-size: ${props => props.theme.fontLarge};
 `;
 
-const UploadButton = styled.button`
-  width: 100px;
-  height: 40px;
-  margin-top: 30px;
+// const UploadButton = styled.button`
+//   width: 100px;
+//   height: 40px;
+//   margin-top: 30px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-  border: none;
-  border-radius: 10px;
+//   border: none;
+//   border-radius: 10px;
 
-  background-color: ${props => props.theme.mainPurple};
-  color: ${props => props.theme.bgColor};
-  font-size: ${props => props.theme.fontMedium};
-  font-weight: ${props => props.theme.fontRegular};
-`;
+//   background-color: ${props => props.theme.mainPurple};
+//   color: ${props => props.theme.bgColor};
+//   font-size: ${props => props.theme.fontMedium};
+//   font-weight: ${props => props.theme.fontRegular};
+// `;
 
 export default ReviewImage;
