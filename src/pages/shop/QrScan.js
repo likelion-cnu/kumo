@@ -265,6 +265,7 @@ const ProfileImg = styled.img`
 `;
 
 const CustomerInfo = styled.div`
+  width: 50%;
   font-size: ${props => props.theme.fontMedium};
 
   color: ${props => props.theme.fontBlack};
