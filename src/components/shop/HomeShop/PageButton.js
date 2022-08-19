@@ -9,27 +9,18 @@ function PageButton() {
       <Link to="/premium">
         <Button>
           <Icon>📊</Icon>
-          <Icon>
-            <FiChevronRight />
-          </Icon>
           <Text>가게 데이터</Text>
         </Button>
       </Link>
       <Link to="/my-store">
         <Button>
           <Icon>🏠</Icon>
-          <Icon>
-            <FiChevronRight />
-          </Icon>
           <Text>내 가게</Text>
         </Button>
       </Link>
       <Link to="/review">
         <Button style={{ border: 'none' }}>
           <Icon>📄</Icon>
-          <Icon>
-            <FiChevronRight />
-          </Icon>
           <Text>내 가게 리뷰</Text>
         </Button>
       </Link>
@@ -48,13 +39,13 @@ const PageButtonBodyBox = styled.div`
 
 const Button = styled.button`
   width: 70vw;
-  height: 15vh;
+  height: 80px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  margin: 5% 0;
+  // margin: 5% 0;
   background-color: ${props => props.theme.bgColor};
   color: ${props => props.theme.fontGray};
 
