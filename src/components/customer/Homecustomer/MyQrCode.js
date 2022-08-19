@@ -1,9 +1,30 @@
-import React from 'react';
+/*eslint-disable*/
+
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import LOCAL from '../../../CONSTANT/LOCAL';
 
 function MyQrCode() {
-  const myQrCode =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png';
+  const [myQrCode, setMyQrCode] = useState('');
+
+  const loadMyQr = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/home/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+
+    setMyQrCode(process.env.REACT_APP_KUMO_API + response.data[0].image);
+  };
+
+  useEffect(() => {
+    loadMyQr();
+  }, [myQrCode]);
 
   return (
     <MyQrCodeBox>
