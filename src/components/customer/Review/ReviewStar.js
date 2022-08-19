@@ -1,65 +1,74 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Rating } from '@mui/material';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+
+const labels = {
+  1: '별로예요',
+  2: '그저그래요',
+  3: '괜찮아요',
+  4: '좋아요',
+  5: '최고예요',
+};
+
+function getLabelText(value) {
+  return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
 
 function ReviewStar() {
-  const textList = [
-    '별로에요',
-    '그저 그래요',
-    '보통이에요',
-    '좋아요',
-    '최고예요',
-  ];
-  const [hovered, setHovered] = useState(null);
-  const [clicked, setClicked] = useState(null);
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
 
-  const goToFetch = e => {
-    setClicked(e.target.id);
-    fetch('http://10.58.3.24:8000/products/1', {
-      // 사용할 http 메소드
-      method: 'POST',
-      // 토큰
-      headers: {
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.loTjeBWZ9SeXV-BcIxqOtX37AN30ROvsZl0_udeeRJU',
-      },
-      // 서버에 보낼 데이터 (별점)
-      body: JSON.stringify({
-        rating: e.target.id,
-      }),
-    });
-  };
+  // const goToFetch = e => {
+  //   setClicked(e.target.id);
+  //   fetch('http://10.58.3.24:8000/products/1', {
+  //     // 사용할 http 메소드
+  //     method: 'POST',
+  //     // 토큰
+  //     headers: {
+  //       Authorization:
+  //         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.loTjeBWZ9SeXV-BcIxqOtX37AN30ROvsZl0_udeeRJU',
+  //     },
+  //     // 서버에 보낼 데이터 (별점)
+  //     body: JSON.stringify({
+  //       rating: e.target.id,
+  //     }),
+  //   });
+  // };
   return (
     <ReviewBox>
       <ReviewTextBox>
-        <p>이 책을 평가해주세요!</p>
-        {[1, 2, 3, 4, 5].map(num => (
-          <HiddenText key={num} show={hovered === num}>
-            {textList[num - 1]}
-          </HiddenText>
-        ))}
+        <p>이 가게를 평가해주세요!</p>
       </ReviewTextBox>
-      <StarContainer>
-        {[1, 2, 3, 4, 5].map(el => (
-          <Rating
-            // className에 조건문 넣기
-            className={`fas fa-star ${
-              // el만큼 클릭 하거나 || el만큼 호버를 하면 yellowStar 클래스를 실행
-              clicked >= el || (hovered >= el && 'yellowStar')
-            }`}
-            key={el} // 1,2,3,4,5
-            id={el}
-            onMouseEnter={() => setHovered(el)}
-            onMouseLeave={() => setHovered(null)}
-            role="button"
-            aria-label="Mute volume"
-            onClick={goToFetch}
-            onKeyDown=""
-            tabIndex={0}
-          />
-        ))}
-      </StarContainer>
+      <Box
+        sx={{
+          width: 200,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Rating
+          size="large"
+          name="hover-feedback"
+          value={value}
+          precision={1}
+          getLabelText={getLabelText}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          onChangeActive={(event, newHover) => {
+            setHover(newHover);
+          }}
+          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        />
+        {value !== null && (
+          <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+        )}
+      </Box>
     </ReviewBox>
   );
 }
@@ -67,7 +76,7 @@ function ReviewStar() {
 export default ReviewStar;
 
 const ReviewBox = styled.div`
-  padding: 30px;
+  padding: 20px;
   color: #999;
   font-size: 20px;
 
@@ -87,29 +96,5 @@ const ReviewBox = styled.div`
 const ReviewTextBox = styled.div`
   position: relative;
   text-align: center;
-  padding-bottom: 50px;
-`;
-
-const SomeComponent = styled.div``;
-
-const StarContainer = styled.div`
-  text-align: center;
-  border: none;
-  background-color: white;
-`;
-
-const HiddenText = styled.p`
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  width: 130px;
-  height: 30px;
-  padding-top: 7px;
-  transform: translate(-50%, -50%);
-  color: white;
-  background-color: #1f8ce6;
-  border-radius: 4px;
-  font-size: 16px;
-
-  ${({ show }) => (show ? 'display:block' : 'display: none')}
+  padding-bottom: 10px;
 `;
