@@ -46,6 +46,7 @@ function MyStamp() {
 
   useEffect(() => {
     loadMyStamp();
+    console.log(myStamp);
   }, []);
 
   return (

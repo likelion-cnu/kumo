@@ -60,6 +60,7 @@ function Search() {
 
   useEffect(() => {
     loadSearchDate();
+    console.log(shopInfo);
   }, [searchParams.get('keyword')]);
 
   return (
