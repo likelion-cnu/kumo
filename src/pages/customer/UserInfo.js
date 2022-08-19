@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Header from '../../components/customer/Header/Header';
 
-function UserInfo() {
+function UserInfo({ logOut }) {
   const navigate = useNavigate();
 
   const [img, setImg] = useState(null);
@@ -20,6 +20,7 @@ function UserInfo() {
 
   const onLogoutClick = () => {
     localStorage.clear();
+    logOut();
     navigate('/');
   };
 

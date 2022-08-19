@@ -10,7 +10,7 @@ import Header from '../../components/shop/Header/Header';
 
 function QrScan() {
   const [userId, setUserId] = useState('No result');
-  const [facingMode, setFacingMode] = useState('rear');
+  const [facingMode, setFacingMode] = useState('environment');
   const [isStamp, setIsStamp] = useState(true);
   const [stampCount, setStampCount] = useState(1);
   const [couponCount, setCouponCount] = useState(1);
@@ -31,10 +31,10 @@ function QrScan() {
   };
 
   const onCameraButtonClick = () => {
-    if (facingMode === 'rear') {
-      setFacingMode('front');
-    } else if (facingMode === 'front') {
-      setFacingMode('rear');
+    if (facingMode === 'environment') {
+      setFacingMode('user');
+    } else if (facingMode === 'user') {
+      setFacingMode('environment');
     }
   };
 
@@ -95,7 +95,7 @@ function QrScan() {
           <QrReader
             onScan={onScan}
             onError={onError}
-            facingMode={facingMode}
+            facingmode={facingMode}
             style={QrStyle}
           />
           <CameraButton onClick={onCameraButtonClick}>
@@ -166,7 +166,7 @@ const QrScanPage = styled.div`
 
 const CameraButton = styled.button`
   position: absolute;
-  bottom: 20px;
+  bottom: 70px;
 
   width: 60px;
   height: 60px;
