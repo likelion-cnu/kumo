@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import LOCAL from '../../CONSTANT/LOCAL';
 import { useNavigate } from 'react-router-dom';
+import LOCAL_KEY from '../../CONSTANT/LOCAL';
 
 function Login({ logIn }) {
   const [id, setId] = useState('');
@@ -39,6 +40,7 @@ function Login({ logIn }) {
           LOCAL.IS_SHOP,
           response.data.serial_bo.is_shop.toString(),
         );
+        localStorage.setItem(LOCAL.TOKEN, response.data.token);
 
         logIn();
         navigate('/');
