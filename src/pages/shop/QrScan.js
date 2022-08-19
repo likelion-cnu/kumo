@@ -140,7 +140,7 @@ function QrScan() {
                   <Text>{customerInfo.coupon_num} 장</Text>
                 </Coupon>
                 <Stamp>
-                  <StampIcon src={StampImg} />
+                  <StampIcon src={process.env.REACT_APP_KUMO_API + StampImg} />
                   <StampBarBox>
                     <StampBar style={{ width: customerInfo.stamp_num }} />
                     <StampText>{customerInfo.stamp_num}</StampText>
