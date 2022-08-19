@@ -129,7 +129,9 @@ function QrScan() {
             <AiOutlineCloseCircle />
           </CloseIcon>
           <QrResultBox>
-            <ProfileImg src={customerInfo.cu_profile_img} />
+            <ProfileImg
+              src={process.env.REACT_APP_KUMO_API + customerInfo.cu_profile_img}
+            />
             <CustomerInfo>
               <CustomerStampCoupon>
                 <Coupon>
@@ -140,7 +142,7 @@ function QrScan() {
                   <Text>{customerInfo.coupon_num} 장</Text>
                 </Coupon>
                 <Stamp>
-                  <StampIcon src={process.env.REACT_APP_KUMO_API + StampImg} />
+                  <StampIcon src={StampImg} />
                   <StampBarBox>
                     <StampBar style={{ width: customerInfo.stamp_num }} />
                     <StampText>{customerInfo.stamp_num}</StampText>
