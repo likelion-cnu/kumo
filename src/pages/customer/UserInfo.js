@@ -64,14 +64,14 @@ function UserInfo({ logOut }) {
 
     console.log(response);
 
-    const imgUrl =
-      process.env.REACT_APP_KUMO_API + response.data[0].profile_img;
-    const imgResponse = await fetch(imgUrl);
-    console.log(imgResponse);
-    const blob = imgResponse.blob();
-    setImg(new File([blob], 'image.jpg', { type: blob.type }));
+    // const imgUrl =
+    //   process.env.REACT_APP_KUMO_API + response.data[0].profile_img;
+    // const imgResponse = await fetch(imgUrl);
+    // console.log(imgResponse);
+    // const blob = imgResponse.blob();
+    // setImg(new File([blob], 'image.jpg', { type: blob.type }));
 
-    // setImg(process.env.REACT_APP_KUMO_API + response.data[0].profile_img);
+    setImg(process.env.REACT_APP_KUMO_API + response.data[0].profile_img);
     setNickname(response.data[0].nickname);
     // setPhoneNumber(response.data[0].)
   };
@@ -83,18 +83,18 @@ function UserInfo({ logOut }) {
     // orange();
   }, []);
 
-  useEffect(() => {
-    if (!img || img === '') {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!img || img === '') {
+  //     return;
+  //   }
 
-    const reader = new FileReader();
-    reader.onload = e => {
-      setImgPreview(e.target.result);
-      console.log(imgPreview);
-    };
-    reader.readAsDataURL(img);
-  }, [img]);
+  //   const reader = new FileReader();
+  //   reader.onload = e => {
+  //     setImgPreview(e.target.result);
+  //     console.log(imgPreview);
+  //   };
+  //   reader.readAsDataURL(img);
+  // }, [img]);
 
   return (
     <Body>
@@ -110,7 +110,7 @@ function UserInfo({ logOut }) {
             }}
             style={{ display: 'none' }}
           />
-          <ProfileImg src={imgPreview} />
+          <ProfileImg src={img} />
         </ChangeImgBox>
         <Level>Lv. 1 쿠린이</Level>
         <Nickname

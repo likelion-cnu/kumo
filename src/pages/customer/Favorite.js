@@ -40,7 +40,6 @@ function Favorite() {
 
   const loadFavorite = async () => {
     let localStorage = window.localStorage;
-    console.log(localStorage.getItem(LOCAL.TOKEN));
 
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/bookmark/',
@@ -52,11 +51,12 @@ function Favorite() {
       },
     );
     setFavorite(response.data);
+    console.log(response);
   };
 
   useEffect(() => {
     loadFavorite();
-    console.log(favorite);
+    // console.log(favorite);
   }, []);
 
   return (
@@ -70,7 +70,9 @@ function Favorite() {
             id={item.id}
             title={item.title}
             field={item.field}
-            src={item.src}
+            src={
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR06D3TZa0g0Vjx0IbtlnQ2ow5iIZUCRkppbg&usqp=CAU'
+            }
             coupon={item.coupon}
             stamp={`${item.stamp * 10}%`}
           />

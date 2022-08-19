@@ -40,7 +40,7 @@ function MyStamp() {
 
   const loadMyStamp = async () => {
     let localStorage = window.localStorage;
-    console.log(localStorage.getItem(LOCAL.TOKEN));
+    // console.log(localStorage.getItem(LOCAL.TOKEN));
 
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/stamp/',
@@ -52,7 +52,7 @@ function MyStamp() {
       },
     );
     setMyStamp(response.data);
-    console.log(response.data);
+    console.log(response);
   };
 
   useEffect(() => {
@@ -69,9 +69,9 @@ function MyStamp() {
           <ShopStamp
             key={item.shopname}
             id={item.shopname}
-            title={item.title} //가게 이름 필요
-            field={item.field} //가게 sector 필요
-            src={item.src}
+            title={item.shop_name} //가게 이름 필요
+            field={item.shop_sector} //가게 sector 필요
+            src={process.env.REACT_APP_KUMO_API + item.shop_logo}
             coupon={item.coupon_num}
             stamp={`${item.stamp_num * 10}%`}
           />

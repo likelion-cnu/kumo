@@ -7,6 +7,7 @@ import { MdFlipCameraAndroid } from 'react-icons/md';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 import Header from '../../components/shop/Header/Header';
+import axios from 'axios';
 
 function QrScan() {
   const [userId, setUserId] = useState('No result');
@@ -20,9 +21,18 @@ function QrScan() {
     margin: '0',
   };
 
+  const loadCustomer = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/shop/qrcheck/' + 'customer' + '/',
+    );
+
+    console.log(response);
+  };
+
   const onScan = data => {
     if (data) {
       setUserId(data.text);
+      loadCustomer();
     }
   };
 
@@ -108,7 +118,7 @@ function QrScan() {
             <AiOutlineCloseCircle />
           </CloseIcon>
           <QrResultBox>
-            <QrResultInfo>고객의 ID는...</QrResultInfo>
+            <ProfileImg src="" />
             <QrResultId>{userId}</QrResultId>
           </QrResultBox>
           <StampCouponBox>
@@ -206,17 +216,22 @@ const QrResultBox = styled.div`
   margin: 10px 0;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const QrResultInfo = styled.div`
-  font-size: ${props => props.theme.fontSmall};
+const ProfileImg = styled.img`
+  width: 27vw;
+  height: 27vw;
 
-  color: ${props => props.theme.fontGray};
+  max-width: 125px;
+  max-height: 125px;
 
-  margin-bottom: 10px;
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  padding: 2%;
 `;
 
 const QrResultId = styled.div`

@@ -82,6 +82,7 @@ function Profile() {
     );
 
     setUsedCoupons(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -94,7 +95,7 @@ function Profile() {
       <Header />
       <UserInfoButton
         key={user.nickname}
-        img={user.profile_img}
+        img={process.env.REACT_APP_KUMO_API + user.profile_img}
         level={user.level}
         nickname={user.nickname}
       />
@@ -102,10 +103,10 @@ function Profile() {
         <Text>쿠폰 사용 기록</Text>
         {usedCoupons.map(item => (
           <UsedCoupon
-            key={item.shopname} //업주의 id 필요
+            key={item.shopname}
             id={item.shopname}
-            src={item.src} //shop_logo 필요
-            title={item.shopname}
+            src={process.env.REACT_APP_KUMO_API + item.shop_logo} //shop_logo 필요
+            title={item.shop_name} //null
             date={item.created_at}
           />
         ))}

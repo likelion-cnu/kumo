@@ -110,7 +110,7 @@ function ShopDetail() {
           id={shopId}
           title={shopInfo.shop_name}
           field={shopInfo.shop_sector}
-          src={shopInfo.src} // logo
+          src={process.env.REACT_APP_KUMO_API + shopInfo.src} // logo
           number={shopInfo.shop_phone_num}
           isOpen={shopInfo.isOpen} // 프론트에서 처리하기
           distance={shopInfo.distance} //몰라!
@@ -123,10 +123,10 @@ function ShopDetail() {
         <EventInfo event={shopInfo.shop_introduction} />
       </EventBox>
       <ImageInfo
-        img1={shopInfo.img1}
-        img2={shopInfo.img2}
-        img3={shopInfo.img3}
-        img4={shopInfo.img4}
+        img1={process.env.REACT_APP_KUMO_API + shopInfo.img1}
+        img2={process.env.REACT_APP_KUMO_API + shopInfo.img2}
+        img3={process.env.REACT_APP_KUMO_API + shopInfo.img3}
+        img4={process.env.REACT_APP_KUMO_API + shopInfo.img4}
       />
       <ReviewTop>
         <ReviewTitle>Review</ReviewTitle>
