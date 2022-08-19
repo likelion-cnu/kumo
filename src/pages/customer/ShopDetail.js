@@ -1,13 +1,18 @@
-import React from 'react';
+/* eslint-disable */
+
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
 import EventInfo from '../../components/customer/ShopDetail/EventInfo';
 import ReviewInfo from '../../components/customer/ShopDetail/ReviewInfo';
 import ImageInfo from '../../components/customer/ShopDetail/ImageInfo';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function ShopDetail() {
+  /*
   const shopInfo = {
     id: 'gomada',
     title: '고마다',
@@ -24,11 +29,13 @@ function ShopDetail() {
     img3: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
     img4: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
   };
-
+  */
+  /*
   const shopDetailInfo = {
     event: '스탬프 10번 적립 시 쿠폰 1장',
   };
-
+  */
+  /*
   const shopReview = [
     {
       id: '준수',
@@ -43,38 +50,104 @@ function ShopDetail() {
       comment: '너무 맛있어요~',
     },
   ];
+  */
+
+  const fakeData = {
+    shopname: 'tiger',
+    shop_name: '호랑이기운국밥',
+    shop_sector: '식당',
+    shop_logo:
+      'https://image.dongascience.com/Photo/2022/01/2b57a6d81138d6d0bc94792a842e54c2.jpg',
+    coupon_num: '1',
+    stamp_num: '2',
+    shop_phone_num: '010-1111-1111',
+    address: '서울특별시 서대문구 가좌로 134',
+  };
+
   const navigate = useNavigate();
+
+  const { shopId } = useParams();
+
+  const [shopInfo, setShopInfo] = useState([]);
+  const [shopReview, setShopReview] = useState([]);
 
   const onClick = () => {
     navigate('/review');
   };
+
+  let localStorage = window.localStorage;
+
+  const loadShopDetail = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/shop_detail/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response);
+
+    setShopInfo(response.data);
+  };
+
+  const loadShopReview = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/review_list/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response);
+
+    setShopReview(response.data);
+  };
+
+  useEffect(() => {
+    // console.log(shopId);
+    loadShopDetail();
+    // console.log(shopInfo);
+    loadShopReview();
+  }, [shopId]);
 
   return (
     <Body>
       <Header />
       <ShopDetailBox>
         <DetailInfo
-          key={shopInfo.id}
-          id={shopInfo.id}
-          title={shopInfo.title}
-          field={shopInfo.field}
-          src={shopInfo.src}
-          number={shopInfo.number}
-          isOpen={shopInfo.isOpen}
-          distance={shopInfo.distance}
-          address={shopInfo.address}
-          coupon={shopInfo.coupon}
-          stamp={`${shopInfo.stamp * 10}%`}
+          key={shopId}
+          id={shopId}
+          title={shopInfo.shop_name}
+          field={shopInfo.shop_sector}
+          src={
+            'https://image.dongascience.com/Photo/2022/01/2b57a6d81138d6d0bc94792a842e54c2.jpg'
+          } // logo
+          number={shopInfo.shop_phone_num}
+          // isOpen={shopInfo.isOpen} // 프론트에서 처리하기
+          // distance={shopInfo.distance} //몰라!
+          address={shopInfo.address} //없음 아직
+          coupon={shopInfo.coupon_num} //없음
+          stamp={`${shopInfo.stamp_num * 10}%`} //없음
         />
       </ShopDetailBox>
       <EventBox>
-        <EventInfo event={shopDetailInfo.event} />
+        <EventInfo event={shopInfo.shop_introduction} />
       </EventBox>
       <ImageInfo
-        img1={shopInfo.img1}
-        img2={shopInfo.img2}
-        img3={shopInfo.img3}
-        img4={shopInfo.img4}
+        img1={
+          'https://pds.joongang.co.kr/news/FbMetaImage/202202/5d7ea4ce-45f7-4826-b3e0-4f5eab3f4ddb.png'
+        }
+        img2={
+          'https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202112/20211227054431183687488.jpg'
+        }
+        img3={'https://img.hankyung.com/photo/202201/ZA.28541021.1-1200x.jpg'}
+        img4={
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsKySwN4R7HGAWoXsmR0taO2Lqoiw4Jr6CCA&usqp=CAU'
+        }
       />
       <ReviewTop>
         <ReviewTitle>Review</ReviewTitle>
@@ -84,9 +157,9 @@ function ShopDetail() {
         {shopReview.map(item => (
           <ReviewInfo
             id={item.id}
-            star={item.star}
+            star={item.review_star}
             time={item.time}
-            comment={item.comment}
+            comment={item.review_caption}
             key={item.id}
           />
         ))}

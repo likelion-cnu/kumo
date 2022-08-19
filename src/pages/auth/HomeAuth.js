@@ -27,9 +27,6 @@ function HomeAuth() {
         <ExtraButton onClick={onClick} value="/join">
           <MdOutlineKeyboardArrowRight /> 회원가입
         </ExtraButton>
-        <ExtraButton onClick={onClick} value="/find">
-          <MdOutlineKeyboardArrowRight /> ID/PW 찾기
-        </ExtraButton>
       </ExtraBox>
     </Body>
   );

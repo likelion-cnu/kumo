@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { BsTelephone } from 'react-icons/bs';
 import { BiTime } from 'react-icons/bi';
 import { FiMapPin } from 'react-icons/fi';
@@ -8,6 +11,7 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import ShopListTitle from '../ShopList/ShopListTitle';
 
 import StampImg from '../../../images/StampImg.png';
+import LOCAL from '../../../CONSTANT/LOCAL';
 
 function DetailInfo({
   title,
@@ -20,10 +24,25 @@ function DetailInfo({
   coupon,
   stamp,
 }) {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(true);
 
-  const onStarClick = () => {
-    setIsLiked(!isLiked);
+  const localStorage = window.localStorage;
+
+  const onStarClick = async () => {
+    setIsLiked(true);
+
+    await axios.post(
+      process.env.REACT_APP_KUMO_API +
+        '/customer/bookmark_add/' +
+        localStorage.getItem(LOCAL.USER_NAME) +
+        '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
   };
 
   return (
@@ -51,14 +70,14 @@ function DetailInfo({
             <Icon>
               <BiTime />
             </Icon>
-            <IsOpen>{isOpen}</IsOpen>
+            <IsOpen>영업 중</IsOpen>
           </Info>
           <Info>
             <Icon>
               <FiMapPin />
             </Icon>
             <AddressTextBox>
-              <Distance>{distance}</Distance>
+              <Distance>200m</Distance>
               <Address>{address}</Address>
             </AddressTextBox>
           </Info>

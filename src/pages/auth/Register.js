@@ -13,14 +13,17 @@ import Input from '../../components/auth/Form/Input';
 import TitleBox from '../../components/auth/Form/TitleBox';
 
 import Header from '../../components/auth/Header/Header';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-function Register() {
+function Register({ logIn }) {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [reEnter, setReEnter] = useState(false);
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isShop, setIsShop] = useState(null);
+
+  const navigate = useNavigate();
 
   const CreateAccount = async () => {
     if (
@@ -46,6 +49,7 @@ function Register() {
           },
         );
         console.log(response);
+        navigate('/');
       } catch (err) {
         console.log(err);
       }

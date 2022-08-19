@@ -49,7 +49,8 @@ function ReviewImage() {
             <DetailImg src={img1} />
           )}
         </ChangeImgBox>
-      </Box>
+      </Box>{' '}
+      */}
     </>
   );
 }
