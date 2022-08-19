@@ -52,6 +52,7 @@ function MyStamp() {
       },
     );
     setMyStamp(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
