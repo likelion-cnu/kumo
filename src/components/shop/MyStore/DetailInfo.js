@@ -14,6 +14,28 @@ function DetailInfo() {
   const [address, setAddress] = useState('');
   const [event, setEvent] = useState('');
 
+  const InfoDetail = async () => {
+    const newForm = new FormData();
+
+    newForm.append('shop_logo', img);
+    newForm.append('shop_name', shopName);
+    newForm.append('shop_sector', shopSector);
+    newForm.append('phone_num', phoneNumber);
+    newForm.append('shop_name', isOpen);
+    newForm.append('shop_name', address);
+    newForm.append('shop_name', event);
+
+    // axios put
+  };
+
+  useEffect(() => {
+    async function loadImgData() {
+      setShopName(localStorage.getItem('username'));
+      // id axios get
+    }
+    loadImgData();
+  }, []);
+
   const open = useDaumPostcodePopup(
     '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
   );
@@ -63,6 +85,7 @@ function DetailInfo() {
             onChange={e => {
               console.log(e.target.files);
               setImg(e.target.files[0]);
+              InfoDetail();
             }}
             style={{ display: 'none' }}
           />
@@ -79,12 +102,14 @@ function DetailInfo() {
             value={shopName}
             onChange={e => {
               setShopName(e.target.value);
+              InfoDetail();
             }}
           />
           <Text
             value={shopSector}
             onChange={e => {
               setShopSector(e.target.value);
+              InfoDetail();
             }}
           />
         </TitleBox>
@@ -99,6 +124,7 @@ function DetailInfo() {
             value={phoneNumber}
             onChange={e => {
               setPhoneNumber(e.target.value);
+              InfoDetail();
             }}
           />
         </Info>
@@ -110,6 +136,7 @@ function DetailInfo() {
             value={isOpen}
             onChange={e => {
               setIsOpen(e.target.value);
+              InfoDetail();
             }}
           />
         </Info>
@@ -124,6 +151,7 @@ function DetailInfo() {
         value={event}
         onChange={e => {
           setEvent(e.target.value);
+          InfoDetail();
         }}
       />
       <SaveButton onClick={onSaveClick}>저장</SaveButton>

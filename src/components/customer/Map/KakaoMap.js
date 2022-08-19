@@ -111,12 +111,10 @@ function EventMarkerContainer({
 const InfoTextBox = styled.div`
   width: 55%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   font-weight: ${props => props.theme.fontLight};
   font-size: ${props => props.theme.fontXSmall};
   color: ${props => props.theme.fontGray};
@@ -124,9 +122,7 @@ const InfoTextBox = styled.div`
 
 const Info = styled.div`
   width: 100%;
-
   margin-bottom: 2.5px;
-
   display: flex;
 `;
 
@@ -148,7 +144,6 @@ const IsOpen = styled(Number)`
 
 const AddressTextBox = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -208,47 +203,47 @@ function KakaoMap() {
   const data = [
     {
       id: 'gomada',
-      title: '고마다1',
+      title: '사자국밥',
+      field: '식당',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5432',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '서울특별시 서대문구 홍은동 364-2',
+      latlng: { lat: 37.58299, lng: 126.9265 },
+    },
+    {
+      id: 'gomada',
+      title: '호랑이국밥',
+      field: '식당',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5444',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '서울특별시 서대문구 홍은동 487',
+      latlng: { lat: 37.58599, lng: 126.9165 },
+    },
+    {
+      id: 'gomada',
+      title: '라이언카페',
       field: '카페',
       src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
       number: '010-9876-5432',
       isOpen: '영업 중',
       distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
-      latlng: { lat: 35.1265999, lng: 126.8789277 },
+      address: '서울특별시 서대문구 홍은동 100',
+      latlng: { lat: 37.58499, lng: 126.9065 },
     },
     {
       id: 'gomada',
-      title: '고마다2',
+      title: '타이거카페',
       field: '카페',
       src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
       number: '010-9876-5444',
       isOpen: '영업 중',
       distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
-      latlng: { lat: 35.1264101, lng: 126.8788377 }, // 제주도 주소임
-    },
-    {
-      id: 'gomada',
-      title: '고마다3',
-      field: '카페',
-      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5432',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
-      latlng: { lat: 35.1267999, lng: 126.8799277 },
-    },
-    {
-      id: 'gomada',
-      title: '고마다4',
-      field: '카페',
-      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
-      number: '010-9876-5444',
-      isOpen: '영업 중',
-      distance: '200m',
-      address: '광주광역시 어쩌구저쩌구',
-      latlng: { lat: 35.1269999, lng: 126.8779277 },
+      address: '서울특별시 서대문구 홍은동 747-4',
+      latlng: { lat: 37.58799, lng: 126.9215 },
     },
   ];
 
