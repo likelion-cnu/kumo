@@ -15,7 +15,7 @@ import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
 import ShopDetail from './pages/customer/ShopDetail';
 import Map from './pages/customer/Map';
-import TestMap from './pages/customer/TestMap';
+import Review from './pages/customer/Review';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
@@ -44,7 +44,7 @@ function CustomerRoutes({ logOut }) {
         <Route path="/detail/:shopId" element={<ShopDetail />} />
         <Route path="/favorite" element={<HomeCustomer />} />
         <Route path="/map" element={<Map />} />
-        <Route path="/testmap" element={<TestMap />} />
+        <Route path="/review" element={<Review />} />
       </Routes>
     </Router>
   );
@@ -108,7 +108,7 @@ function AppRouter() {
     }
   }
 
-  // return <CustomerRoutes />;
+  // return <AuthRoutes />;
   // 로그인 없이 작업하려면 AppRouter() 코드 주석 처리한 후 기존처럼 상단의 코드 사용하면 됩니다!
 }
 
