@@ -14,7 +14,7 @@ function UserInfoButton({ img, level, nickname }) {
     <UserInfoBox onClick={onClick}>
       <UserImg src={img} />
       <UserInfoTextBox>
-        <LevelText>Lv. {level} 쿠린이</LevelText>
+        <LevelText>Lv. {level + 1} 쿠린이</LevelText>
         <WelcomeText>안녕하세요 {nickname}님</WelcomeText>
       </UserInfoTextBox>
       <Icon>

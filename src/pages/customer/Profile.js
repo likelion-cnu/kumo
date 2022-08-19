@@ -6,6 +6,7 @@ import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import UsedCoupon from '../../components/customer/Profile/UsedCoupon';
 import UserInfoButton from '../../components/customer/Profile/UserInfoButton';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function Profile() {
   /*
@@ -52,6 +53,8 @@ function Profile() {
   const [user, setUser] = useState([]);
   const [usedCoupons, setUsedCoupons] = useState([]);
 
+  let localStorage = window.localStorage;
+
   const loadProfile = async () => {
     const response = await axios.get(
       process.env.REACT_APP_KUMO_API + '/customer/profile/',
@@ -63,7 +66,8 @@ function Profile() {
       },
     );
 
-    setUser(response.data);
+    setUser(response.data[0]);
+    console.log(response);
   };
 
   const loadCouponHistory = async () => {
@@ -89,6 +93,7 @@ function Profile() {
     <Body>
       <Header />
       <UserInfoButton
+        key={user.nickname}
         img={user.profile_img}
         level={user.level}
         nickname={user.nickname}
