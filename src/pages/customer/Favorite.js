@@ -1,9 +1,13 @@
-import React from 'react';
+/*eslint-disable*/
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Header from '../../components/customer/Header/Header';
 import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function Favorite() {
+  /*
   const myStamp = [
     {
       id: 'gomada',
@@ -30,19 +34,45 @@ function Favorite() {
       stamp: '6',
     },
   ];
+*/
+
+  const [favorite, setFavorite] = useState([]);
+
+  const loadFavorite = async () => {
+    let localStorage = window.localStorage;
+
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/bookmark/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    setFavorite(response.data);
+    console.log(response);
+  };
+
+  useEffect(() => {
+    loadFavorite();
+    // console.log(favorite);
+  }, []);
 
   return (
     <Body>
       <Header />
       <Text>즐겨찾기</Text>
       <MyStampBox>
-        {myStamp.map(item => (
+        {favorite.map(item => (
           <ShopStamp
             key={item.id}
             id={item.id}
             title={item.title}
             field={item.field}
-            src={item.src}
+            src={
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR06D3TZa0g0Vjx0IbtlnQ2ow5iIZUCRkppbg&usqp=CAU'
+            }
             coupon={item.coupon}
             stamp={`${item.stamp * 10}%`}
           />

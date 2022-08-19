@@ -39,6 +39,7 @@ function Login({ logIn }) {
           LOCAL.IS_SHOP,
           response.data.serial_bo.is_shop.toString(),
         );
+        localStorage.setItem(LOCAL.TOKEN, response.data.token);
 
         logIn();
         navigate('/');

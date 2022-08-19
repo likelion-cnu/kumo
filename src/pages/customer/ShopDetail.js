@@ -1,13 +1,18 @@
-import React from 'react';
+/* eslint-disable */
+
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
 import EventInfo from '../../components/customer/ShopDetail/EventInfo';
 import ReviewInfo from '../../components/customer/ShopDetail/ReviewInfo';
 import ImageInfo from '../../components/customer/ShopDetail/ImageInfo';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function ShopDetail() {
+  /*
   const shopInfo = {
     id: 'gomada',
     title: '고마다',
@@ -24,11 +29,13 @@ function ShopDetail() {
     img3: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
     img4: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
   };
-
+  */
+  /*
   const shopDetailInfo = {
     event: '스탬프 10번 적립 시 쿠폰 1장',
   };
-
+  */
+  /*
   const shopReview = [
     {
       id: '준수',
@@ -43,38 +50,83 @@ function ShopDetail() {
       comment: '너무 맛있어요~',
     },
   ];
+  */
   const navigate = useNavigate();
+
+  const { shopId } = useParams();
+
+  const [shopInfo, setShopInfo] = useState([]);
+  const [shopReview, setShopReview] = useState([]);
 
   const onClick = () => {
     navigate('/review');
   };
+
+  let localStorage = window.localStorage;
+
+  const loadShopDetail = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/shop_detail/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response);
+
+    setShopInfo(response.data);
+  };
+
+  const loadShopReview = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/review_list/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response.data);
+
+    setShopReview(response.data);
+  };
+
+  useEffect(() => {
+    // console.log(shopId);
+    loadShopDetail();
+    // console.log(shopInfo);
+    // loadShopReview();
+  }, [shopId]);
 
   return (
     <Body>
       <Header />
       <ShopDetailBox>
         <DetailInfo
-          key={shopInfo.id}
-          id={shopInfo.id}
-          title={shopInfo.title}
-          field={shopInfo.field}
-          src={shopInfo.src}
-          number={shopInfo.number}
-          isOpen={shopInfo.isOpen}
-          distance={shopInfo.distance}
-          address={shopInfo.address}
-          coupon={shopInfo.coupon}
-          stamp={`${shopInfo.stamp * 10}%`}
+          key={shopId}
+          id={shopId}
+          title={shopInfo.shop_name}
+          field={shopInfo.shop_sector}
+          src={process.env.REACT_APP_KUMO_API + shopInfo.src} // logo
+          number={shopInfo.shop_phone_num}
+          isOpen={shopInfo.isOpen} // 프론트에서 처리하기
+          distance={shopInfo.distance} //몰라!
+          address={shopInfo.address} //없음 아직
+          coupon={shopInfo.coupon} //없음
+          stamp={`${shopInfo.stamp * 10}%`} //없음
         />
       </ShopDetailBox>
       <EventBox>
-        <EventInfo event={shopDetailInfo.event} />
+        <EventInfo event={shopInfo.shop_introduction} />
       </EventBox>
       <ImageInfo
-        img1={shopInfo.img1}
-        img2={shopInfo.img2}
-        img3={shopInfo.img3}
-        img4={shopInfo.img4}
+        img1={process.env.REACT_APP_KUMO_API + shopInfo.img1}
+        img2={process.env.REACT_APP_KUMO_API + shopInfo.img2}
+        img3={process.env.REACT_APP_KUMO_API + shopInfo.img3}
+        img4={process.env.REACT_APP_KUMO_API + shopInfo.img4}
       />
       <ReviewTop>
         <ReviewTitle>Review</ReviewTitle>
@@ -84,9 +136,9 @@ function ShopDetail() {
         {shopReview.map(item => (
           <ReviewInfo
             id={item.id}
-            star={item.star}
+            star={item.review_star}
             time={item.time}
-            comment={item.comment}
+            comment={item.review_caption}
             key={item.id}
           />
         ))}

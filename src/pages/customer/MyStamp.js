@@ -1,9 +1,13 @@
-import React from 'react';
+/*eslint-disable*/
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import ShopStamp from '../../components/customer/MyStamp/ShopStamp';
 import Header from '../../components/customer/Header/Header';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function MyStamp() {
+  /*
   const myStamp = [
     {
       id: 'gomada',
@@ -30,6 +34,31 @@ function MyStamp() {
       stamp: '6',
     },
   ];
+  */
+
+  const [myStamp, setMyStamp] = useState([]);
+
+  const loadMyStamp = async () => {
+    let localStorage = window.localStorage;
+    // console.log(localStorage.getItem(LOCAL.TOKEN));
+
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/stamp/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    setMyStamp(response.data);
+    console.log(response);
+  };
+
+  useEffect(() => {
+    loadMyStamp();
+    console.log(myStamp);
+  }, []);
 
   return (
     <Body>
@@ -38,13 +67,13 @@ function MyStamp() {
       <MyStampBox>
         {myStamp.map(item => (
           <ShopStamp
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            field={item.field}
-            src={item.src}
-            coupon={item.coupon}
-            stamp={`${item.stamp * 10}%`}
+            key={item.shopname}
+            id={item.shopname}
+            title={item.shop_name} //가게 이름 필요
+            field={item.shop_sector} //가게 sector 필요
+            src={process.env.REACT_APP_KUMO_API + item.shop_logo}
+            coupon={item.coupon_num}
+            stamp={`${item.stamp_num * 10}%`}
           />
         ))}
       </MyStampBox>
