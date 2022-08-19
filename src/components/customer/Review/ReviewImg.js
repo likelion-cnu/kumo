@@ -27,8 +27,6 @@ function ReviewImage() {
 
   return (
     <>
-      {/* <Text>별점을 남겨주세요.</Text>
-      <Rating Controlled size="large" /> */}
       <ImgText>사진 첨부하기</ImgText>
       <Box>
         <ChangeImgBox for="input-file">
@@ -50,7 +48,6 @@ function ReviewImage() {
           )}
         </ChangeImgBox>
       </Box>{' '}
-      */}
     </>
   );
 }
