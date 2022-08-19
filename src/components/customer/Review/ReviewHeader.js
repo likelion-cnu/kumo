@@ -7,7 +7,7 @@ function MapHeader() {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   return (
@@ -15,7 +15,7 @@ function MapHeader() {
       <BackButton onClick={onClick}>
         <IoIosArrowBack size={25} />
       </BackButton>
-      <NavbarName>주변 가게</NavbarName>
+      <NavbarName>리뷰쓰기</NavbarName>
     </MapNavbar>
   );
 }
@@ -31,6 +31,7 @@ const MapNavbar = styled.div`
   align-items: center;
 
   background-color: ${props => props.theme.bgColor};
+  border-bottom: 2px solid #f5f5f5;
 `;
 
 const BackButton = styled.div`

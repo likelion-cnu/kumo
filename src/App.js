@@ -15,6 +15,8 @@ import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
 import ShopDetail from './pages/customer/ShopDetail';
 import Map from './pages/customer/Map';
+import Favorite from './pages/customer/Favorite';
+import Review from './pages/customer/Review';
 
 import HomeShop from './pages/shop/HomeShop';
 import QrScan from './pages/shop/QrScan';
@@ -41,8 +43,9 @@ function CustomerRoutes({ logOut }) {
         <Route path="/user-info" element={<UserInfo logOut={logOut} />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
-        <Route path="/favorite" element={<HomeCustomer />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/review" element={<Review />} />
       </Routes>
     </Router>
   );

@@ -37,13 +37,13 @@ function ShopDetail() {
       id: '준수',
       star: '5.0',
       time: '7시간 전',
-      comment: 'ㅇㄹㅇㄹㅇㄹㅇㄹㅇㄹ df dfdsdfd dd si',
+      comment: '최고의 가게 추천추천',
     },
     {
       id: '승건',
       star: '3.0',
       time: '1일 전',
-      comment: 'fwfeffefeefeefefeeef',
+      comment: '너무 맛있어요~',
     },
   ];
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function ShopDetail() {
   const { shopId } = useParams();
 
   const onClick = () => {
-    navigate('/');
+    navigate('/review');
   };
 
   const loadShopDetail = async () => {
@@ -134,6 +134,7 @@ function ShopDetail() {
 
 const Body = styled.div`
   width: 100vw;
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;

@@ -8,7 +8,9 @@ function Header() {
   return (
     <Navbar>
       <NavbarLogo>
-        <a href="/">KUMO</a>
+        <Fonts>
+          <a href="/">KUMO</a>
+        </Fonts>
       </NavbarLogo>
       <NavbarMenu menu={menu}>
         <NavbarMenuLi>
@@ -62,6 +64,17 @@ const NavbarLogo = styled.div`
   color: ${props => props.theme.mainPurple};
 `;
 
+// 폰트
+const Fonts = styled.div`
+  @font-face {
+    font-family: 'PyeongChangPeace-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2')
+      format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+`;
+
 const NavbarMenu = styled.div`
   display: flex;
   list-style: none;
@@ -74,6 +87,7 @@ const NavbarMenu = styled.div`
 
     position: absolute;
     top: 100%;
+    left: 0;
 
     background-color: ${props => props.theme.bgColor};
     border-top: ${props => props.theme.borderGray};

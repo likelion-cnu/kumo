@@ -1,76 +1,284 @@
-import React, { useEffect } from 'react';
+import {
+  Map,
+  // MarkerWithCustomOverlayStyle,
+  // RemovableCustomOverlayStyle,
+  MapMarker,
+  useMap,
+  CustomOverlayMap,
+} from 'react-kakao-maps-sdk';
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { BsTelephone } from 'react-icons/bs';
+import { BiTime } from 'react-icons/bi';
+import { FiMapPin } from 'react-icons/fi';
+
+import ShopListImg from '../ShopList/ShopListImg';
+import ShopListBox from '../ShopList/ShopListBox';
+import ShopListTitle from '../ShopList/ShopListTitle';
+import ShopListInfo from '../ShopList/ShopListInfo';
 
 const { kakao } = window;
 
-function TestMap({ lat, lng }) {
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(position => {
-      const myMap = {
-        err: 0,
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      }; // 현재 내 위치
-      console.log('Latitude is :', position.coords.latitude);
-      console.log('Longitude is :', position.coords.longitude);
-      const mapContainer = document.getElementById('map'); // 지도를 표시할 div
+function EventMarkerContainer({
+  id,
+  title,
+  field,
+  src,
+  number,
+  isopen,
+  distance,
+  address,
+  position,
+}) {
+  const navigate = useNavigate();
 
-      const mapOption = {
-        center: new kakao.maps.LatLng(myMap.latitude, myMap.longitude), // 지도의 중심 좌표
-        level: 1, // 지도의 확대 레벨
-      };
-
-      const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성
-
-      // 마커를 표시할 위치와 title 객체 배열입니다
-      const positions = [
-        {
-          title: '카카오',
-          latlng: new kakao.maps.LatLng(35.1264101, 126.8788377),
-        },
-        {
-          title: '생태연못',
-          latlng: new kakao.maps.LatLng(35.1265999, 126.8789277), // 제주도 주소임
-        },
-        {
-          title: '텃밭',
-          latlng: new kakao.maps.LatLng(33.450879, 126.56994),
-        },
-        {
-          title: '근린공원',
-          latlng: new kakao.maps.LatLng(33.451393, 126.570738),
-        },
-      ];
-
-      // 마커 이미지의 이미지 주소입니다
-      const imageSrc =
-        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
-
-      for (let i = 0; i < positions.length; i += 1) {
-        // 마커 이미지의 이미지 크기 입니다
-        const imageSize = new kakao.maps.Size(24, 35);
-        // 마커 이미지를 생성합니다
-        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-        // 마커를 생성합니다
-        const marker = new kakao.maps.Marker({
-          map, // 마커를 표시할 지도
-          position: positions[i].latlng, // 마커를 표시할 위치
-          title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: markerImage, // 마커 이미지
-        });
-      }
-    });
-  }, []);
+  const onClick = () => {
+    navigate(`/detail/${id}`);
+  };
+  const map = useMap();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div
-      id="map"
-      style={{
-        width: '100%',
-        height: '100%',
-      }}
-    />
+    <>
+      <MapMarker
+        position={position} // 마커를 표시할 위치
+        // @ts-ignore
+        onClick={marker => {
+          setIsOpen(true);
+          map.panTo(marker.getPosition());
+        }}
+      />
+      {isOpen && (
+        <CustomOverlayMap position={position} xAnchor={0.5} yAnchor={1.3}>
+          <div style={{ minWidth: '200px' }}>
+            <button
+              alt="close"
+              width="14"
+              height="13"
+              type="button"
+              src="https://t1.daumcdn.net/localimg/localimages/07/mapjsapi/2x/bt_close.gif"
+              style={{
+                position: 'absolute',
+                right: '5px',
+                top: '5px',
+                cursor: 'pointer',
+                border: '1px solid #F5F5F5',
+                borderRadius: '20px',
+              }}
+              onClick={() => setIsOpen(false)}
+            >
+              close
+            </button>
+            <ShopListBox onClick={onClick}>
+              <ShopListTitle title={title} field={field} />
+              <ShopListInfo>
+                <ShopListImg src={src} />
+                <InfoTextBox>
+                  <Info>
+                    <Icon>
+                      <BsTelephone />
+                    </Icon>
+                    <Number>{number}</Number>
+                  </Info>
+                  <Info>
+                    <Icon>
+                      <BiTime />
+                    </Icon>
+                    <IsOpen>{isopen}</IsOpen>
+                  </Info>
+                  <Info>
+                    <Icon>
+                      <FiMapPin />
+                    </Icon>
+                    <AddressTextBox>
+                      <Distance>{distance}</Distance>
+                      <Address>{address}</Address>
+                    </AddressTextBox>
+                  </Info>
+                </InfoTextBox>
+              </ShopListInfo>
+            </ShopListBox>
+          </div>
+        </CustomOverlayMap>
+      )}
+    </>
   );
 }
 
-export default TestMap;
+const InfoTextBox = styled.div`
+  width: 55%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: ${props => props.theme.fontLight};
+  font-size: ${props => props.theme.fontXSmall};
+  color: ${props => props.theme.fontGray};
+`;
+
+const Info = styled.div`
+  width: 100%;
+
+  margin-bottom: 2.5px;
+
+  display: flex;
+`;
+
+const Icon = styled.div`
+  width: 10%;
+  height: 100%;
+  margin-right: 5px;
+`;
+
+const Number = styled.div`
+  width: 100%;
+  text-align: left;
+  margin-bottom: 5px;
+`;
+
+const IsOpen = styled(Number)`
+  font-weight: ${props => props.theme.fontBold};
+`;
+
+const AddressTextBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Address = styled(Number)``;
+
+const Distance = styled(Number)`
+  color: ${props => props.theme.mainPurple};
+  font-weight: ${props => props.theme.fontRegular};
+`;
+
+function KakaoMap() {
+  const [state, setState] = useState({
+    center: {
+      lat: 33.450701,
+      lng: 126.570667,
+    },
+    errMsg: null,
+    isLoading: true,
+  });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setState(prev => ({
+            ...prev,
+            center: {
+              lat: position.coords.latitude, // 위도
+              lng: position.coords.longitude, // 경도
+            },
+            isLoading: false,
+          }));
+        },
+        err => {
+          setState(prev => ({
+            ...prev,
+            errMsg: err.message,
+            isLoading: false,
+          }));
+        },
+      );
+    } else {
+      // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+      setState(prev => ({
+        ...prev,
+        errMsg: 'geolocation을 사용할수 없어요..',
+        isLoading: false,
+      }));
+    }
+  }, []);
+
+  // 마커를 표시할 위치와 title 객체 배열입니다
+  const data = [
+    {
+      id: 'gomada',
+      title: '고마다1',
+      field: '카페',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5432',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '광주광역시 어쩌구저쩌구',
+      latlng: { lat: 35.1265999, lng: 126.8789277 },
+    },
+    {
+      id: 'gomada',
+      title: '고마다2',
+      field: '카페',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5444',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '광주광역시 어쩌구저쩌구',
+      latlng: { lat: 35.1264101, lng: 126.8788377 }, // 제주도 주소임
+    },
+    {
+      id: 'gomada',
+      title: '고마다3',
+      field: '카페',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5432',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '광주광역시 어쩌구저쩌구',
+      latlng: { lat: 35.1267999, lng: 126.8799277 },
+    },
+    {
+      id: 'gomada',
+      title: '고마다4',
+      field: '카페',
+      src: 'https://image.idus.com/image/files/f934efdc5fd94c559e80a11c2a3bee46_720.jpg',
+      number: '010-9876-5444',
+      isOpen: '영업 중',
+      distance: '200m',
+      address: '광주광역시 어쩌구저쩌구',
+      latlng: { lat: 35.1269999, lng: 126.8779277 },
+    },
+  ];
+
+  return (
+    <Map // 지도를 표시할 Container
+      id="map"
+      center={state.center}
+      style={{
+        // 지도의 크기
+        width: '100%',
+        height: '900px',
+      }}
+      level={2} // 지도의 확대 레벨
+    >
+      {data.map(value => (
+        <EventMarkerContainer
+          key={`EventMarkerContainer-${value.latlng.lat}-${value.latlng.lng}`}
+          id={value.id}
+          title={value.title}
+          field={value.field}
+          src={value.src}
+          number={value.number}
+          isopen={value.isOpen}
+          distance={value.distance}
+          address={value.address}
+          position={value.latlng}
+        />
+      ))}
+    </Map>
+  );
+}
+
+export default KakaoMap;

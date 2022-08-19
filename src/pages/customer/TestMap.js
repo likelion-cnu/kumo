@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import MapHeader from '../../components/customer/Map/MapHeader';
-import KakaoMap from '../../components/customer/Map/KakaoMap';
-// import TestMap from '../../components/customer/Map/TestMap';
+// import KakaoMap from '../../components/customer/Map/KakaoMap';
+import TestMap from '../../components/customer/Map/TestMap';
 
 const { kakao } = window;
 
@@ -57,18 +57,21 @@ function Map() {
   return (
     <Body>
       <MapHeader />
-      <KakaoMap />
-      {/* <MapBox>
-        {positions.map(item => (
-          <TestMap
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            latlng={item.latlng}
-          />
-        ))}
-      </MapBox> */}
-      {/* <MapClick /> */}
+      <TestMap />
+      {/* {positions.map(item => (
+        <TestMap
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          field={item.field}
+          src={item.src}
+          number={item.number}
+          isOpen={item.isOpen}
+          distance={item.distance}
+          address={item.address}
+          latlng={item.latlng}
+        />
+      ))} */}
     </Body>
   );
 }

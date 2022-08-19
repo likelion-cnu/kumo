@@ -115,6 +115,7 @@ function Profile() {
 }
 const Body = styled.div`
   width: 100vw;
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;
