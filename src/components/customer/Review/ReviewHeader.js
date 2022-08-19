@@ -13,7 +13,7 @@ function MapHeader() {
   return (
     <MapNavbar>
       <BackButton onClick={onClick}>
-        <IoIosArrowBack size={25} color="#512DA8" />
+        <IoIosArrowBack size={25} />
       </BackButton>
       <NavbarName>리뷰쓰기</NavbarName>
     </MapNavbar>
@@ -46,8 +46,8 @@ const NavbarName = styled.div`
   text-align: center;
 
   font-size: ${props => props.theme.fontMedium};
-  font-weight: ${props => props.theme.fontBold};
-  color: ${props => props.theme.mainPurple};
+  font-weight: ${props => props.theme.fontRegular};
+  color: ${props => props.theme.fontBlack};
 `;
 
 export default MapHeader;

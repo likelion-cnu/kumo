@@ -13,7 +13,7 @@ function MapHeader() {
   return (
     <MapNavbar>
       <BackButton onClick={onClick}>
-        <IoIosArrowBack size={20} />
+        <IoIosArrowBack size={25} />
       </BackButton>
       <NavbarName>주변 가게</NavbarName>
     </MapNavbar>
@@ -45,6 +45,8 @@ const NavbarName = styled.div`
   text-align: center;
 
   font-size: ${props => props.theme.fontMedium};
+  font-weight: ${props => props.theme.fontRegular};
+  color: ${props => props.theme.fontBlack};
 `;
 
 export default MapHeader;

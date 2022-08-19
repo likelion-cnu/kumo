@@ -12,9 +12,8 @@ function HomeAuth() {
   return (
     <Body>
       <Logo>
-        쿠폰을
-        <br />
-        모으다.
+        <Fonts>쿠폰을</Fonts>
+        <Fonts>모으다.</Fonts>
       </Logo>
       <Introduce>
         QR 코드로
@@ -61,12 +60,23 @@ const Logo = styled.div`
   color: ${props => props.theme.bgColor};
   font-size: 110px;
 
-  font-family: 'PyeongChang Peace';
+  font-family: 'PyeongChangPeace-Light';
   font-style: normal;
   font-weight: 700;
 
   line-height: 120px;
   letter-spacing: -0.05em;
+`;
+
+// 폰트
+const Fonts = styled.div`
+  @font-face {
+    font-family: 'PyeongChangPeace-Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2')
+      format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
 `;
 
 const Introduce = styled.div`
