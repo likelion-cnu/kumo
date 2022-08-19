@@ -15,6 +15,7 @@ import Search from './pages/customer/Search';
 import Profile from './pages/customer/Profile';
 import ShopDetail from './pages/customer/ShopDetail';
 import Map from './pages/customer/Map';
+import Favorite from './pages/customer/Favorite';
 import Review from './pages/customer/Review';
 
 import HomeShop from './pages/shop/HomeShop';
@@ -42,7 +43,7 @@ function CustomerRoutes({ logOut }) {
         <Route path="/user-info" element={<UserInfo logOut={logOut} />} />
         <Route path="/my-stamp" element={<MyStamp />} />
         <Route path="/detail/:shopId" element={<ShopDetail />} />
-        <Route path="/favorite" element={<HomeCustomer />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/map" element={<Map />} />
         <Route path="/review" element={<Review />} />
       </Routes>
@@ -83,32 +84,32 @@ function AuthRoutes({ logIn }) {
 let localStorage = window.localStorage;
 
 function AppRouter() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(
-  //   localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
-  // );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN),
+  );
 
-  // const logIn = () => setIsLoggedIn(true);
-  // const logOut = () => setIsLoggedIn(false);
+  const logIn = () => setIsLoggedIn(true);
+  const logOut = () => setIsLoggedIn(false);
 
-  // useEffect(() => {
-  //   console.log(isLoggedIn);
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
-  //   return <AuthRoutes logIn={logIn} />;
-  // }
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
+    return <AuthRoutes logIn={logIn} />;
+  }
 
-  // if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
-  //     return <CustomerRoutes logOut={logOut} />;
-  //   }
+  if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'false') {
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'true') {
+      return <CustomerRoutes logOut={logOut} />;
+    }
 
-  //   if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
-  //     return <ShopRoutes logOut={logOut} />;
-  //   }
-  // }
+    if (localStorage.getItem(LOCAL_KEY.IS_SHOP) !== 'false') {
+      return <ShopRoutes logOut={logOut} />;
+    }
+  }
 
-  return <AuthRoutes />;
+  // return <CustomerRoutes />;
   // 로그인 없이 작업하려면 AppRouter() 코드 주석 처리한 후 기존처럼 상단의 코드 사용하면 됩니다!
 }
 
