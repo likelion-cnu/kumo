@@ -92,7 +92,7 @@ function AppRouter() {
   const logOut = () => setIsLoggedIn(false);
 
   useEffect(() => {
-    console.log(isLoggedIn);
+    // console.log(isLoggedIn);
   }, [isLoggedIn]);
 
   if (localStorage.getItem(LOCAL_KEY.IS_LOGGED_IN) !== 'true') {
@@ -110,7 +110,6 @@ function AppRouter() {
   }
 
   // return <CustomerRoutes />;
-
   // 로그인 없이 작업하려면 AppRouter() 코드 주석 처리한 후 기존처럼 상단의 코드 사용하면 됩니다!
 }
 

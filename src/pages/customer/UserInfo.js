@@ -1,8 +1,11 @@
+/* eslint-disable */
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Header from '../../components/customer/Header/Header';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function UserInfo({ logOut }) {
   const navigate = useNavigate();
@@ -11,9 +14,28 @@ function UserInfo({ logOut }) {
   const [nickname, setNickname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const onSaveClick = () => {
+  let localStorage = window.localStorage;
+
+  const onSaveClick = async () => {
     console.log(img, nickname, phoneNumber);
     // axios 보내기
+
+    const response = await axios.put(
+      process.env.REACT_APP_KUMO_API +
+        '/customer/change_profile/' +
+        localStorage.getItem(LOCAL.USER_NAME) +
+        '/',
+      {
+        params: {
+          nickname: nickname,
+          phone_num: phoneNumber,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
 
     navigate(-1);
   };
@@ -24,7 +46,27 @@ function UserInfo({ logOut }) {
     navigate('/');
   };
 
+  const loadUserInfo = async () => {
+    // api 수정 후 다시 수정할 것
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/profile',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+
+    console.log(response);
+
+    setImg(response.data[0].profile_img);
+    setNickname(response.data[0].nickname);
+    // setPhoneNumber(response.data[0].)
+  };
+
   useEffect(() => {
+    loadUserInfo();
     // axios 가져오기
     setImg('https://i.ytimg.com/vi/PBCL7e02PZQ/maxresdefault.jpg');
     setNickname('짱구');

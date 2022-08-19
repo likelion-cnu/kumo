@@ -1,14 +1,20 @@
-import React from 'react';
+/*eslint-disable */
+
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import UsedCoupon from '../../components/customer/Profile/UsedCoupon';
 import UserInfoButton from '../../components/customer/Profile/UserInfoButton';
+import LOCAL from '../../CONSTANT/LOCAL';
 
 function Profile() {
+  /*
   const user = {
     level: 1,
     nickname: '짱구',
   };
+  
 
   const usedCoupons = [
     {
@@ -42,20 +48,65 @@ function Profile() {
       date: '2021.08.14 09:45',
     },
   ];
+  */
+
+  const [user, setUser] = useState([]);
+  const [usedCoupons, setUsedCoupons] = useState([]);
+
+  let localStorage = window.localStorage;
+
+  const loadProfile = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/profile/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+
+    setUser(response.data[0]);
+    console.log(response);
+  };
+
+  const loadCouponHistory = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/couponhistory/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+
+    setUsedCoupons(response.data);
+  };
+
+  useEffect(() => {
+    loadProfile();
+    loadCouponHistory();
+  }, []);
 
   return (
     <Body>
       <Header />
-      <UserInfoButton level={user.level} nickname={user.nickname} />
+      <UserInfoButton
+        key={user.nickname}
+        img={user.profile_img}
+        level={user.level}
+        nickname={user.nickname}
+      />
       <UsedCouponsBox>
         <Text>쿠폰 사용 기록</Text>
         {usedCoupons.map(item => (
           <UsedCoupon
-            key={item.id}
+            key={item.id} //업주의 id 필요
             id={item.id}
-            src={item.src}
-            title={item.title}
-            date={item.date}
+            src={item.src} //shop_logo 필요
+            title={item.shopname}
+            date={item.created_at}
           />
         ))}
       </UsedCouponsBox>

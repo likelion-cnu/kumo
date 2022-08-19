@@ -1,6 +1,9 @@
-import React from 'react';
+/* eslint-disable */
+
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import Header from '../../components/customer/Header/Header';
 import DetailInfo from '../../components/customer/ShopDetail/DetailInfo';
 import EventInfo from '../../components/customer/ShopDetail/EventInfo';
@@ -45,9 +48,43 @@ function ShopDetail() {
   ];
   const navigate = useNavigate();
 
+  const { shopId } = useParams();
+
   const onClick = () => {
     navigate('/review');
   };
+
+  const loadShopDetail = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/shop_detail/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response.data);
+  };
+
+  const loadShopReview = async () => {
+    const response = await axios.get(
+      process.env.REACT_APP_KUMO_API + '/customer/review_list/' + shopId + '/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem(LOCAL.TOKEN)}`,
+        },
+      },
+    );
+    console.log(response.data);
+  };
+
+  useEffect(() => {
+    console.log(shopId);
+    loadShopDetail();
+    loadShopReview();
+  }, [shopId]);
 
   return (
     <Body>
